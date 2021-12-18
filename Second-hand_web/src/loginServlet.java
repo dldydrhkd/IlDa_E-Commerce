@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import mybean.db.userDAO;
+
 
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
@@ -26,8 +28,15 @@ public class loginServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String pwd =request.getParameter("pwd");
+		boolean check = false;
 		
-		boolean check = isLoginOk(id, pwd);			// 로그인 확인
+		try {
+			userDAO db = new userDAO();
+			check = db.isLoginOk(id, pwd);
+			db.disConnect();
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		if(check) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);

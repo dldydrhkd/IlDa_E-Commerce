@@ -2,12 +2,16 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import mybean.db.userDAO;
 
 /**
  * Servlet implementation class signUpServlet
@@ -31,12 +35,12 @@ public class signUpServlet extends HttpServlet {
 		try {
 			userDAO db = new userDAO();
 			db.insertRecord(usr);
-			db.close();
+			db.disConnect();
 		}catch(NamingException e) {
-			out.print(e);
-			return
+			System.out.print(e);
+			return;
 		}catch(SQLException e) {
-			out.print(e);
+			System.out.print(e);
 			return;
 		}
 		PrintWriter out = response.getWriter();
