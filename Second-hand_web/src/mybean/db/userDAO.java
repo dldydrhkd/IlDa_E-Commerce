@@ -13,7 +13,7 @@ public class userDAO {
 	// Singleton
 	private static userDAO user;
 
-	private userDAO() throws ClassNotFoundException, SQLException {
+	public userDAO() throws ClassNotFoundException, SQLException {
 		conn = dbCon.getConnection();
 	}
 
@@ -36,6 +36,12 @@ public class userDAO {
 			}
 		}
 		return false;
+	}
+	
+	public void disConnect() throws SQLException {
+		if(rs != null) rs.close();
+		if(rs != null) pstmt.close();
+		if(rs != null) conn.close();
 	}
 }
 
