@@ -26,7 +26,9 @@
 - 박태준 mbti-istj 한마디 - 다 부셔버리겠습니다.
 - 이욱진 mbti-isfj 한마디 - 조장차이.
 <hr>
+
 ## Reference
-- JSP 모듈화 개념 및 웹 사이트 페이지 분할 구성 - <https://dololak.tistory.com/494><br>
-- Source Tree basic concept - <https://coding-groot.tistory.com/135><br>
-- MVC pattern 2 - <https://velog.io/@jsj3282/MVC-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%841-%EB%AA%A8%EB%8D%B8-2-%EA%B5%AC%EC%A1%B0%EC%99%80-MVC-%ED%8C%A8%ED%84%B4>
+
+- JSP 모듈화 개념 및 웹 사이트 페이지 분할 구성 - [https://dololak.tistory.com/494]<br>
+- Source Tree basic concept - [https://coding-groot.tistory.com/135]<br>
+- MVC pattern 2 - [https://velog.io/@jsj3282/MVC-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%841-%EB%AA%A8%EB%8D%B8-2-%EA%B5%AC%EC%A1%B0%EC%99%80-MVC-%ED%8C%A8%ED%84%B4]
