@@ -24,19 +24,7 @@ public class writeServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
 		
-		try {
-			noticeDAO notice = noticeDAO.getInstance();
-			List<noticeVO> li = notice.list();
-			notice.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("listNotice.jsp");
-			request.setAttribute("list", li);
-			rd.forward(request,response);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

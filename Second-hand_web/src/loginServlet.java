@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import mybean.db.userDAO;
+import mybean.db.userVO;
 
 
 @WebServlet("/loginServlet")
