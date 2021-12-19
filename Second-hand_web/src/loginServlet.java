@@ -39,13 +39,17 @@ public class loginServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		if(check) {
-			out.print("<%alert(login success);%>");
+			out.print("<script>");
+			out.print("alert('로그인이 되었습니다.')");
+			out.print("</script>");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			response.sendRedirect("banner.jsp");  // 나중에 main으로 바꿀거
 		}
 		else {
-			out.print("<%alert('login denied')%>");
+			out.print("<script>");
+			out.print("alert('로그인 실패')");
+			out.print("</script>");
 			response.sendRedirect("banner.jsp");
 		}
 	}

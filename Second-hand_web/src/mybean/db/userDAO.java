@@ -56,6 +56,29 @@ public class userDAO {
 		pstmt.executeUpdate();
 	}
 	
+	public void updateRecord(userVO user) throws SQLException {
+		String sql = "update userTbl set userPwd=?, userName=?, userPhoneNumber=?, userAddr=?, userEmail=? where userId=?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, user.getUserPwd());
+		pstmt.setString(2, user.getUserName());
+		pstmt.setString(3, user.getUserPhoneNumber());
+		pstmt.setString(4, user.getUserAddr());
+		pstmt.setString(5, user.getUserEmail());
+		pstmt.setString(6, user.getUserId());
+		
+		pstmt.executeUpdate();
+	}
+	
+	public void deleteRecord(String id) throws SQLException {
+		String sql = "update userTbl set userCondition='탈퇴' where id = ?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		pstmt.executeUpdate();
+	}
+	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
 		if(rs != null) pstmt.close();
