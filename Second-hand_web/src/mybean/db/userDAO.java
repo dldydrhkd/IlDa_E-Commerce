@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class userDAO {
 	private Connection conn;
@@ -24,7 +26,7 @@ public class userDAO {
 		return user;
 	}
 	
-	public boolean isLoginOk(String id, String pwd) throws SQLException{
+	public int isLoginOk(String id, String pwd) throws SQLException{
 		String sql = "select * from userTbl";
 		
 		pstmt = conn.prepareStatement(sql);
@@ -32,10 +34,10 @@ public class userDAO {
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
 			if(rs.getString("userId").equals(id) && rs.getString("userPwd").contentEquals(pwd)) {
-				return true;
+				return rs.getInt("userNumber");
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	public void insertRecord(userVO user) throws SQLException {
@@ -81,8 +83,8 @@ public class userDAO {
 	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
-		if(rs != null) pstmt.close();
-		if(rs != null) conn.close();
+		if(pstmt != null) pstmt.close();
+		if(conn != null) conn.close();
 	}
 }
 

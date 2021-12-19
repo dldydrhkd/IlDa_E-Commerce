@@ -29,22 +29,23 @@ public class loginServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String pwd =request.getParameter("pwd");
-		boolean check = false;
+		int userNumber = -1;
 		
 		try {
 			userDAO db = userDAO.getInstance();
-			check = db.isLoginOk(id, pwd);
+			userNumber = db.isLoginOk(id, pwd);
 			db.disConnect();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-		if(check) {
+		if(userNumber > -1) {
 			out.print("<script>");
 			out.print("alert('로그인이 되었습니다.')");
 			out.print("</script>");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			response.sendRedirect("banner.jsp");  // 나중에 main으로 바꿀거
+			session.setAttribute("userNumber", userNumber);
+			response.sendRedirect("test.jsp");  // 나중에 main으로 바꿀거
 		}
 		else {
 			out.print("<script>");

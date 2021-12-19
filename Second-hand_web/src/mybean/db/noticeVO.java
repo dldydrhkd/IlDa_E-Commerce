@@ -3,7 +3,6 @@ package mybean.db;
 import java.sql.Date;
 
 public class noticeVO {
-	
 	private int noticeNumber;
 	private String noticeTitle;
 	private String noticeInfo;
@@ -73,14 +72,7 @@ public class noticeVO {
 	public int getUserNumber() {
 		return userNumber;
 	}
-
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
-	
-	
-	
-	
-	
-
 }
