@@ -2,21 +2,24 @@
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import mybean.db.userDAO;
+import mybean.db.noticeDAO;
+import mybean.db.noticeVO;
 
-@WebServlet("/userWithdrawalServlet")
-public class userWithdrawalServlet extends HttpServlet {
+
+@WebServlet("/writeServlet")
+public class writeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public userWithdrawalServlet() {
+    public writeServlet() {
         super();
     }
 
@@ -24,24 +27,18 @@ public class userWithdrawalServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		
 		try {
-			userDAO db = userDAO.getInstance();
-			db.deleteRecord(id);
-			db.disConnect();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+			noticeDAO notice = noticeDAO.getInstance();
+			List<noticeVO> li = notice.list();
+			notice.disConnect();
+			RequestDispatcher rd = request.getRequestDispatcher("listNotice.jsp");
+			request.setAttribute("list", li);
+			rd.forward(request,response);
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		session.invalidate();
-		response.sendRedirect("");
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
