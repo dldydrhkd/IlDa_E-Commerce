@@ -11,7 +11,7 @@ public class dbCon {
 		String jdbcDriver = "com.mysql.cj.jdbc.Driver";
 		String jdbcUrl = "jdbc:mysql://localhost:3306/SHDB?serverTimezone=UTC";
 		String dbUser = "root";
-		String dbPwd = "12341234";
+		String dbPwd = "1234";
 		
 		Class.forName(jdbcDriver);
 		// 2. Database Connection 연결
