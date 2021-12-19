@@ -19,7 +19,7 @@ public class BasketDAO
 		conn = dbCon.getConnection();
 	}
 
-	public static userDAO getInstance() throws SQLException, ClassNotFoundException 
+	public static BasketDAO getInstance() throws SQLException, ClassNotFoundException 
 	{
 		if(basket==null) {
 			basket = new BasketDAO();
