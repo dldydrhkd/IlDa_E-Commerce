@@ -66,12 +66,6 @@ public class noticeDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public void disConnect() throws SQLException {
-		if(rs != null) rs.close();
-		if(rs != null) pstmt.close();
-		if(rs != null) conn.close();
-	}
-	
 	public List<noticeVO> list() throws SQLException{
 		List<noticeVO> noticeList = new ArrayList<>();
 		String sql = "select * from noticeTbl";
@@ -79,10 +73,19 @@ public class noticeDAO {
 		pstmt = conn.prepareStatement(sql);
 		
 		rs = pstmt.executeQuery();
+		
 		while(rs.next()) {
 			noticeList.add(new noticeVO(rs.getInt(1),rs.getString(2),rs.getString(3), 
 					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7)));
 		}
 		return noticeList;
 	}
+	
+	public void disConnect() throws SQLException {
+		if(rs != null) rs.close();
+		if(pstmt != null) pstmt.close();
+		if(conn != null) conn.close();
+	}
+	
+	
 }

@@ -13,6 +13,16 @@ public class noticeVO {
 	
 	public noticeVO(){};
 	
+	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber) {
+		this.noticeNumber = noticeNumber;
+		this.noticeTitle = noticeTitle;
+		this.noticeInfo = noticeInfo;
+		this.noticeState = noticeState;
+		this.noticeClassification = noticeClassification;
+		this.noticeRegistrationDate = noticeRegistrationDate;
+		this.userNumber = userNumber;
+	}
+	
 	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
