@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입</title>
+<title>회원 가입 페이지</title>
 </head>
 <body>
 <form method="post" action=signUpServlet>
+<div style="border:1px solid black;">
+<h1>회원 가입</h1>
 <table>
 <tr>
 <td> 아이디: </td>
@@ -22,8 +24,8 @@
 <td> <input type="text" name="name" size="40"></td>
 </tr>
 <tr>
-<td> 나이: </td>
-<td> <input type="text" name="age" size="40"></td>
+<td> 생년월일: </td>
+<td> <input type="date" name="birthdate" size="40" value="yyyy-mm-dd" min="1900-01-01" max="2100-01-01"></td>
 </tr>
 <tr>
 <td> 성별: </td>
@@ -48,6 +50,7 @@
 <td><input type="reset" value="뒤로"> </td>
 </tr>
 </table>
+</div>
 </form>
 </body>
 </html>
