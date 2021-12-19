@@ -7,7 +7,7 @@
 <title>회원 가입</title>
 </head>
 <body>
-<form method="post" action=signUpServlet.java>
+<form method="post" action=signUpServlet>
 <table>
 <tr>
 <td> 아이디: </td>
@@ -27,9 +27,9 @@
 </tr>
 <tr>
 <td> 성별: </td>
-<td><input type="radio" name="gender" value="male"
-					checked="checked" size="40"> 남자 <input type="radio" name="gender"
-					value="female" size="40"> 여자</td>
+<td><input type="radio" name="gender" value="남"
+					checked="checked" size="40">남자<input type="radio" name="gender"
+					value="녀" size="40">여자</td>
 </tr>
 <tr>
 <td> 주소: </td>
@@ -37,7 +37,7 @@
 </tr>
 <tr>
 <td>이메일:</td>
-<td> <input type="url" name="phone" size="40"></td>
+<td> <input type="email" name="email" size="40"></td>
 </tr>
 <tr>
 <td> 핸드폰 번호: </td>

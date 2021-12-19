@@ -24,6 +24,7 @@ public class loginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		String id = request.getParameter("id");
@@ -31,19 +32,20 @@ public class loginServlet extends HttpServlet {
 		boolean check = false;
 		
 		try {
-			userDAO db = new userDAO();
+			userDAO db = userDAO.getInstance();
 			check = db.isLoginOk(id, pwd);
 			db.disConnect();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 		if(check) {
+			out.print("<%alert(login success);%>");
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			response.sendRedirect("banner.jsp");  // 나중에 main으로 바꿀거
 		}
 		else {
-			out.print("alert('아이디 혹은 비밀번호가 잘못 되었습니다')");
+			out.print("<%alert('login denied')%>");
 			response.sendRedirect("banner.jsp");
 		}
 	}
