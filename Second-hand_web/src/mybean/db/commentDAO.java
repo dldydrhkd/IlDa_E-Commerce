@@ -53,7 +53,7 @@ public class commentDAO {
 	}
 	
 	public void deleteRecord(commentVO comment) throws SQLException {
-		String sql = "update commentTbl set commentCondition='비공개' "
+		String sql = "update commentTbl set commentCondition='0' "
 				+ "where commentNumber=?";
 		pstmt = conn.prepareStatement(sql);
 		
