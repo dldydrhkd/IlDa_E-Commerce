@@ -29,7 +29,7 @@ public class noticeDAO {
 	
 	public void insertRecord(noticeVO notice) throws SQLException {
 		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, "
-				+ " noticeClassification, userNumber) values(?,?,?,?,?)";
+				+ " noticeClassification, userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) values(?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
@@ -37,13 +37,15 @@ public class noticeDAO {
 		pstmt.setString(3,  notice.getNoticeInfo());
 		pstmt.setString(4,  notice.getNoticeClassification());
 		pstmt.setInt(5,  notice.getUserNumber());
-
+		pstmt.setString(6,  notice.getNoticeImgfileRealName());
+		pstmt.setString(7,  notice.getNoticeSource());
+		pstmt.setInt(8,  notice.getNoticeProductPrice());
 		
 		pstmt.executeUpdate();
 	}
 	
 	public void updateRecord(noticeVO notice) throws SQLException {
-		String sql = "update noticeTbl set noticeTitle=?, noticeInfo=?, noticeState=?, noticeClassification=? "
+		String sql = "update noticeTbl set noticeTitle=?, noticeInfo=?, noticeState=?, noticeClassification=?, noticeImgfileRealName=?, noticeSource=?, noticeProductPrice=? "
 				+ "where noticeNumber=?";
 		pstmt = conn.prepareStatement(sql);
 		
@@ -51,7 +53,10 @@ public class noticeDAO {
 		pstmt.setString(2,  notice.getNoticeInfo());
 		pstmt.setString(3,  notice.getNoticeState());
 		pstmt.setString(4,  notice.getNoticeClassification());
-		pstmt.setInt(5,  notice.getNoticeNumber());
+		pstmt.setString(5,  notice.getNoticeImgfileRealName());
+		pstmt.setString(6,  notice.getNoticeSource());
+		pstmt.setInt(7,  notice.getNoticeProductPrice());
+		pstmt.setInt(8,  notice.getNoticeNumber());
 		
 		pstmt.executeUpdate();
 	}
@@ -75,7 +80,7 @@ public class noticeDAO {
 		
 		while(rs.next()) {
 			noticeList.add(new noticeVO(rs.getInt(1),rs.getString(2),rs.getString(3), 
-					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
+					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7), rs.getString(8), rs.getString(9), rs.getInt(10)));
 		}
 		return noticeList;
 	}
@@ -95,6 +100,8 @@ public class noticeDAO {
 			nd.setNoticeInfo(rs.getString(3));
 			nd.setNoticeState(rs.getString(4));
 			nd.setNoticeClassification(rs.getString(5));
+			nd.setNoticeSource(rs.getString(9));
+			nd.setNoticeProductPrice(rs.getInt(10));
 			return nd;
 		}			
 		return null;

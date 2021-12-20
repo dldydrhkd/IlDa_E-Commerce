@@ -25,27 +25,24 @@ public class basketDAO {
 		}
 		return basket;
 	}
-	public void insertBasket(int basketNumber, int userNumber, int noticeNumber) throws SQLException{
+	public void insertBasket(basketVO basket) throws SQLException{
 		String sql = "insert into basketTbl(basketNumber,userNumber, noticeNumber) values(?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, basketNumber);
-		pstmt.setInt(2, userNumber);
-		pstmt.setInt(3,  noticeNumber);
+		pstmt.setInt(1, basket.getBasketNumber());
+		pstmt.setInt(2, basket.getUserNumber());
+		pstmt.setInt(3, basket.getNoticeNumber());
 		
 		pstmt.executeUpdate();
 		pstmt.close();
 	}
-	public void deleteBasket(int basketNumber, int userNumber, int noticeNumber) throws SQLException {
-		String sql = "delete from basketTbl where (basketNumber = ?)"
-				+ "and (userNumber = ?) and (noticeNumber = ?)";
+	public void deleteBasket(int basketNumber) throws SQLException {
+		String sql = "delete from basketTbl where basketNumber = ?";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, basketNumber);
-		pstmt.setInt(2, userNumber);
-		pstmt.setInt(3,  noticeNumber);
-		
+
 		pstmt.executeUpdate();
 		pstmt.close();
 	}

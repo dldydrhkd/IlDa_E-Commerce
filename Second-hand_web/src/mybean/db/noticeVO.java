@@ -12,11 +12,12 @@ public class noticeVO {
 	private int userNumber;
 	private String noticeImgfileRealName;
 	private String noticeSource;
+	private int noticeProductPrice;
 	private boolean noticeCondition;
 	
 	public noticeVO(){};
 	
-	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName, String noticeSource) {
+	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) {
 		this.noticeNumber = noticeNumber;
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
@@ -26,9 +27,10 @@ public class noticeVO {
 		this.userNumber = userNumber;
 		this.noticeImgfileRealName = noticeImgfileRealName;
 		this.noticeSource = noticeSource;
+		this.noticeProductPrice = noticeProductPrice;
 	}
 	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName, String noticeSource) {
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
 		this.noticeState = noticeState;
@@ -36,6 +38,7 @@ public class noticeVO {
 		this.userNumber = userNumber;
 		this.noticeImgfileRealName = noticeImgfileRealName;
 		this.noticeSource = noticeSource;
+		this.noticeProductPrice = noticeProductPrice;
 	}
 
 	public int getNoticeNumber() {
@@ -107,6 +110,14 @@ public class noticeVO {
 
 	public void setNoticeSource(String noticeSource) {
 		this.noticeSource = noticeSource;
+	}
+	
+	public int getNoticeProductPrice() {
+		return noticeProductPrice;
+	}
+
+	public void setNoticeProductPrice(int noticeProductPrice) {
+		this.noticeProductPrice = noticeProductPrice;
 	}
 
 	public boolean isNoticeCondition() {
