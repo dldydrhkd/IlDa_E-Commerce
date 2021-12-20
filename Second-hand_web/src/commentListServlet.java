@@ -30,7 +30,7 @@ public class commentListServlet extends HttpServlet {
 		
 		try {
 			commentDAO comment = commentDAO.getInstance();
-			List<commentVO> li = comment.listRecord(noticeNumber);
+			List<commentVO> li = comment.listComment(noticeNumber);
 			comment.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("/basketList.jsp");
 			request.setAttribute("commentList", li);
