@@ -41,25 +41,25 @@ public class userDAO {
 	}
 	
 	public void insertRecord(userVO user) throws SQLException {
-		String sql = "insert into userTbl(userId, userPwd, userName, userAge,"
-				+ " userPhoneNumber, userAddr, userEmail, userGender) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userAge,"
+				+ " userPhoneNumber, userAddr, userEmail, userGender) values(?,?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,  user.getUserId());
-		pstmt.setString(2,  user.getUserPwd());
-		pstmt.setString(3,  user.getUserName());
-		pstmt.setInt(4,  user.getUserAge());
-		pstmt.setString(5,  user.getUserPhoneNumber());
-		pstmt.setString(6,  user.getUserAddr());
-		pstmt.setString(7,  user.getUserEmail());
-		pstmt.setString(8,  user.getUserGender());
+		pstmt.setString(1,  null);
+		pstmt.setString(2,  user.getUserId());
+		pstmt.setString(3,  user.getUserPwd());
+		pstmt.setString(4,  user.getUserName());
+		pstmt.setInt(5,  user.getUserAge());
+		pstmt.setString(6,  user.getUserPhoneNumber());
+		pstmt.setString(7,  user.getUserAddr());
+		pstmt.setString(8,  user.getUserEmail());
+		pstmt.setString(9,  user.getUserGender());
 		
 		pstmt.executeUpdate();
 	}
 	
 	public void updateRecord(userVO user) throws SQLException {
-		String sql = "update userTbl set userPwd=?, userName=?, userPhoneNumber=?, userAddr=?, userEmail=?"
-				+ " where userId=?";
+		String sql = "update userTbl set userPwd=?, userName=?, userPhoneNumber=?, userAddr=?, userEmail=? where userId=?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, user.getUserPwd());
