@@ -8,12 +8,14 @@ public class commentVO {
 	private Date commentRegistrationDate;
 	private int noticeNumber;
 	private String userId;
+	private String commentCondition;
 	
 	public commentVO() {};
 	
-	public commentVO(String commentInfo, String userId) {
+	public commentVO(String commentInfo, Date commentRegistrationDate, String userId) {
 		this.commentInfo = commentInfo;
 		this.userId = userId;
+		this.commentRegistrationDate = commentRegistrationDate;
 	}
 	
 	public commentVO(String commentInfo, int noticeNumber, String userId) {
@@ -60,6 +62,14 @@ public class commentVO {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getCommentCondition() {
+		return commentCondition;
+	}
+
+	public void setCommentCondition(String commentCondition) {
+		this.commentCondition = commentCondition;
 	}
 	
 	

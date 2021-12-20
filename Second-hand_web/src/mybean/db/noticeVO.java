@@ -1,4 +1,4 @@
-package mybean.db;
+package mybean.dbte;
 
 import java.sql.Date;
 
@@ -10,10 +10,15 @@ public class noticeVO {
 	private String noticeClassification;
 	private Date noticeRegistrationDate;
 	private int userNumber;
+	private String noticeImgfileRealName;
+<<<<<<< Updated upstream
+=======
+	private String noticeCondition;
+>>>>>>> Stashed changes
 	
 	public noticeVO(){};
 	
-	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber) {
+	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName) {
 		this.noticeNumber = noticeNumber;
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
@@ -21,14 +26,25 @@ public class noticeVO {
 		this.noticeClassification = noticeClassification;
 		this.noticeRegistrationDate = noticeRegistrationDate;
 		this.userNumber = userNumber;
+		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber) {
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
 		this.noticeState = noticeState;
 		this.noticeClassification = noticeClassification;
 		this.userNumber = userNumber;
+		this.noticeImgfileRealName = noticeImgfileRealName;
+	}
+	
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
+		this.noticeTitle = noticeTitle;
+		this.noticeInfo = noticeInfo;
+		this.noticeState = noticeState;
+		this.noticeClassification = noticeClassification;
+		this.userNumber = userNumber;
+		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 
 	public int getNoticeNumber() {
@@ -85,4 +101,24 @@ public class noticeVO {
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
+
+	public String getNoticeImgfileRealName() {
+		return noticeImgfileRealName;
+	}
+
+	public void setNoticeImgfileRealName(String noticeImgfileRealName) {
+		this.noticeImgfileRealName = noticeImgfileRealName;
+	}
+<<<<<<< Updated upstream
+=======
+
+	public String getNoticeCondition() {
+		return noticeCondition;
+	}
+
+	public void setNoticeCondition(String noticeCondition) {
+		this.noticeCondition = noticeCondition;
+	}
+>>>>>>> Stashed changes
+	
 }
