@@ -1,6 +1,6 @@
 .div_container{
-	width:1080px;
-	height: 1800px;
+	width:1300px;
+	height: 1400px;
 	margin:auto;
 }
 
@@ -15,7 +15,7 @@
 .div_basket{
 	margin-top:2px;
 	float:right;
-	width:10%;
+	width:20%;
 	height:500px;
 	position:fixed;
 	right:0;
