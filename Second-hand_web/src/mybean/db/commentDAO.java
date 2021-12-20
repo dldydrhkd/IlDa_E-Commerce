@@ -27,7 +27,6 @@ public class commentDAO {
 		return comment;
 	}
 	
-	
 	public void insertRecord(commentVO comment) throws SQLException {
 		String sql = "insert into commentTbl(commentNumber, commentInfo, noticeNumber, userId) "
 				+ " values(?,?,?,?)";
