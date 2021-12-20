@@ -14,25 +14,22 @@
 <title></title>
 </head>
 <body>
-		<h1>게시글</h1>
-		<form action="noticeServlet"  method="get">
-		<table border="2">
+	<h1>게시글</h1>
+		<c:forEach var="name" items="${noticeList}">
+			<table border="2">
 			<tr>
 				<td colspan="5" style="border:white;text-align:right;"><a href="Write.jsp">글 작성하기</a></td>
 			</tr>
 			<tr>
-				<th>글번호</th>
+				<th>글번호 ${name.getNoticeNumber()}</th>
     			<td>글제목</td>
     			<td>작성자</td>
     			<td>작성날짜</td>
     			<td>거래 상태</td>
     		</tr>
     		<tr>
-    				<c:forEach var="name" items="${noticeList}" varStatus="status">
-    					<p>${status.getNoticeNumber()}<a href='noticeServlet?NoticeNumber=%d'>${status.getNoticeNumber()}</a></p>
-					</c:forEach>
     		</tr>
-		</table>
-		</form>
+			</table>
+		</c:forEach>
 </body>
 </html>

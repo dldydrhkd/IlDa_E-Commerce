@@ -28,9 +28,9 @@ public class writeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		String title = request.getParameter("title");
-		String info = request.getParameter("info");
-		String state = request.getParameter("state");
-		String classification = request.getParameter("classification");
+		String info = request.getParameter("content");
+		String state = "거래전";
+		String classification = request.getParameter("noticeClassification");
 		HttpSession session = request.getSession();
 		int userNumber = (int) session.getAttribute("userNumber");
 		
@@ -40,7 +40,7 @@ public class writeServlet extends HttpServlet {
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
 			notice.disConnect();
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("noticeList.jsp");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

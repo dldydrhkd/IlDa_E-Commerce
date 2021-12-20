@@ -117,7 +117,7 @@
 		
 		<div class ="div_textIn" align="center">
 			<br>
-			<button onClick="location.href='글쓰기.jsp'">글 쓰기</button>	
+			<button onClick="location.href='Write.jsp'">글 쓰기</button>	
 		</div>
 		
 	</div>

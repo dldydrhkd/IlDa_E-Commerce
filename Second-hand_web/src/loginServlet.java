@@ -47,14 +47,15 @@ public class loginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			session.setAttribute("userNumber", userNumber);
-//			response.sendRedirect("test.jsp");  // 나중에 main으로 바꿀거
+			response.sendRedirect("MainPage.jsp");  // 나중에 main으로 바꿀거
 		}
 		else {
 			out.print("<script>");
 			out.print("alert('로그인 실패')");
 			out.print("</script>");
-//			response.sendRedirect("banner.jsp");
+			response.sendRedirect("MainPage.jsp");  // 나중에 main으로 바꿀거
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

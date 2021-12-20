@@ -104,8 +104,7 @@
 </head>
 <body>
 	<% 
-	String id = request.getParameter("userId");
-	String temp_id=null; 
+	String id = (String)session.getAttribute("id");
 	%>
 	<!-- 로고 영역 -->
 	
@@ -133,7 +132,7 @@
 	<div class= "div_sign">
 		<!-- 버튼 누르면 로그인페이지로 이동 -->
 		<%
-		if(temp_id != null) {
+		if(id != null) {
 			out.print("<button type='button' >로그아웃</button>");
 			out.print("<button type='button' onClick="+"location.href='DibsPage.jsp'"+">회원정보 수정</button>");
 			out.print("<button type='button' >찜 목록</button>");

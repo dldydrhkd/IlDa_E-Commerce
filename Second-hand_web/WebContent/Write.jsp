@@ -8,7 +8,7 @@
 </head>
 <body>
 		<h1 style="text-align:center">글 쓰기</h1>
-		<form action="WriteServlet" method="post">
+		<form action="writeServlet" method="post">
 		<table border="1" style="margin-left:auto; margin-right:auto;">
 		<tr>
 				<td>제목 : <input type="text" name="title" placeholder="제목" maxlength="50"
