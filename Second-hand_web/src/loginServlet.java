@@ -30,7 +30,7 @@ public class loginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String id = request.getParameter("id");
-		String pwd =request.getParameter("pwd");
+		String pwd = request.getParameter("pwd");
 		int userNumber = -1;
 		
 		try {

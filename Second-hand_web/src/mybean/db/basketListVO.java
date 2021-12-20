@@ -36,6 +36,4 @@ public class basketListVO {
 		this.noticeTitle = noticeTitle;
 	}
 	
-	
-	
 }
