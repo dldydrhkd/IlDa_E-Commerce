@@ -56,7 +56,8 @@ public class userDAO {
 	}
 	
 	public void updateRecord(userVO user) throws SQLException {
-		String sql = "update userTbl set userPwd=?, userName=?, userPhoneNumber=?, userAddr=?, userEmail=? where userId=?";
+		String sql = "update userTbl set userPwd=?, userName=?, userPhoneNumber=?, userAddr=?, userEmail=?"
+				+ " where userId=?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, user.getUserPwd());
