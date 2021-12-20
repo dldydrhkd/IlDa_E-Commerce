@@ -14,12 +14,13 @@ public class userVO {
 		private String userGender;
 		private Date userRegistrationDate;
 		private String userCondition;
+		private Date userWithdrawalDate;
 		
 		public userVO(){ }
 
 		public userVO(int userNumber, String userId, String userPwd, String userName, int userAge,
 				String userPhoneNumber, String userAddr, String userEmail, String userGender, Date userRegistrationDate,
-				String userCondition) {
+				String userCondition, Date userWithdrawalDate) {
 			super();
 			this.userNumber = userNumber;
 			this.userId = userId;
@@ -32,6 +33,7 @@ public class userVO {
 			this.userGender = userGender;
 			this.userRegistrationDate = userRegistrationDate;
 			this.userCondition = userCondition;
+			this.userWithdrawalDate = userWithdrawalDate;
 		}
 
 		public int getUserNumber() {
@@ -120,8 +122,16 @@ public class userVO {
 
 		public void setUserCondition(String userCondition) {
 			this.userCondition = userCondition;
-		}; 
-		
-		
+		}
+
+		public Date getUserWithdrawalDate() {
+			return userWithdrawalDate;
+		}
+
+		public void setUserWithdrawalDate(Date userWithdrawalDate) {
+			this.userWithdrawalDate = userWithdrawalDate;
+		}
+
+	
 			
 }

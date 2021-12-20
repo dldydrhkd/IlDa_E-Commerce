@@ -42,7 +42,8 @@ public class userDAO {
 	
 	public void insertRecord(userVO user) throws SQLException {
 		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userAge,"
-				+ " userPhoneNumber, userAddr, userEmail, userGender) values(?,?,?,?,?,?,?,?,?)";
+				+ " userPhoneNumber, userAddr, userEmail, userGender, userRegistrationDate, userCondition, userWithdrawalDate) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
@@ -54,6 +55,9 @@ public class userDAO {
 		pstmt.setString(7,  user.getUserAddr());
 		pstmt.setString(8,  user.getUserEmail());
 		pstmt.setString(9,  user.getUserGender());
+		pstmt.setDate(10,  null);
+		pstmt.setString(11,  null);
+		pstmt.setDate(12,  null);
 		
 		pstmt.executeUpdate();
 	}
@@ -74,7 +78,7 @@ public class userDAO {
 	
 	public void deleteRecord(String id) throws SQLException {
 		String sql = "update userTbl u, notice n, comment c"
-				+ " set u.userCondition='탈퇴', n.noticeCondition='비공개', c.commentCondition='비공개' where id = ?";
+				+ " set u.userCondition='탈퇴', n.noticeCondition='0', c.commentCondition='0' where id = ?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, id);
