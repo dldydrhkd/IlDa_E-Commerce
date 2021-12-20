@@ -32,10 +32,12 @@ public class writeServlet extends HttpServlet {
 		String state = null;
 		String classification = request.getParameter("noticeClassification");
 		String image = request.getParameter("image");
+		String source = request.getParameter("source");
+		int price = Integer.parseInt(request.getParameter("price"));
 		HttpSession session = request.getSession();
 		int userNumber = (int) session.getAttribute("userNumber");
 		
-		noticeVO n = new noticeVO(title, info, state, classification, userNumber, image);
+		noticeVO n = new noticeVO(title, info, state, classification, userNumber, image, source, price);
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
