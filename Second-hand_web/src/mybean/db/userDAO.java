@@ -71,7 +71,8 @@ public class userDAO {
 	}
 	
 	public void deleteRecord(String id) throws SQLException {
-		String sql = "update userTbl set userCondition='탈퇴' where id = ?";
+		String sql = "update userTbl u, notice n, comment c"
+				+ " set u.userCondition='탈퇴', n.noticeCondition='비공개', c.commentCondition='비공개' where id = ?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, id);

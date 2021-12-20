@@ -11,6 +11,10 @@ public class noticeVO {
 	private Date noticeRegistrationDate;
 	private int userNumber;
 	private String noticeImgfileRealName;
+<<<<<<< Updated upstream
+=======
+	private String noticeCondition;
+>>>>>>> Stashed changes
 	
 	public noticeVO(){};
 	
@@ -25,12 +29,13 @@ public class noticeVO {
 		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber) {
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
 		this.noticeState = noticeState;
 		this.noticeClassification = noticeClassification;
 		this.userNumber = userNumber;
+		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 	
 	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
@@ -104,5 +109,16 @@ public class noticeVO {
 	public void setNoticeImgfileRealName(String noticeImgfileRealName) {
 		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
+<<<<<<< Updated upstream
+=======
+
+	public String getNoticeCondition() {
+		return noticeCondition;
+	}
+
+	public void setNoticeCondition(String noticeCondition) {
+		this.noticeCondition = noticeCondition;
+	}
+>>>>>>> Stashed changes
 	
 }

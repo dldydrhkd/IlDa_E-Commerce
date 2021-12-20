@@ -42,9 +42,10 @@ public class commentDAO {
 	
 	public void updateRecord(commentVO Cvo, noticeVO Nvo, userVO Uvo) throws SQLException {
 		String sql = "update commentTbl set commentInfo=? "
-				+ "where commentNumber=? and noticeNumber=? and userId= ? ";
+				+ "where commentNumber=?";
 		pstmt = conn.prepareStatement(sql);
 		
+<<<<<<< Updated upstream
 		pstmt.setString(1,  Cvo.getCommentInfo());
 		pstmt.setInt(2,  Cvo.getCommentNumber());
 		pstmt.setInt(3,  Nvo.getNoticeNumber());
@@ -61,11 +62,30 @@ public class commentDAO {
 		pstmt.setInt(1,  Cvo.getCommentNumber());
 		pstmt.setInt(2,  Nvo.getNoticeNumber());
 		pstmt.setString(3,  Uvo.getUserId());
-		
+=======
+		pstmt.setString(1,  comment.getCommentInfo());
+		pstmt.setInt(2,  comment.getCommentNumber());
+
 		pstmt.executeUpdate();
 	}
 	
+	public void deleteRecord(commentVO comment) throws SQLException {
+		String sql = "update commentTbl set commentCondition='비공개' "
+				+ "where commentNumber=?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, comment.getCommentNumber());
+>>>>>>> Stashed changes
+		
+		pstmt.executeUpdate();
+			
+	}
+	
+<<<<<<< Updated upstream
 	public List<commentVO> listRecord(noticeVO Nvo) throws SQLException {
+=======
+	public List<commentVO> listComment(int noticeNumber) throws SQLException {
+>>>>>>> Stashed changes
 		
 		List<commentVO> commentList = new ArrayList<commentVO>();
 		
@@ -77,7 +97,7 @@ public class commentDAO {
 		rs = pstmt.executeQuery();
 			
 		while(rs.next()) {	
-			commentList.add(new commentVO(rs.getString("userId"), rs.getString("commentInfo")));
+			commentList.add(new commentVO(rs.getString("userId"), rs.getDate("commentRegistrationDate"), rs.getString("commentInfo")));
 		}	
 		return commentList;
 		 
