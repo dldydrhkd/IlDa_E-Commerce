@@ -56,11 +56,11 @@ public class noticeDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public void deleteRecord(noticeVO notice) throws SQLException {
-		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='비공개', c.commentCondition='비공개' where noticeNumber = ? ";
+	public void deleteRecord(int noticeNumber) throws SQLException {
+		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='0', c.commentCondition='0' where noticeNumber = ? ";
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, notice.getNoticeNumber());
+		pstmt.setInt(1, noticeNumber);
 		
 		pstmt.executeUpdate();
 	}
@@ -75,7 +75,7 @@ public class noticeDAO {
 		
 		while(rs.next()) {
 			noticeList.add(new noticeVO(rs.getInt(1),rs.getString(2),rs.getString(3), 
-					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7), rs.getString(8)));
+					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7), rs.getString(8), rs.getString(9)));
 		}
 		return noticeList;
 	}
