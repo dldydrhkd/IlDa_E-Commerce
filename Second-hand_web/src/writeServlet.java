@@ -29,12 +29,13 @@ public class writeServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		String title = request.getParameter("title");
 		String info = request.getParameter("content");
-		String state = "거래전";
+		String state = null;
 		String classification = request.getParameter("noticeClassification");
+		String image = request.getParameter("image");
 		HttpSession session = request.getSession();
 		int userNumber = (int) session.getAttribute("userNumber");
 		
-		noticeVO n = new noticeVO(title, info, state, classification, userNumber);
+		noticeVO n = new noticeVO(title, info, state, classification, userNumber, image);
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();

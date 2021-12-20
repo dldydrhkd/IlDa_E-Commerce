@@ -27,7 +27,7 @@ public class listNoticeServlet extends HttpServlet {
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
-			List<noticeVO> li = notice.list();
+			List<noticeVO> li = notice.listNotice();
 			notice.disConnect();
 			request.setAttribute("noticeList", li);
 			RequestDispatcher rd = request.getRequestDispatcher("/noticeList.jsp");
