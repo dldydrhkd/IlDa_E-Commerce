@@ -28,52 +28,51 @@ public class commentDAO {
 	}
 	
 	
-	public void insertRecord(commentVO comment) throws SQLException {
-		String sql = "insert into commentTbl(commentNumber, commentInfo, noticeNumber, userId) "
-				+ " values(?,?,?,?)";
+	public void insertRecord(commentVO Cvo, noticeVO Nvo, userVO Uvo) throws SQLException {
+		String sql = "insert into commentTbl(commentInfo, noticeNumber, userId) "
+				+ " values(?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,  null);
-		pstmt.setString(2,  comment.getCommentInfo());
-		pstmt.setInt(3,  comment.getNoticeNumber());
-		pstmt.setString(4,  comment.getUserId());
+		pstmt.setString(1,  Cvo.getCommentInfo());
+		pstmt.setInt(2,  Nvo.getNoticeNumber());
+		pstmt.setString(3,  Uvo.getUserId());
 		
 		pstmt.executeUpdate();
 	}
 	
-	public void updateRecord(commentVO comment) throws SQLException {
+	public void updateRecord(commentVO Cvo, noticeVO Nvo, userVO Uvo) throws SQLException {
 		String sql = "update commentTbl set commentInfo=? "
 				+ "where commentNumber=? and noticeNumber=? and userId= ? ";
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setString(1,  comment.getCommentInfo());
-		pstmt.setInt(2,  comment.getCommentNumber());
-		pstmt.setInt(3,  comment.getNoticeNumber());
-		pstmt.setString(4,  comment.getUserId());
+		pstmt.setString(1,  Cvo.getCommentInfo());
+		pstmt.setInt(2,  Cvo.getCommentNumber());
+		pstmt.setInt(3,  Nvo.getNoticeNumber());
+		pstmt.setString(4,  Uvo.getUserId());
 		
 		pstmt.executeUpdate();
 	}
 	
-	public void deleteRecord(commentVO comment) throws SQLException {
+	public void deleteRecord(commentVO Cvo, noticeVO Nvo, userVO Uvo) throws SQLException {
 		String sql = "delete from noticeTbl "
 				+ "where commentNumber=? and noticeNumber=? and userId= ? ";
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, comment.getCommentNumber());
-		pstmt.setInt(2,  comment.getNoticeNumber());
-		pstmt.setString(3,  comment.getUserId());
+		pstmt.setInt(1,  Cvo.getCommentNumber());
+		pstmt.setInt(2,  Nvo.getNoticeNumber());
+		pstmt.setString(3,  Uvo.getUserId());
 		
 		pstmt.executeUpdate();
 	}
 	
-	public List<commentVO> listRecord(commentVO comment) throws SQLException {
+	public List<commentVO> listRecord(noticeVO Nvo) throws SQLException {
 		
 		List<commentVO> commentList = new ArrayList<commentVO>();
 		
 		String sql = "select * from commentTbl where noticeNumber=?";
 			
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, comment.getNoticeNumber());
+		pstmt.setInt(1, Nvo.getNoticeNumber());
 			
 		rs = pstmt.executeQuery();
 			
