@@ -100,8 +100,13 @@ public class noticeDAO {
 			nd.setNoticeInfo(rs.getString(3));
 			nd.setNoticeState(rs.getString(4));
 			nd.setNoticeClassification(rs.getString(5));
+			nd.setNoticeRegistrationDate(rs.getDate(6));
+			nd.setUserNumber(rs.getInt(7));
+			nd.setNoticeImgfileRealName(rs.getString(8));
 			nd.setNoticeSource(rs.getString(9));
 			nd.setNoticeProductPrice(rs.getInt(10));
+			nd.setNoticeCondition(rs.getBoolean(11));
+			
 			return nd;
 		}			
 		return null;
