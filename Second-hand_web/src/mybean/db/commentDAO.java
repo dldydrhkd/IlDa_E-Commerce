@@ -66,14 +66,14 @@ public class commentDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public List<commentVO> listRecord(commentVO comment) throws SQLException {
+	public List<commentVO> listRecord(int noticeNumber) throws SQLException {
 		
 		List<commentVO> commentList = new ArrayList<commentVO>();
 		
 		String sql = "select * from commentTbl where noticeNumber=?";
 			
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, comment.getNoticeNumber());
+		pstmt.setInt(1, noticeNumber);
 			
 		rs = pstmt.executeQuery();
 			
@@ -86,8 +86,8 @@ public class commentDAO {
 	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
-		if(rs != null) pstmt.close();
-		if(rs != null) conn.close();
+		if(pstmt != null) pstmt.close();
+		if(conn != null) conn.close();
 	}
 
 }

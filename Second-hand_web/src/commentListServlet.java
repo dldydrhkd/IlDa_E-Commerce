@@ -12,34 +12,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mybean.db.basketDAO;
-import mybean.db.basketListVO;
+import mybean.db.commentDAO;
+import mybean.db.commentVO;
 
-@WebServlet("/listBasketServlet")
-public class listBasketServlet extends HttpServlet {
+@WebServlet("/commentListServlet")
+public class commentListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public listBasketServlet() {
+    public commentListServlet() {
         super();
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		int noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+		
 		try {
-			basketDAO basket = basketDAO.getInstance();
-			HttpSession session = request.getSession();
-			List<basketListVO> li = basket.listBasket(Integer.parseInt((String) session.getAttribute("userNumber")));
-			basket.disConnect();
+			commentDAO comment = commentDAO.getInstance();
+			List<commentVO> li = comment.listRecord(noticeNumber);
+			comment.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("basketList.jsp");
-			request.setAttribute("basketList", li);
+			request.setAttribute("commentList", li);
 			rd.forward(request,response);
+			
 		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
