@@ -12,6 +12,12 @@ public class basketVO {
 		this.userNumber = userNumber;
 		this.noticeNumber = noticeNumber;
 	}
+	
+	public basketVO(int basketNumber, int userNumber, int noticeNumber){
+		this.basketNumber = basketNumber;
+		this.userNumber = userNumber;
+		this.noticeNumber = noticeNumber;
+	}
 
 	public int getBasketNumber() {
 		return basketNumber;

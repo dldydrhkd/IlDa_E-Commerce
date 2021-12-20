@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class basketDAO {
 	private Connection conn;
@@ -23,29 +25,47 @@ public class basketDAO {
 		}
 		return basket;
 	}
-	public void insertBasket(basketVO Bvo, userVO Uvo, noticeVO Nvo) throws SQLException{
+	public void insertBasket(int basketNumber, int userNumber, int noticeNumber) throws SQLException{
 		String sql = "insert into basketTbl(basketNumber,userNumber, noticeNumber) values(?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, Bvo.getBasketNumber());
-		pstmt.setInt(2, Uvo.getUserNumber());
-		pstmt.setInt(3,  Nvo.getNoticeNumber());
+		pstmt.setInt(1, basketNumber);
+		pstmt.setInt(2, userNumber);
+		pstmt.setInt(3,  noticeNumber);
 		
 		pstmt.executeUpdate();
 		pstmt.close();
 	}
-	public void deleteBasket(basketVO Bvo, userVO Uvo, noticeVO Nvo) throws SQLException {
+	public void deleteBasket(int basketNumber, int userNumber, int noticeNumber) throws SQLException {
 		String sql = "delete from basketTbl where (basketNumber = ?)"
 				+ "and (userNumber = ?) and (noticeNumber = ?)";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setInt(1, Bvo.getBasketNumber());
-		pstmt.setInt(2, Uvo.getUserNumber());
-		pstmt.setInt(3,  Nvo.getNoticeNumber());
+		pstmt.setInt(1, basketNumber);
+		pstmt.setInt(2, userNumber);
+		pstmt.setInt(3,  noticeNumber);
 		
 		pstmt.executeUpdate();
 		pstmt.close();
+	}
+	
+	public List<basketListVO> listBasket(int userNumber) throws SQLException{
+		List<basketListVO> basketList = new ArrayList<>();
+		String sql = "select * from noticeTbl n join basketTbl b on (n.userNumber=b.userNumber)"
+				+ "where n.userNumber=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, userNumber);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			basketList.add(new basketListVO(rs.getInt("noticeNumber"),rs.getInt("basketNumber"),rs.getString("noticeTitle")));
+		}
+		
+		return basketList;
 	}
 	
 	public void disConnect() throws SQLException {
