@@ -43,7 +43,7 @@ td{
 	<!-- 로그인 양식 -->	
 	<div id="div_table" align="center">
 		<table>
-		<form action="Login"  method="POST">
+		<form action="loginServlet"  method="POST">
 			<tr>
 				<td><img src="login.png" alt="id" width="50" height="50"/> </td>
 				<td><input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요"></td>
