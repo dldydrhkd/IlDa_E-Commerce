@@ -52,12 +52,12 @@ public class commentDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public void deleteRecord(commentVO comment) throws SQLException {
+	public void deleteRecord(int commentNumber) throws SQLException {
 		String sql = "update commentTbl set commentCondition='0' "
 				+ "where commentNumber=?";
 		pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setInt(1, comment.getCommentNumber());
+		pstmt.setInt(1, commentNumber);
 		
 		pstmt.executeUpdate();
 			
