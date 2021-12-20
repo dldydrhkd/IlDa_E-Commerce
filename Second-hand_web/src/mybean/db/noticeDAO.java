@@ -28,23 +28,23 @@ public class noticeDAO {
 	
 	
 	public void insertRecord(noticeVO notice) throws SQLException {
-		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, noticeState, "
-				+ " noticeClassification, userNumber) values(?,?,?,?,?,?)";
+		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, "
+				+ " noticeClassification, userNumber) values(?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
 		pstmt.setString(2,  notice.getNoticeTitle());
 		pstmt.setString(3,  notice.getNoticeInfo());
-		pstmt.setString(4,  notice.getNoticeState());
-		pstmt.setString(5,  notice.getNoticeClassification());
-		pstmt.setInt(6,  notice.getUserNumber());
+		pstmt.setString(4,  notice.getNoticeClassification());
+		pstmt.setInt(5,  notice.getUserNumber());
 
 		
 		pstmt.executeUpdate();
 	}
 	
 	public void updateRecord(noticeVO notice) throws SQLException {
-		String sql = "update noticeTbl set noticeTitle=?, noticeInfo=?, noticeState=?, noticeClassification=? where noticeNumber=?";
+		String sql = "update noticeTbl set noticeTitle=?, noticeInfo=?, noticeState=?, noticeClassification=? "
+				+ "where noticeNumber=?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1,  notice.getNoticeTitle());
@@ -57,16 +57,15 @@ public class noticeDAO {
 	}
 	
 	public void deleteRecord(noticeVO notice) throws SQLException {
-		String sql = "delete from noticeTbl where noticeNumber = ? and userNumber = ?";
+		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='비공개', c.commentCondition='비공개' where noticeNumber = ? ";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, notice.getNoticeNumber());
-		pstmt.setInt(2, notice.getUserNumber());
 		
 		pstmt.executeUpdate();
 	}
 	
-	public List<noticeVO> list() throws SQLException{
+	public List<noticeVO> listNotice() throws SQLException{
 		List<noticeVO> noticeList = new ArrayList<>();
 		String sql = "select * from noticeTbl";
 		
@@ -76,9 +75,29 @@ public class noticeDAO {
 		
 		while(rs.next()) {
 			noticeList.add(new noticeVO(rs.getInt(1),rs.getString(2),rs.getString(3), 
-					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7)));
+					rs.getString(4), rs.getString(5),rs.getDate(6), rs.getInt(7), rs.getString(8)));
 		}
 		return noticeList;
+	}
+	
+	public noticeVO getnoticeView(int noticeNumber) throws SQLException {
+		String sql="select * from noticeTbl where noticeNumber = ?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, noticeNumber);
+		
+		rs = pstmt.executeQuery();//select
+		
+		if(rs.next()) {
+			noticeVO nd = new noticeVO();
+			nd.setNoticeNumber(rs.getInt(1));
+			nd.setNoticeTitle(rs.getString(2));
+			nd.setNoticeInfo(rs.getString(3));
+			nd.setNoticeState(rs.getString(4));
+			nd.setNoticeClassification(rs.getString(5));
+			return nd;
+		}			
+		return null;
 	}
 	
 	public void disConnect() throws SQLException {
