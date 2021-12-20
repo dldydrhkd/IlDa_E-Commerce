@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    String[] cla = {"의류", "뷰티", "스포츠", "육아", "가구","도서","전자제품","기타"};
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,15 +17,10 @@
 				<td>제목 : <input type="text" name="title" placeholder="제목" maxlength="50"
 				style="width:350px"/></td>
 				<td>상품 분류
-				<select name = "noticeClassification">
-				<option>의류</option>
-				<option>뷰티</option>
-				<option>스포츠</option>
-				<option>육아</option>
-				<option>가구</option>
-				<option>도서</option>
-				<option>전자제품</option>
-				<option>기타</option>
+				<select name = "noticeClassification"> 
+				<%for (int i=0;i<cla.length;i++){ %>
+					<option><%=cla[i]%></option>
+				<%}%>
 				</select>
 		</tr>
 		<tr>
@@ -31,6 +29,7 @@
 				</td>
 		</tr>
 		<tr>
+		<td><input type="file" accept=".jpg , jpeg , .png" ></td>
 		<td colspan="2"><input type="submit" value="제출" style="width: 75px; height: 50px;">
 		<input type="reset" value="뒤로" style="width: 75px; height: 50px;"> </td>
 		</tr>
