@@ -2,29 +2,34 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <style>
 
-.div_root{
-	margin:auto;
-	width:800px;
+.banner_container{
+	width:100%;
+	height:200px;
+ 	background-color: white;
+ 	margin: 0;
 }
 .div_logo{
 	width:30%;
-	
+	height:200px;
 	float:left;
-	text-align: left;
+	background-color: white;
 }
+
 .div_search{
 	float:left;
-	margin-top: 15%;
+	margin-top: 10%;
 	width: 40%;
+	background-color: white;
 }
 
 .div_sign{
-
-	width:15%;
+	background-color: white;
+	width:30%;
+	height:200px;
 	float: right;
+	
 }
 
 .div_sign button{
@@ -37,6 +42,7 @@
     transition: 0.25s;
     border: 3px solid #ff5f2e;
     color: #6e6e6e;
+    margin: 5px;
 }
 
 .div_sign button:hover {
@@ -44,26 +50,32 @@
     color: #e1eef6;
 }
 
-.Search_btn{
+.Search_icon{
 	border: 3px solid aliceblue;
     color: orange;
 }
 
-
-input {
-  width:100%;
-  border-color: #bbb;
-  border-radius: 16px;
-  border-width: 1px;
-  padding: 12px 20px 12px 20px;
-  margin: 6px;
-  font-family: fontAwesome;
+.div_search{
+	position:relative;
+	text-align:center;
+	
+}
+.div_search input{
+	
+	position : relative;
+	width:95%;
+	border-color: #bbb;
+	border-radius: 16px;
+	border-width: 1px solid #bbb;
+	padding: 12px 20px 12px 20px;
+	margin: 6px;
+	font-family: fontAwesome;
 }
 
 .fa-search {
   position:absolute;
-  right: 360px;
-  top: 215px;
+  right: 1%;
+  top: 15px;
   margin:0;
 }
 
@@ -73,17 +85,31 @@ input {
 	outline: 0;
 }
 
+.div_search button:hover{
+	background-color: #ff5f2e;
+    color: #e1eef6;
+}
+.login_btn{
+	padding-left: 30px;
+}
+
+
   
 
 </style>
 <head>
 <meta charset="UTF-8">
-<title>BannerPage</title>
+<title>Banner Page</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+	<% 
+	String id = request.getParameter("userId");
+	String temp_id=null; 
+	%>
 	<!-- 로고 영역 -->
-	<div class="div_root"></div>
 	
+	<div class="banner_container">
 	<div class="div_logo">
 		<h1 class ="log-title">
 			<a href = MainPage.jsp > <!-- 로고 누르면 메인으로 이동 -->
@@ -96,16 +122,29 @@ input {
 	<div class="div_search" >
     	<form method="get" action ="Search"> 	 
       		<input type="text" name="Search" id="Search" placeholder="검색어를 입력해 주세요.">
-      		<button class="Search_btn" id="Search" ><i class="fas fa-search fa-2x"></i></button>
+      		<div>
+      		<button class="Search_icon" id="Search" ><i class="fas fa-search fa-2x"></i></button>
+			</div>      	
       	</form>
     </div>
+	
 	
 	<!-- 로그인/회원가입 영역 -->
 	<div class= "div_sign">
 		<!-- 버튼 누르면 로그인페이지로 이동 -->
-		<button type="button" id ="Sign" onClick="location.href='LoginPage.jsp'"> 로그인/회원가입  </button>
-	</div>
+		<%
+		if(temp_id != null) {
+			out.print("<button type='button' >로그아웃</button>");
+			out.print("<button type='button' onClick="+"location.href='DibsPage.jsp'"+">회원정보 수정</button>");
+			out.print("<button type='button' >찜 목록</button>");
+		}
+		else { out.print("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
+			out.print("<button class='login_btn' type='button' id ='Sign' onClick="+
+						"location.href='LoginPage.jsp'"+"> 로그인/회원가입  </button>"); }
+		%>
 	
+	</div>
+	</div>
 	
 </body>
 </html>
