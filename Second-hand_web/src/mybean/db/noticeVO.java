@@ -11,11 +11,12 @@ public class noticeVO {
 	private Date noticeRegistrationDate;
 	private int userNumber;
 	private String noticeImgfileRealName;
-	private String noticeCondition;
+	private String noticeSource;
+	private boolean noticeCondition;
 	
 	public noticeVO(){};
 	
-	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName) {
+	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName, String noticeSource) {
 		this.noticeNumber = noticeNumber;
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
@@ -24,15 +25,17 @@ public class noticeVO {
 		this.noticeRegistrationDate = noticeRegistrationDate;
 		this.userNumber = userNumber;
 		this.noticeImgfileRealName = noticeImgfileRealName;
+		this.noticeSource = noticeSource;
 	}
 	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName, String noticeSource) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
 		this.noticeState = noticeState;
 		this.noticeClassification = noticeClassification;
 		this.userNumber = userNumber;
 		this.noticeImgfileRealName = noticeImgfileRealName;
+		this.noticeSource = noticeSource;
 	}
 
 	public int getNoticeNumber() {
@@ -98,12 +101,22 @@ public class noticeVO {
 		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 
-	public String getNoticeCondition() {
+	public String getNoticeSource() {
+		return noticeSource;
+	}
+
+	public void setNoticeSource(String noticeSource) {
+		this.noticeSource = noticeSource;
+	}
+
+	public boolean isNoticeCondition() {
 		return noticeCondition;
 	}
 
-	public void setNoticeCondition(String noticeCondition) {
+	public void setNoticeCondition(boolean noticeCondition) {
 		this.noticeCondition = noticeCondition;
 	}
+	
+
 	
 }

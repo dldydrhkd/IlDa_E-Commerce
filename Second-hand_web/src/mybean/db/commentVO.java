@@ -8,7 +8,7 @@ public class commentVO {
 	private Date commentRegistrationDate;
 	private int noticeNumber;
 	private String userId;
-	private String commentCondition;
+	private boolean commentCondition;
 	
 	public commentVO() {};
 	
@@ -64,15 +64,13 @@ public class commentVO {
 		this.userId = userId;
 	}
 
-	public String getCommentCondition() {
+	public boolean isCommentCondition() {
 		return commentCondition;
 	}
 
-	public void setCommentCondition(String commentCondition) {
+	public void setCommentCondition(boolean commentCondition) {
 		this.commentCondition = commentCondition;
 	}
-	
-	
 
 
 }
