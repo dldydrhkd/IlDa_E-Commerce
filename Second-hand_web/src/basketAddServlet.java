@@ -8,33 +8,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import mybean.db.commentDAO;
-import mybean.db.commentVO;
+import mybean.db.basketDAO;
+import mybean.db.basketVO;
 
-@WebServlet("/commentChangeServlet")
-public class commentChangeServlet extends HttpServlet {
+@WebServlet("/basketAddServlet")
+public class basketAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public commentChangeServlet() {
+    public basketAddServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		String contents = request.getParameter("contents");
-		int commentNumber = Integer.parseInt(request.getParameter("commentNumber"));
+		HttpSession session = request.getSession();
+		
+		int basketNumber = Integer.parseInt(request.getParameter("basketNumber"));
+		int userNumber = (int) session.getAttribute("userNumber");
+		int noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
 		
 		try {
-			commentDAO comment = commentDAO.getInstance();
-			comment.updateRecord(new commentVO(contents, commentNumber, null));
-			comment.disConnect();
+			basketDAO basket = basketDAO.getInstance();
+			basket.insertBasket(new basketVO(basketNumber, userNumber, noticeNumber));
+			basket.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

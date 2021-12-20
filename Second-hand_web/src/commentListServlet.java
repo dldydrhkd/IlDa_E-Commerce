@@ -30,14 +30,12 @@ public class commentListServlet extends HttpServlet {
 		
 		try {
 			commentDAO comment = commentDAO.getInstance();
-			List<commentVO> li = comment.listComment(noticeNumber);
+			List<commentVO> li = comment.listRecord(noticeNumber);
 			comment.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("basketList.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/basketList.jsp");
 			request.setAttribute("commentList", li);
 			rd.forward(request,response);
-			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
