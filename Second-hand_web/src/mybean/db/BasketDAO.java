@@ -1,4 +1,4 @@
-package mybean.dbte;
+package mybean.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +26,6 @@ public class BasketDAO
 		}
 		return basket;
 	}
-<<<<<<< Updated upstream:Second-hand_web/src/mybean/db/BasketDAO.java
 	public void ShowList() throws SQLException
 	{
 		
@@ -41,15 +40,6 @@ public class BasketDAO
 		pstmt.setString(1, Bvo.getBasketNumber());
 		pstmt.setString(2, Uvo.getUserNumber());
 		pstmt.setString(3,  Nvo.getNoticeNumber());
-=======
-	public void insertBasket(basketVO Bvo, userVO Uvo, noticeVO Nvo) throws SQLException{
-		String sql = "insert into basketTbl(userNumber, noticeNumber) values(?,?)";
-		
-		pstmt = conn.prepareStatement(sql);
-		
-		pstmt.setInt(1, Uvo.getUserNumber());
-		pstmt.setInt(2,  Nvo.getNoticeNumber());
->>>>>>> Stashed changes:Second-hand_web/src/mybean/db/basketDAO.java
 		
 		pstmt.executeUpdate();
 		pstmt.close();

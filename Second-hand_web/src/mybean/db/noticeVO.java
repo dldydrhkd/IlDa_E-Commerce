@@ -1,4 +1,4 @@
-package mybean.dbte;
+package mybean.db;
 
 import java.sql.Date;
 
@@ -11,39 +11,15 @@ public class noticeVO {
 	private String noticeClassification;
 	private Date noticeRegistrationDate;
 	private int userNumber;
-	private String noticeImgfileRealName;
 	
 	public noticeVO(){};
 	
-<<<<<<< Updated upstream
-=======
-	public noticeVO(int noticeNumber, String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, Date noticeRegistrationDate, int userNumber, String noticeImgfileRealName) {
-		this.noticeNumber = noticeNumber;
-		this.noticeTitle = noticeTitle;
-		this.noticeInfo = noticeInfo;
-		this.noticeState = noticeState;
-		this.noticeClassification = noticeClassification;
-		this.noticeRegistrationDate = noticeRegistrationDate;
-		this.userNumber = userNumber;
-		this.noticeImgfileRealName = noticeImgfileRealName;
-	}
-	
->>>>>>> Stashed changes
 	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
 		this.noticeState = noticeState;
 		this.noticeClassification = noticeClassification;
 		this.userNumber = userNumber;
-	}
-	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName) {
-		this.noticeTitle = noticeTitle;
-		this.noticeInfo = noticeInfo;
-		this.noticeState = noticeState;
-		this.noticeClassification = noticeClassification;
-		this.userNumber = userNumber;
-		this.noticeImgfileRealName = noticeImgfileRealName;
 	}
 
 	public int getNoticeNumber() {
@@ -101,22 +77,10 @@ public class noticeVO {
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
 	}
-<<<<<<< Updated upstream
 	
 	
 	
 	
 	
 
-=======
-
-	public String getNoticeImgfileRealName() {
-		return noticeImgfileRealName;
-	}
-
-	public void setNoticeImgfileRealName(String noticeImgfileRealName) {
-		this.noticeImgfileRealName = noticeImgfileRealName;
-	}
-	
->>>>>>> Stashed changes
 }
