@@ -1,0 +1,23 @@
+.div_container{
+	width:1080px;
+	height: 1800px;
+	margin:auto;
+}
+
+.div_banner{
+	text-align: center;
+	padding: 10px 0px;
+	width: 100%;
+	position: sticky;
+	top: 0;	
+}
+
+.div_basket{
+	margin-top:2px;
+	float:right;
+	width:10%;
+	height:500px;
+	position:fixed;
+	right:0;
+	background-color: chartreuse;
+}
