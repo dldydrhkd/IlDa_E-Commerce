@@ -40,8 +40,9 @@ public class searchServlet extends HttpServlet {
 				}
 			}
 			notice.disConnect();
-			request.setAttribute("noticeList", search);
-			request.setAttribute("search", true);
+			request.setAttribute("searchList", search);
+			request.setAttribute("search", "0");
+			request.setAttribute("isSearch", true);
 			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
@@ -49,7 +50,6 @@ public class searchServlet extends HttpServlet {
 		}
 		
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
