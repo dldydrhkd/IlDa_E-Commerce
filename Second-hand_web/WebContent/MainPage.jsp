@@ -6,7 +6,7 @@
 <%@ page import="mybean.db.noticeVO" %>
 
 <% 
-	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("commentList");
+	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("ListNotice");
 %>
 
 <%!
@@ -24,7 +24,7 @@
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
-	int total_record = 0;		   //총 레코드 수
+	int total_record = noticeList.size();		   //총 레코드 수
 	int page_per_record_cnt = 10;  //페이지 당 레코드 수
 	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]// [6],[7],[8],[9],[10]											
 	int record_cnt=0;
@@ -176,21 +176,18 @@
 			<h1> 최근 등록<% %>건</h1> <hr>
 		</div>
 
-
-		<%
-		int count =1;
-		int n=0;
-		int Totaltr= 0; 
-		int col =5; //열의 갯 수
-		%>
-
 		
 		<div class ="div_Table" align="center" >
 			<table>
+				<form action='showNoticeServlet' method='post'>
 			<% 	
 				int n=0;
 				int Totaltr= 0; 
 				int col =5; //열의 갯 수
+				String img="그림.3.png";
+				int price =0;
+				String title ="미제";
+							
 				
 				// 출력할 갯수가 5개 이하일때 한줄만 출력
 				if(total_record/col < 1) { Totaltr=1; }
@@ -205,15 +202,33 @@
 					else {n=col;}
 					
 					// 게시글 출력
-					for(int j=0; j<n; j++){
+					for(int j=0; j<n; j++){%>
+						<%if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
+						} 
+						
+						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							title = noticeList.get(record_cnt).getNoticeTitle();	
+						}
+						
+						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							price = noticeList.get(record_cnt).getNoticeProductPrice();	
+						} 
+						%>
+						
 											
-						out.print("<td> <button class=td_btn><img src="+noticeList.get(record_cnt).getNoticeImgfileRealName()+"><br>"+
-								noticeList.get(record_cnt).getNoticeTitle() +"<br>가격:"+noticeList.get(record_cnt).getNoticeProductPrice()+"</button> </td>");
-						record_cnt++;
+						<td> <button type='submit' class='td_btn'>
+						<img src=<%=img%>/>
+						<br><%=title%>
+						<br>가격:<%=price%>
+						<input type='hidden' name="noticeNumber" value= <%=noticeList.get(record_cnt).getNoticeNumber()%> />
+						</button> </td>
+						<% record_cnt++;
 					}
 					out.print("</tr>");
 				}
-			%>		
+			%>	
+				</form>
 			</table>
 		</div>
 		
@@ -238,7 +253,7 @@
 					,
 				<%} 
 			} %> 
-			<a href="MainPage.jsp?pageno=<%=next_pageno%>" >[다음]</a>
+			<a href="MainPage.jsp?pageno=<%=next_pageno%>">[다음]</a>
 			<a href="MainPage.jsp?pageno=<%=total_page %>">[맨뒤로]</a>
 		</div>
 
