@@ -9,16 +9,19 @@
 	//출력할 값이 search인지 noticelist인지 구분
 	boolean isSearch = (boolean)request.getAttribute("isSearch");
 	String getVisit=null;
-	List<noticeVO> getList =null; 
+	List<noticeVO> getList = new ArrayList<>();
 	
 	if(isSearch){
 		getVisit = (String)request.getAttribute("search");
-		List<noticeVO> getList = (List<noticeVO>)request.getAttribute("searchLsit");
+		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("searchList");
+		getList = searchList;
 	}
 	else{
 		getVisit = (String)request.getAttribute("notice");
-		List<noticeVO> getList = (List<noticeVO>)request.getAttribute("noticeList");
+		List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
+		getList = noticeList;
 	}
+	
 	
 	
 	/* if(noticeList!=null){
@@ -46,24 +49,24 @@
 	}
 	
 	
-	//main
+	//search
 	if(isSearch){
 		
 		if((getVisit == null) && (getList == null))
 %>
-		<jsp:forward page="listNoticeServlet"/>
+		<jsp:forward page="searchServlet"/>
 <%
 		else if((getVisit != null) && (getList == null)){
 			total_record=0;
 		}
 		else{total_record=getList.size();}
 	}
-	//search
+	//main
 	else{
 		
 		if((getVisit == null) && (getList == null))
 %>
-		<jsp:forward page="searchServlet"/>
+		<jsp:forward page="listNoticeServlet"/>
 <%
 		else if((getVisit != null) && (getList == null)){
 			total_record=0;
