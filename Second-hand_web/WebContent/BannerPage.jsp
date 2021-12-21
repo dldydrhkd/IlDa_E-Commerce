@@ -119,7 +119,7 @@
 	
 	<!-- 검색창 영역 -->
 	<div class="div_search" >
-    	<form method="get" action ="Search"> 	 
+    	<form method="get" action ="searchServlet"> 	 
       		<input type="text" name="Search" id="Search" placeholder="검색어를 입력해 주세요.">
       		<div>
       		<button class="Search_icon" id="Search" ><i class="fas fa-search fa-2x"></i></button>

@@ -27,6 +27,26 @@
 			margin: 0 auto;
 			max-width: 768px;
 		}
+		button{
+		
+		width:30%;
+		height:50px;
+		padding: 8px 15px;
+	    border-radius: 15px;
+	    font-family: "paybooc-Light", sans-serif;
+	    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+	    text-decoration: none;
+	    font-weight: 500;
+	    transition: 0.25s;
+	    border: 3px solid #ff5f2e;
+	    color: #6e6e6e;
+	    margin-top: 20px;
+		}
+		
+		button:hover {
+		    background-color: #ff5f2e;
+		    color: #e1eef6;
+		}
 	</style>
 </head>
 <script>
@@ -119,7 +139,9 @@ function isSame(){
 			<h3>
 			<br>
 			</h3>
-			<input type="submit" value="가입하기" style="font-size:20px">
+			<div align="center">
+				<button class="submit" >탈퇴하기</button>
+			</div>
 		</div>
 		</form>
 	</div>
