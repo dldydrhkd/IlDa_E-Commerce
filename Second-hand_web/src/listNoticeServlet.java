@@ -30,8 +30,7 @@ public class listNoticeServlet extends HttpServlet {
 			List<noticeVO> li = notice.listNotice();
 //			notice.disConnect();
 			request.setAttribute("noticeList", li);
-			request.setAttribute("list", "0");
-			request.setAttribute("isSearch", false);
+			request.setAttribute("isSearch", "0");
 			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {

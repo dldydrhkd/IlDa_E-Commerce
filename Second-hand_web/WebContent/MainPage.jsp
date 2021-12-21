@@ -22,8 +22,6 @@
 		getList = noticeList;
 	}
 	
-	
-	
 	/* if(noticeList!=null){
 		for(noticeVO i : noticeList){
 			System.out.println(i.getNoticeTitle());
