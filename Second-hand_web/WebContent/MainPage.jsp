@@ -6,7 +6,12 @@
 <%@ page import="mybean.db.noticeVO" %>
 
 <% 
-	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("ListNotice");
+	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
+	if(noticeList!=null){
+		for(noticeVO i : noticeList){
+			System.out.println(i.getNoticeTitle());
+		}
+	}
 %>
 
 <%!
@@ -24,13 +29,13 @@
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
-	int total_record;
 	if(noticeList==null){
-		total_record = 0;
+%>
+		<jsp:forward page="listNoticeServlet"/>
+<%
 	}
-	else{
-		total_record = noticeList.size();	//총 레코드 수
-	}
+	int total_record;
+	total_record=noticeList.size();
 	int page_per_record_cnt = 10;  //페이지 당 레코드 수
 	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]// [6],[7],[8],[9],[10]											
 	int record_cnt=0;
@@ -50,9 +55,6 @@
 	if(pageno>total_page){
 		pageno = total_page;
 	}
-
-
-	
 
 // 	현재 페이지(정수) / 한페이지 당 보여줄 페지 번호 수(정수) + (그룹 번호는 현제 페이지(정수) % 한페이지 당 보여줄 페지 번호 수(정수)>0 ? 1 : 0)
 	int group_no = pageno/group_per_page_cnt+( pageno%group_per_page_cnt>0 ? 1:0);
@@ -177,7 +179,7 @@
 				int n=0;
 				int Totaltr= 0; 
 				int col =5; //열의 갯 수
-				String img="그림.3.png";
+				String img="그림3.jpg";
 				int price =0;
 				String title ="미제";
 							
@@ -200,18 +202,16 @@
 							img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
 						} 
 						
-						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+						if(noticeList.get(record_cnt).getNoticeTitle()!=null){
 							title = noticeList.get(record_cnt).getNoticeTitle();	
 						}
 						
-						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							price = noticeList.get(record_cnt).getNoticeProductPrice();	
-						} 
+						price = noticeList.get(record_cnt).getNoticeProductPrice();	
 						%>
 						
 											
 						<td> <button type='submit' class='td_btn'>
-						<img src=<%=img%>/>
+						<img src=<%=img%> alt = "나와">
 						<br><%=title%>
 						<br>가격:<%=price%>
 						<input type='hidden' name="noticeNumber" value= <%=noticeList.get(record_cnt).getNoticeNumber()%> />

@@ -9,7 +9,7 @@ public class dbCon {
 		Connection conn = null;
 		
 		String jdbcDriver = "com.mysql.cj.jdbc.Driver";
-		String jdbcUrl = "jdbc:mysql://localhost:3306/SHDB?serverTimezone=UTC&autoReconnect=true";
+		String jdbcUrl = "jdbc:mysql://localhost:3306/SHDB?serverTimezone=UTC";
 		String dbUser = "root";
 		String dbPwd = "12341234";
 		

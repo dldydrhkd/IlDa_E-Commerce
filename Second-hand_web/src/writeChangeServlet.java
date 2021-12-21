@@ -26,6 +26,7 @@ public class writeChangeServlet extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.disConnect();
+			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
