@@ -7,11 +7,11 @@
 
 <% 
 	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
-	if(noticeList!=null){
+	/* if(noticeList!=null){
 		for(noticeVO i : noticeList){
 			System.out.println(i.getNoticeTitle());
 		}
-	}
+	} */
 %>
 
 <%!
@@ -199,8 +199,12 @@
 					// 게시글 출력
 					for(int j=0; j<n; j++){%>
 						<%if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
-						} 
+							img = noticeList.get(record_cnt).getNoticeImgfileRealName();
+							} 
+						else{
+							img = "그림3.jpg";
+						}
+						System.out.println(img);
 						
 						if(noticeList.get(record_cnt).getNoticeTitle()!=null){
 							title = noticeList.get(record_cnt).getNoticeTitle();	
@@ -211,7 +215,7 @@
 						
 											
 						<td> <button type='submit' class='td_btn'>
-						<img src=<%=img%> alt = "나와">
+						<img src="upload/<%=img%>" alt="<%=title%>" >
 						<br><%=title%>
 						<br>가격:<%=price%>
 						<input type='hidden' name="noticeNumber" value= <%=noticeList.get(record_cnt).getNoticeNumber()%> />
