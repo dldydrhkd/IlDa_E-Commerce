@@ -61,7 +61,7 @@ public class writeServlet extends HttpServlet {
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
 			notice.disConnect();
-			response.sendRedirect("MainPage.jsp");
+			response.sendRedirect("noticeFindView.jsp");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
