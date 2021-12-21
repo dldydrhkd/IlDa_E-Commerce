@@ -15,7 +15,11 @@
 <title>장바구니</title>
 </head>
 <body>
-<table>
+<header>
+	<jsp:include page="BannerPage.jsp"></jsp:include> 
+</header>
+<center>
+	<table>
 	<%
 		if(li!=null){
 			for(int i=0; i<li.size(); i++){
@@ -29,5 +33,7 @@
 		}
 	%>
 </table>
+</center>
+
 </body>
 </html>
