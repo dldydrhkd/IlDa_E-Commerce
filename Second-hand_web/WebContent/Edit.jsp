@@ -15,7 +15,11 @@
 <title>글 수정</title>
 </head>
 <body>
-		<h1 style="text-align:center">글 수정</h1>
+		<div class="div_container">
+		<div class="div_banner">
+			<jsp:include page="BannerPage.jsp"></jsp:include> 
+		</div>
+		</div>
 		<form action="writeServlet" method="post">
 		<table border="1" style="margin-left:auto; margin-right:auto;">
 		<tr>

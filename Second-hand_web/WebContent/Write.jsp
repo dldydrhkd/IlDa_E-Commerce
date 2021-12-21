@@ -8,13 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>글 쓰기</title>
+<style>
+tr, td{
+border:none;
+}
+</style>
 </head>
 <body>
-		<h1 style="text-align:center">글 쓰기</h1>
+		<div class="div_container">
+		<div class="div_banner">
+			<jsp:include page="BannerPage.jsp"></jsp:include> 
+		</div>
+		</div>
 		<form action="writeServlet" method="post">
 		<table border="1" style="margin-left:auto; margin-right:auto;">
 		<tr>
-				<td>제목 : <input type="text" name="title" placeholder="제목" maxlength="50"
+				<td border="0">제목 : <input type="text" name="title" placeholder="제목" maxlength="50"
 				style="width:350px"/></td>
 				<td>상품 분류
 				<select name = "noticeClassification"> 
@@ -24,7 +33,7 @@
 				</select>
 		</tr>
 		<tr>
-				<td colspan="2">내용 : <input type="text" name="content" placeholder="내용"
+				<td colspan="2" >내용 : <input type="text" name="content" placeholder="내용"
 				maxlength="2048" style="height:550px; width:550px"/>
 				</td>
 		</tr>
