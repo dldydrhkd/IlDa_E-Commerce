@@ -40,8 +40,9 @@ public class searchServlet extends HttpServlet {
 				}
 			}
 			notice.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("noticeList.jsp");
-			request.setAttribute("searchList", search);
+			request.setAttribute("noticeList", search);
+			request.setAttribute("search", true);
+			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

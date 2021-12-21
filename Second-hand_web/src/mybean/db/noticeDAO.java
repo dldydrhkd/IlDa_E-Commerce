@@ -71,7 +71,7 @@ public class noticeDAO {
 	
 	public List<noticeVO> listNotice() throws SQLException{
 		List<noticeVO> noticeList = new ArrayList<>();
-		String sql = "select * from noticeTbl";
+		String sql = "select * from noticeTbl order by noticeRegistrationDate desc";
 		
 		pstmt = conn.prepareStatement(sql);
 		
@@ -112,7 +112,7 @@ public class noticeDAO {
 	}
 	
 	public noticeVO getRecentNotice(int userNumber) throws SQLException {
-		String sql = "select * from noticeTbl where userId = ? order by DESC limit 1";
+		String sql = "select * from noticeTbl where userId = ? order by noticeRegistration DESC limit 1";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, userNumber);
