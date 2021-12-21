@@ -29,7 +29,7 @@ public class noticeDAO {
 	
 	public void insertRecord(noticeVO notice) throws SQLException {
 		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, "
-				+ " noticeClassification, userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) values(?,?,?,?,?,?,?,?)";
+				+ " noticeClassification, userNumber, noticeImgfileRealName, noticeSource, noticeProductPrice) values(?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
