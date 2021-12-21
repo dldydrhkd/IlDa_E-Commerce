@@ -21,7 +21,12 @@
 %>
 
 <%
-	int pageno = toInt(request.getParameter("pageno"));
+	String pageNum="0";
+	if(null != request.getParameter("pageno")){
+		pageNum = request.getParameter("pageno");
+	}  
+	int pageno = toInt(pageNum);
+	
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
@@ -196,11 +201,7 @@
 						
 						img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
 					
-					
-					
 						title = noticeList.get(record_cnt).getNoticeTitle();	
-					
-					
 					
 						price = noticeList.get(record_cnt).getNoticeProductPrice();	
 						
