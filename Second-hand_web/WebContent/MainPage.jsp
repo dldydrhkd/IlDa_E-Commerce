@@ -7,6 +7,7 @@
 
 <% 
 	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("ListNotice");
+	String id = (String)session.getAttribute("id");
 %>
 
 <%!
@@ -20,7 +21,12 @@
 %>
 
 <%
-	int pageno = toInt(request.getParameter("pageno"));
+	String pageNum="0";
+	if(null != request.getParameter("pageno")){
+		pageNum = request.getParameter("pageno");
+	}  
+	int pageno = toInt(pageNum);
+	
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
@@ -189,18 +195,14 @@
 					else {n=col;}
 					
 					// 게시글 출력
-					for(int j=0; j<n; j++){%>
-						<%if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
-						} 
+					for(int j=0; j<n; j++){
 						
-						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							title = noticeList.get(record_cnt).getNoticeTitle();	
-						}
+						img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
+					
+						title = noticeList.get(record_cnt).getNoticeTitle();	
+					
+						price = noticeList.get(record_cnt).getNoticeProductPrice();	
 						
-						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							price = noticeList.get(record_cnt).getNoticeProductPrice();	
-						} 
 						%>
 						
 											
@@ -218,12 +220,14 @@
 				</form>
 			</table>
 		</div>
-		
+		<%if(id != null){ %>
 		<div class ="div_textIn" align="right">
 			<br>
 			<button onClick="location.href='Write.jsp'">글 쓰기</button>	
 		</div>
-
+		<%} %>
+		
+		
 		<div class="div_paging" align="center">
 			<a href="MainPage.jsp?pageno=1">[맨앞으로]</a>
 			<a href="MainPage.jsp?pageno=<%=prev_pageno%>">[이전]</a> 
