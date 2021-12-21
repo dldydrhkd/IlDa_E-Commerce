@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-	<title>¾ÆÀÌµğ Áßº¹ Ã¼Å©</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>ì•„ì´ë”” ì¤‘ë³µ ì²´í¬</title>
 	
 	<style type="text/css">
 		#wrap {
@@ -30,7 +30,7 @@
 	
 		var httpRequest = null;
 		
-		// httpRequest °´Ã¼ »ı¼º
+		// httpRequest ê°ì²´ ìƒì„±
 		function getXMLHttpRequest(){
 			var httpRequest = null;
 		
@@ -50,39 +50,37 @@
 		}
 		
 		
-		// È¸¿ø°¡ÀÔÃ¢ÀÇ ¾ÆÀÌµğ ÀÔ·Â¶õÀÇ °ªÀ» °¡Á®¿Â´Ù.
+		// íšŒì›ê°€ì…ì°½ì˜ ì•„ì´ë”” ì…ë ¥ë€ì˜ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
 		function pValue(){
-			document.getElementById("userId").value = opener.document.userInfo.id.value;
+			document.getElementById("userId").value = opener.document.getElementById("id").value;
 		}
 		
-		// ¾ÆÀÌµğ Áßº¹Ã¼Å©
+		// ì•„ì´ë”” ì¤‘ë³µì²´í¬
 		function idCheck(){
 
 			var id = document.getElementById("userId").value;
 
 			if (!id) {
-				alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾Ò½À´Ï´Ù.");
+				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 				return false;
 			} 
 			else
 			{
 				var param="id="+id
 				httpRequest = getXMLHttpRequest();
-				httpRequest.onreadystatechange = callback;
-				httpRequest.open("POST", "memberIdCheck.do", true);	
+				httpRequest.onreadystatechange = callback();
+				httpRequest.open("POST", "MemberIdCheck", true);	
 				httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
 				httpRequest.send(param);
-				System.out.println(param);
-				return true;
 			}
 		}
 		
 		function callback(){
 			if(httpRequest.readyState == 4){
-				// °á°ú°ªÀ» °¡Á®¿Â´Ù.
+				// ê²°ê³¼ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
 				var resultText = httpRequest.responseText;
 				if(resultText == 0){
-					alert("»ç¿ëÇÒ¼ö¾ø´Â ¾ÆÀÌµğÀÔ´Ï´Ù.");
+					alert("ì‚¬ìš©í• ìˆ˜ì—†ëŠ” ì•„ì´ë””ì…ë‹ˆë‹¤.");
 					document.getElementById("cancelBtn").style.visibility='visible';
 					document.getElementById("useBtn").style.visibility='hidden';
 					document.getElementById("msg").innerHTML ="";
@@ -90,17 +88,17 @@
 				else if(resultText == 1){ 
 					document.getElementById("cancelBtn").style.visibility='hidden';
 					document.getElementById("useBtn").style.visibility='visible';
-					document.getElementById("msg").innerHTML = "»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğÀÔ´Ï´Ù.";
+					document.getElementById("msg").innerHTML = "ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë””ì…ë‹ˆë‹¤.";
 				}
 			}
 		}
 		
-		// »ç¿ëÇÏ±â Å¬¸¯ ½Ã ºÎ¸ğÃ¢À¸·Î °ª Àü´Ş 
+		// ì‚¬ìš©í•˜ê¸° í´ë¦­ ì‹œ ë¶€ëª¨ì°½ìœ¼ë¡œ ê°’ ì „ë‹¬ 
 		function sendCheckValue(){
-			// Áßº¹Ã¼Å© °á°úÀÎ idCheck °ªÀ» Àü´ŞÇÑ´Ù.
-			opener.document.userInfo.idDuplication.value ="idCheck";
-			// È¸¿ø°¡ÀÔ È­¸éÀÇ IDÀÔ·Â¶õ¿¡ °ªÀ» Àü´Ş
-			opener.document.userInfo.id.value = document.getElementById("userId").value;
+			// ì¤‘ë³µì²´í¬ ê²°ê³¼ì¸ idCheck ê°’ì„ ì „ë‹¬í•œë‹¤.
+			opener.document.getElementById("idDuplication").value ="idCheck";
+			// íšŒì›ê°€ì… í™”ë©´ì˜ IDì…ë ¥ë€ì— ê°’ì„ ì „ë‹¬
+			opener.document.getElementById("id").value = document.getElementById("userId").value;
 			
 			if (opener != null) {
             	opener.chkForm = null;
@@ -110,21 +108,21 @@
 	</script>
 	
 </head>
-<body onload="pValue()">
+<body>
 <div id="wrap">
 	<br>
-	<b><font size="4" color="gray">¾ÆÀÌµğ Áßº¹Ã¼Å©</font></b>
+	<b><font size="4" color="gray">ì•„ì´ë”” ì¤‘ë³µì²´í¬</font></b>
 	<hr size="1" width="460">
 	<br>
 	<div id="chk">
 		<form id="checkForm">
 			<input type="text" name="idinput" id="userId">
-			<input type="button" value="Áßº¹È®ÀÎ" onclick="idCheck()">
+			<input type="button" value="ì¤‘ë³µí™•ì¸" onclick="idCheck()">
 		</form>
 		<div id="msg"></div>
 		<br>
-		<input id="cancelBtn" type="button" value="Ãë¼Ò" onclick="window.close()"><br>
-		<input id="useBtn" type="button" value="»ç¿ëÇÏ±â" onclick="sendCheckValue()">
+		<input id="cancelBtn" type="button" value="ì·¨ì†Œ" onclick="window.close()"><br>
+		<input id="useBtn" type="button" value="ì‚¬ìš©í•˜ê¸°" onclick="sendCheckValue()">
 	</div>
 </div>	
 </body>
