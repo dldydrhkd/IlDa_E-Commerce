@@ -40,24 +40,39 @@ public class userDAO {
 		return -1;
 	}
 	
+	public boolean isPwdOk(String id, String pwd) throws SQLException{
+		String sql = "select * from userTbl where id=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			if(rs.getString("userPwd").equals(pwd)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void insertRecord(userVO user) throws SQLException {
-		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userAge,"
-				+ " userPhoneNumber, userAddr, userEmail, userGender, userRegistrationDate, userCondition, userWithdrawalDate) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userBirthDate,"
+				+ " userPhoneNumber, userAddr, userEmail, userGender, userCondition, userWithdrawalDate) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
 		pstmt.setString(2,  user.getUserId());
 		pstmt.setString(3,  user.getUserPwd());
 		pstmt.setString(4,  user.getUserName());
-		pstmt.setInt(5,  user.getUserAge());
+		pstmt.setDate(5,  user.getUserBirth());
 		pstmt.setString(6,  user.getUserPhoneNumber());
 		pstmt.setString(7,  user.getUserAddr());
 		pstmt.setString(8,  user.getUserEmail());
 		pstmt.setString(9,  user.getUserGender());
-		pstmt.setDate(10,  null);
-		pstmt.setString(11,  null);
-		pstmt.setDate(12,  null);
+		pstmt.setString(10,  null);
+		pstmt.setDate(11,  null);
 		
 		pstmt.executeUpdate();
 	}

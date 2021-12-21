@@ -27,18 +27,18 @@ public class signUpServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd1");
 		String name = request.getParameter("name");
-		int userAge = Integer.parseInt(request.getParameter("age"));
+		String date = request.getParameter("date");
+		Date birth = Date.valueOf(date);
 		String userPhoneNumber = request.getParameter("phone");
 		String userAddr = request.getParameter("address");
 		String userEmail = request.getParameter("email");
 		String userGender = request.getParameter("gender");
-
 		
 		userVO usr = new userVO();
 		usr.setUserId(id);
 		usr.setUserName(name);
 		usr.setUserPwd(pwd);
-		usr.setUserAge(userAge);
+		usr.setUserBirth(birth);
 		usr.setUserPhoneNumber(userPhoneNumber);
 		usr.setUserAddr(userAddr);
 		usr.setUserEmail(userEmail);
@@ -59,7 +59,7 @@ public class signUpServlet extends HttpServlet {
 		out.print("<script>");
 		out.print("alert('회원가입이 성공적으로 완료 되었습니다.')");
 		out.print("</script>");
-//		response.sendRedirect("userLogin.jsp");
+		response.sendRedirect("MainPage.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

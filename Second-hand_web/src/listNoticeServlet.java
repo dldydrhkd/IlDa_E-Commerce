@@ -28,9 +28,9 @@ public class listNoticeServlet extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			List<noticeVO> li = notice.listNotice();
-			notice.disConnect();
+//			notice.disConnect();
 			request.setAttribute("noticeList", li);
-			RequestDispatcher rd = request.getRequestDispatcher("/noticeList.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

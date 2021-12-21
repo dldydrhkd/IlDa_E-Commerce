@@ -7,7 +7,7 @@ public class userVO {
 		private String userId;
 		private String userPwd;
 		private String userName;
-		private int userAge;
+		private Date userBirth;
 		private String userPhoneNumber;
 		private String userAddr;
 		private String userEmail;
@@ -17,8 +17,9 @@ public class userVO {
 		private Date userWithdrawalDate;
 		
 		public userVO(){ }
-
-		public userVO(int userNumber, String userId, String userPwd, String userName, int userAge,
+		
+		
+		public userVO(int userNumber, String userId, String userPwd, String userName, Date birth,
 				String userPhoneNumber, String userAddr, String userEmail, String userGender, Date userRegistrationDate,
 				String userCondition, Date userWithdrawalDate) {
 			super();
@@ -26,7 +27,7 @@ public class userVO {
 			this.userId = userId;
 			this.userPwd = userPwd;
 			this.userName = userName;
-			this.userAge = userAge;
+			this.userBirth = birth;
 			this.userPhoneNumber = userPhoneNumber;
 			this.userAddr = userAddr;
 			this.userEmail = userEmail;
@@ -35,7 +36,7 @@ public class userVO {
 			this.userCondition = userCondition;
 			this.userWithdrawalDate = userWithdrawalDate;
 		}
-
+		
 		public int getUserNumber() {
 			return userNumber;
 		}
@@ -68,12 +69,12 @@ public class userVO {
 			this.userName = userName;
 		}
 
-		public int getUserAge() {
-			return userAge;
+		public Date getUserBirth() {
+			return userBirth;
 		}
 
-		public void setUserAge(int userAge) {
-			this.userAge = userAge;
+		public void setUserBirth(Date userBirth) {
+			this.userBirth = userBirth;
 		}
 
 		public String getUserPhoneNumber() {
