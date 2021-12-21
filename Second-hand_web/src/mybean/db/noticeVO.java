@@ -30,10 +30,9 @@ public class noticeVO {
 		this.noticeProductPrice = noticeProductPrice;
 	}
 	
-	public noticeVO(String noticeTitle, String noticeInfo, String noticeState, String noticeClassification, int userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) {
+	public noticeVO(String noticeTitle, String noticeInfo, String noticeClassification, int userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) {
 		this.noticeTitle = noticeTitle;
 		this.noticeInfo = noticeInfo;
-		this.noticeState = noticeState;
 		this.noticeClassification = noticeClassification;
 		this.userNumber = userNumber;
 		this.noticeImgfileRealName = noticeImgfileRealName;

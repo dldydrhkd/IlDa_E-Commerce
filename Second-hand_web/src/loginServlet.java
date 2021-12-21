@@ -55,7 +55,6 @@ public class loginServlet extends HttpServlet {
 			out.print("</script>");
 			response.sendRedirect("MainPage.jsp");  // 나중에 main으로 바꿀거
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
