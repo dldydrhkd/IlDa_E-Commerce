@@ -6,23 +6,36 @@
 <%@ page import="mybean.db.noticeVO" %>
 
 <% 
-	//출력할 값이 search인지 noticelist인지 구분
-	boolean isSearch = (boolean)request.getAttribute("isSearch");
-	String getVisit=null;
+	int total_record=0;
+	String isSearch = (String)request.getAttribute("isSearch");
 	List<noticeVO> getList = new ArrayList<>();
 	
-	if(isSearch){
-		getVisit = (String)request.getAttribute("search");
-		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("searchList");
-		getList = searchList;
+	
+	if(isSearch ==null){
+		%>
+			<jsp:forward page="listNoticeServlet"/>
+		<%
 	}
-	else{
-		getVisit = (String)request.getAttribute("notice");
+	else if(isSearch =="0"){
+		
 		List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
-		getList = noticeList;
+		
+		if(noticeList!=null){
+			getList = noticeList;
+			total_record = noticeList.size();
+		}else{total_record = 0 ;}
+		
 	}
-	
-	
+	else if(isSearch=="1"){
+		
+		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("searchList");
+		
+		if(searchList!=null){
+			getList = searchList;
+			total_record = searchList.size();
+		}else{total_record = 0 ;}
+		
+	}
 	
 	/* if(noticeList!=null){
 		for(noticeVO i : noticeList){
@@ -42,39 +55,12 @@
 %>
 
 <%	
-	int total_record=0;
 	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
-	
-	
-	//search
-	if(isSearch){
-		
-		if((getVisit == null) && (getList == null)){
-%>
-			<jsp:forward page="searchServlet"/>
-<%
-		}
-		else if((getVisit != null) && (getList == null)){
-			total_record=0;
-		}
-		else{total_record=getList.size();}
-	}
-	//main
-	else{
-		
-		if((getVisit == null) && (getList == null)){
-%>
-		<jsp:forward page="listNoticeServlet"/>
-<%		
-		}
-		else if((getVisit != null) && (getList == null)){
-			total_record=0;
-		}
-		else{total_record=getList.size();}
-	}
+
+
 	
 	int page_per_record_cnt = 10;  //페이지 당 레코드 수
 	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수										
@@ -216,7 +202,7 @@
 		<div class="div_banner">
 			<jsp:include page="BannerPage.jsp"></jsp:include> 
 		</div>
-		<%if(isSearch){%>
+		<%if(isSearch=="1"){%>
 		<div class=div_mainImg align="center">
 			<img src="main_img.jpg" alt="mainImg" width=100%/>
 		</div>
