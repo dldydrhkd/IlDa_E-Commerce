@@ -4,12 +4,13 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mybean.db.noticeVO" %>
+<%@ page import="java.text.DecimalFormat" %>
 
 <% 
 	int total_record=0;
 	String isSearch = (String)request.getAttribute("isSearch");
 	List<noticeVO> getList = new ArrayList<>();
-	
+	DecimalFormat formatter = new DecimalFormat("###,###");
 	
 	if(isSearch ==null){
 		%>
@@ -157,11 +158,15 @@
     font-weight: 500;
     overflow:hidden;
     outline-color: gray; 
-    font-size: large;
+    font-size: medium;
 }
 
 .td_btn img{
 	width:100%
+}
+#a_img img{
+width:40px;
+
 }
 
 .div_textIn button{
@@ -202,7 +207,7 @@
 		<div class="div_banner">
 			<jsp:include page="BannerPage.jsp"></jsp:include> 
 		</div>
-		<%if(isSearch=="1"){%>
+		<%if(isSearch=="0"){%>
 		<div class=div_mainImg align="center">
 			<img src="main_img.jpg" alt="mainImg" width=100%/>
 		</div>
@@ -267,9 +272,18 @@
 											
 						<td> <button type='submit' class='td_btn'>
 						<img src="upload/<%=img%>" alt="<%=title%>" >
-						<br><%=title%>
-						<br>가격:<%=price%>
-						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%> />
+						<br><%=title%><hr>
+						<span style="display:inline-block; height:10%; width:180px;">가격:<%=formatter.format(price) + "원"%></span>
+						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
+						
+						<%if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
+						<a  id="a_img" href= "/basketDeleteServlet?noticeNumber=<%=getList.get(record_cnt).getNoticeNumber()%>+">"
+						<img src="basket1.png" alt="a"> </a>
+						
+						<%} else{%>
+						<a  id="a_img" href= "/basketAddServlet?noticeNumber=<%=getList.get(record_cnt).getNoticeNumber()%>+">"
+						<img src="basket2.png" alt="a"> </a>
+						<%} %>
 						</button> </td>
 						<% record_cnt++;
 					}
