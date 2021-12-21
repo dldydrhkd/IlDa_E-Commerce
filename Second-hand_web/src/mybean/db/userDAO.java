@@ -101,6 +101,20 @@ public class userDAO {
 		pstmt.executeUpdate();
 	}
 	
+	public boolean duplicateIdCheck(String id) throws SQLException {
+		String sql = "select * from userTbl";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			if(rs.getString("userId").equals(id)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
 		if(pstmt != null) pstmt.close();

@@ -139,6 +139,7 @@ public class noticeDAO {
 		
 	}
 	
+	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
 		if(pstmt != null) pstmt.close();

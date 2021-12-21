@@ -29,6 +29,8 @@ function isSame(){
 			document.getElementById("check_pwd2").style.color='red';
 		}
 	}
+}
+
 function check_value(){
 	
 	var form = document.userInfo;
@@ -100,7 +102,7 @@ function goFirstForm() {
 
 function openIdChk(){
 	window.name = "parentForm";
-	window.open("idCheckForm.jsp", "chkForm", "width=500, height=300, resizable=no, scrollbars=no");
+	window.open("IdCheckForm.jsp", "chkForm", "width=500, height=300, resizable=no, scrollbars=no");
 }
 
 function inputIdChk(){
@@ -120,7 +122,11 @@ function inputIdChk(){
 			</h3>
 			<span>
 				<input type="text" id="id" name="id" placeholder="아이디" onkeydown="inputIdChk()">
+			</span>
+			<span>
 				<input type="button" value="중복확인" onclick="openIdChk()">
+			</span>
+			<span>
 				<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
 			</span>
 			<h3>
