@@ -28,18 +28,17 @@ public class noticeDAO {
 	
 	
 	public void insertRecord(noticeVO notice) throws SQLException {
-		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, "
-				+ " noticeClassification, userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into noticeTbl(noticeTitle, noticeInfo, "
+				+ "noticeClassification, userNumber, noticeImgfileRealName, noticeSource, noticeProductPrice) values(?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,  null);
-		pstmt.setString(2,  notice.getNoticeTitle());
-		pstmt.setString(3,  notice.getNoticeInfo());
-		pstmt.setString(4,  notice.getNoticeClassification());
-		pstmt.setInt(5,  notice.getUserNumber());
-		pstmt.setString(6,  notice.getNoticeImgfileRealName());
-		pstmt.setString(7,  notice.getNoticeSource());
-		pstmt.setInt(8,  notice.getNoticeProductPrice());
+		pstmt.setString(1,  notice.getNoticeTitle());
+		pstmt.setString(2,  notice.getNoticeInfo());
+		pstmt.setString(3,  notice.getNoticeClassification());
+		pstmt.setInt(4,  notice.getUserNumber());
+		pstmt.setString(5,  notice.getNoticeImgfileRealName());
+		pstmt.setString(6,  notice.getNoticeSource());
+		pstmt.setInt(7,  notice.getNoticeProductPrice());
 		
 		pstmt.executeUpdate();
 	}

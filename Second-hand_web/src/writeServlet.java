@@ -55,15 +55,13 @@ public class writeServlet extends HttpServlet {
 		
 			String title = multi.getParameter("title");
 			String info = multi.getParameter("content");
-			String state = null;
 			String classification = multi.getParameter("noticeClassification");
 			String image_name = multi.getParameter("file");
-			System.out.println(image_name);
 			int price = Integer.parseInt(multi.getParameter("price"));
 			HttpSession session = request.getSession();
 			int userNumber = (int) session.getAttribute("userNumber");
 			
-			noticeVO n = new noticeVO(title, info, state, classification, userNumber, fileName, image_name, price);
+			noticeVO n = new noticeVO(title, info, classification, userNumber, fileName, image_name, price);
 		
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
