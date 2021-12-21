@@ -30,16 +30,16 @@ public class listBasketServlet extends HttpServlet {
 		try {
 			basketDAO basket = basketDAO.getInstance();
 			HttpSession session = request.getSession();
-			List<basketListVO> li = basket.listBasket(Integer.parseInt((String) session.getAttribute("userNumber")));
+			List<basketListVO> li = basket.listBasket((int)session.getAttribute("userNumber"));
 			basket.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("basketList.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("showBasketList.jsp");
 			request.setAttribute("basketList", li);
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

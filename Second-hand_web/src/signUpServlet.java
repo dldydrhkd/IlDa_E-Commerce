@@ -25,7 +25,7 @@ public class signUpServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+		String pwd = request.getParameter("pwd1");
 		String name = request.getParameter("name");
 		int userAge = Integer.parseInt(request.getParameter("age"));
 		String userPhoneNumber = request.getParameter("phone");
