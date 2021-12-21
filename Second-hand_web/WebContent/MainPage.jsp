@@ -167,14 +167,6 @@
 		<div class="div_h1">
 			<h1> 최근 등록<% %>건</h1> <hr>
 		</div>
-
-
-		<%
-		int count =1;
-		int n=0;
-		int Totaltr= 0; 
-		int col =5; //열의 갯 수
-		%>
     
 		<div class ="div_Table" align="center" >
 			<table>
