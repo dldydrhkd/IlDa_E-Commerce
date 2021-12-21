@@ -3,9 +3,7 @@
     
 <%@ page import="mybean.db.userVO" %>
 
-<% 
-	String id = (String)session.getAttribute("id");
-%>  
+
 
 <!DOCTYPE html>
 <html>
@@ -36,7 +34,6 @@
 	}
 			
 	button{
-	align:right;
 	padding: 8px 15px;
     border-radius: 15px;
     font-family: "paybooc-Light", sans-serif;
@@ -136,14 +133,15 @@ function isSame(){
 		<span>
 			<input type="tel" name="phone">
 			<div align="center">
-			<button class="div_btn" type="submit">수정하기</button>
+				<button class="div_btn" type="submit">수정하기</button>
 			</div>
 		</span>
-		
+		</div>
 		<h3>
 			<br>
 		</h3>
 		</form>
+		
 		<from action="userWithdrawalServlet" method="post">
 		<h3>
 		<label for="Withdrawal">회원탈퇴</label> 
@@ -157,6 +155,5 @@ function isSame(){
 		</from>
 		</div>
 		
-	</div>
 </body>
 </html>
