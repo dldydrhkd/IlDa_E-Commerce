@@ -60,7 +60,7 @@ public class writeServlet extends HttpServlet {
 			noticeVO n = new noticeVO(title, info, classification, userNumber, originalFileName, fileName, price);
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
-			notice.disConnect();
+//			notice.disConnect();
 			response.sendRedirect("noticeFindView.jsp");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

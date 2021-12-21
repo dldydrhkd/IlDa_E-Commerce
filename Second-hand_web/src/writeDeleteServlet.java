@@ -26,7 +26,7 @@ public class writeDeleteServlet extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.deleteRecord(noticeNumber);
-			notice.disConnect();
+//			notice.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

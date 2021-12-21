@@ -28,7 +28,7 @@ public class commentDeleteServlet extends HttpServlet {
 		try {
 			commentDAO comment = commentDAO.getInstance();
 			comment.deleteRecord(commentNumber);
-			comment.disConnect();
+//			comment.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

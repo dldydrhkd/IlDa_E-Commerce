@@ -31,7 +31,7 @@ public class listBasketServlet extends HttpServlet {
 			basketDAO basket = basketDAO.getInstance();
 			HttpSession session = request.getSession();
 			List<basketListVO> li = basket.listBasket((int)session.getAttribute("userNumber"));
-			basket.disConnect();
+//			basket.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("showBasketList.jsp");
 			request.setAttribute("basketList", li);
 			rd.forward(request,response);

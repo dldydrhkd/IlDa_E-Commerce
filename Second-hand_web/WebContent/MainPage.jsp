@@ -11,12 +11,12 @@
 	List<noticeVO> getList = new ArrayList<>();
 	
 	
-	if(isSearch ==null){
+	if(isSearch == null){
 		%>
 			<jsp:forward page="listNoticeServlet"/>
 		<%
 	}
-	else if(isSearch =="0"){
+	else if(isSearch.equals("0")){
 		
 		List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
 		
@@ -26,9 +26,9 @@
 		}else{total_record = 0 ;}
 		
 	}
-	else if(isSearch=="1"){
+	else if(isSearch.equals("1")){
 		
-		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("searchList");
+		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("noticeList");
 		
 		if(searchList!=null){
 			getList = searchList;
@@ -46,10 +46,13 @@
 
 <%!
 	public Integer toInt(String x){
-		int a = 0;
-		try{
+		int a;
+		if(x==null){
+			a = 0;
+		}
+		else{
 			a = Integer.parseInt(x);
-		}catch(Exception e){}
+		}
 		return a;
 	}
 %>

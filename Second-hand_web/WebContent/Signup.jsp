@@ -31,7 +31,7 @@ function isSame(){
 	}
 }
 
-function check_value(){
+function checkValue(){
 	
 	var form = document.userInfo;
 	
@@ -43,12 +43,19 @@ function check_value(){
 	var userAddr = document.getElementById("address");
 	var userEmail = document.getElementById("email");
 	var isDuplication = document.getElementById("idDuplication");
+	
 	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	
 	if(userId.value==''){
 		alert('아이디를 입력해주세요!')
 		userId.focus();
 		return false;
 	}
+	/* if(idDuplication.value != "idCheck"){
+		alert('아이디 중복체크를 해주세요!');
+		userId.focus();
+		return false;
+	} */
 	if(userPwd1.value==''){
 		alert('비밀번호를 입력해주세요!');
 		userPwd1.focus();
@@ -64,8 +71,8 @@ function check_value(){
 		userPwd1.focus();
 		return false;
 	}
-	if(userPhoneNumber.value==''){
-		alert('핸드폰 번호를 입력해주세요!');
+	if(userName.value==''){
+		alert('이름을 입력해주세요!');
 		userPhoneNumber.focus();
 		return false;
 	}
@@ -74,9 +81,14 @@ function check_value(){
 		userAddr.focus();
 		return false;
 	}
-	if(idDuplication.value != "idCheck"){
-		alert('아이디 중복체크를 해주세요!');
-		userId.focus();
+	if(userEmail.value!='' && email.value.match(regExp)==null){
+		alert('잘못된 메일 주소 입니다!');
+		userEmail.focus();
+		return false;
+	}
+	if(userPhoneNumber.value==''){
+		alert('핸드폰 번호를 입력해주세요!');
+		userPhoneNumber.focus();
 		return false;
 	}
 	if(isNaN(userPhoneNumber.value)){
@@ -87,11 +99,6 @@ function check_value(){
 	if(userPhoneNumber.value.length!=11){
 		alert('핸드폰 번호가 올바르지 않습니다!');
 		userPhoneNumber.focus();
-		return false;
-	}
-	if(userEmail.value!='' && email.value.match(regExp)==null){
-		alert('잘못된 메일 주소 입니다!');
-		userEmail.focus();
 		return false;
 	}
 }
@@ -115,7 +122,7 @@ function inputIdChk(){
 		<h1 style="text-align:center">회원가입</h1>
 	</header>
 	<div class="div_container">
-		<form method="post" action="signUpServlet" onsubmit="return checkValue()">
+		<form method="post" action="signUpServlet">
 		<div id="content"> 
 			<h3>
 				<label for="id">아이디 *</label>
@@ -159,8 +166,8 @@ function inputIdChk(){
 				<label for="gender">성별</label>
 			</h3>
 			<span>
-				<input style="width:4%" type="radio" name="gender" value="남" checked="checked" size="40">남자
-				<input style="width:4%" type="radio" name="gender" value="녀" size="40">여자
+				<input style="width:4%" type="radio" id="gender" name="gender" value="남" checked="checked" size="40">남자
+				<input style="width:4%" type="radio" id="gender" name="gender" value="녀" size="40">여자
 			</span>
 			<h3>
 				<label for="address">주소 *</label>
@@ -172,19 +179,19 @@ function inputIdChk(){
 				<label for="email">이메일</label>
 			</h3>
 			<span>
-				<input type="email" name="email">
+				<input type="email" id="email" name="email">
 			</span>
 			<h3>
 				<label for="phone">핸드폰 번호 ('-'는 빼주세요.) *</label>
 			</h3>
 			<span>
-				<input type="tel" name="phone">
+				<input type="tel" id="phone" name="phone">
 			</span>
 			<h3>
 			<br>
 			</h3>
 			<div align="center">
-				<input type="submit" value="가입하기">
+				<input type="submit" value="가입하기" onclick="return checkValue()">
 				<input type="button" value="취소" onclick="goMainPage()">
 			</div>
 		</div>

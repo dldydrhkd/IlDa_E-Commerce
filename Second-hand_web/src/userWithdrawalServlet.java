@@ -35,7 +35,7 @@ public class userWithdrawalServlet extends HttpServlet {
 			boolean check = db.isPwdOk(id, pwd);
 			if(check) {
 				db.deleteRecord(id);
-				db.disConnect();
+//				db.disConnect();
 				session.invalidate();
 				response.sendRedirect("MainPage.jsp");
 			}

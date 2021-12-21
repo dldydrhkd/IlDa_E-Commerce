@@ -33,7 +33,7 @@ public class basketAddServlet extends HttpServlet {
 		try {
 			basketDAO basket = basketDAO.getInstance();
 			basket.insertBasket(new basketVO(basketNumber, userNumber, noticeNumber));
-			basket.disConnect();
+//			basket.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

@@ -33,7 +33,7 @@ public class commentAddServlet extends HttpServlet {
 		try {
 			commentDAO comment = commentDAO.getInstance();
 			comment.insertRecord(new commentVO(contents,noticeNumber,userId));
-			comment.disConnect();
+//			comment.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

@@ -47,7 +47,7 @@ public class signUpServlet extends HttpServlet {
 		try {
 			userDAO db = userDAO.getInstance();
 			db.insertRecord(usr);
-			db.disConnect();
+//			db.disConnect();
 		}catch(SQLException e) {
 			System.out.print(e);
 			return;

@@ -36,7 +36,7 @@ public class loginServlet extends HttpServlet {
 		try {
 			userDAO db = userDAO.getInstance();
 			userNumber = db.isLoginOk(id, pwd);
-			db.disConnect();
+//			db.disConnect();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

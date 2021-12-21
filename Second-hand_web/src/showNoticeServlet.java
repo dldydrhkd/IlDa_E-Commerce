@@ -29,7 +29,7 @@ public class showNoticeServlet extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			noticeVO n = notice.getnoticeView(noticeNumber);
-			notice.disConnect();
+//			notice.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("noticeView.jsp");
 			request.setAttribute("noticeView", n);
 			rd.forward(request,response);

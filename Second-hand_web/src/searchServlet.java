@@ -28,18 +28,18 @@ public class searchServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String question = request.getParameter("question");
+		String question = request.getParameter("Search");
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			List<noticeVO> li = notice.listNotice();
 			List<noticeVO> search = new ArrayList();
 			for(noticeVO i : li) {
-				if(i.getNoticeTitle().contains(question)==true) {
+				if(i.getNoticeTitle().contains(question)) {
 					search.add(i);
 				}
 			}
-			notice.disConnect();
+//			notice.disConnect();
 			request.setAttribute("noticeList", search);
 			request.setAttribute("isSearch", "1");
 			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
