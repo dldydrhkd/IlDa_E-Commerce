@@ -221,8 +221,8 @@
 		<div class="div_h2">
 			<h2> 검색 결과가 없습니다.</h2>
 		</div>
-		<%} %>
-		
+		<%} 
+		if(getList!=null){	%>
 		<div class ="div_Table" align="center" >
 			<table>
 				<form action='showNoticeServlet' method='post'>
@@ -279,6 +279,7 @@
 				</form>
 			</table>
 		</div>
+		<%} %>
 		
 		<%if(session.getAttribute("id")!=null) {%>
 		<div class ="div_textIn" align="right">
