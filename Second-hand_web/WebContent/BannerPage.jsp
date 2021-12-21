@@ -133,13 +133,18 @@
 		<!-- 버튼 누르면 로그인페이지로 이동 -->
 		<%
 		if(id != null) {
-			out.print("<button type='button' >로그아웃</button>");
-			out.print("<button type='button' onClick="+"location.href='DibsPage.jsp'"+">회원정보 수정</button>");
-			out.print("<button type='button' >찜 목록</button>");
+		%>
+			<button type='button' onClick="location.href='logoutServlet'">로그아웃</button>
+			<button type='button' onClick="location.href='DibsPage.jsp'">회원정보 수정</button>
+			<button type='button' onClick="location.href='listBasketServlet'">찜 목록</button>
+		<%
 		}
-		else { out.print("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
-			out.print("<button class='login_btn' type='button' id ='Sign' onClick="+
-						"location.href='LoginPage.jsp'"+"> 로그인/회원가입  </button>"); }
+		else { 
+		%>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button class='login_btn' type='button' id ='Sign' onClick="location.href='LoginPage.jsp'"> 로그인/회원가입  </button> 
+		<%
+		}
 		%>
 	
 	</div>
