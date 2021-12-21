@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -23,21 +24,33 @@ public class userWithdrawalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		String pwd = request.getParameter("pwd");
 		
 		try {
 			userDAO db = userDAO.getInstance();
-			db.deleteRecord(id);
-			db.disConnect();
+			boolean check = db.isPwdOk(id, pwd);
+			if(check) {
+				db.deleteRecord(id);
+				db.disConnect();
+				session.invalidate();
+				response.sendRedirect("MainPage.jsp");
+			}
+			else {
+				out.print("<script>");
+				out.print("alert('회원 탈퇴 되었습니다.')");
+				out.print("</script>");
+				response.sendRedirect("Edit.jsp");
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		session.invalidate();
-		response.sendRedirect("");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
