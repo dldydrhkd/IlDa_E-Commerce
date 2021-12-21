@@ -28,7 +28,6 @@
 		
 	}
 	else if(isSearch.equals("1")){
-		
 		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("noticeList");
 		
 		if(searchList!=null){

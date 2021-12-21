@@ -35,7 +35,6 @@ public class writeServlet extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 		String path = context.getRealPath("upload");
-		System.out.println(path);
 		
 		int maxsize = 1024*1024*5;
 		
@@ -61,7 +60,7 @@ public class writeServlet extends HttpServlet {
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
 //			notice.disConnect();
-			response.sendRedirect("noticeFindView.jsp");
+			response.sendRedirect("noticeRecentViewServlet");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

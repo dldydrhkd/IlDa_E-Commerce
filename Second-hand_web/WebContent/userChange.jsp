@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="Signup.css">
 </head>
 <script type="text/javascript">
+
 function isSame(){	
 	var pwd1=document.getElementById("pwd1").value;
 	var pwd2=document.getElementById("pwd2").value;
@@ -31,7 +32,7 @@ function isSame(){
 	}
 }
 
-function check_value(){
+function checkValue(){
 	
 	var userPwd1 = document.getElementById("pwd1");
 	var userPwd2 = document.getElementById("pwd2");

@@ -140,7 +140,7 @@
 		if(id != null) {
 		%>
 			<button type='button' onClick="logout()">로그아웃</button>
-			<button type='button' onClick="location.href='DibsPage.jsp'">회원정보 수정</button>
+			<button type='button' onClick="location.href='userChange.jsp'">회원정보 수정</button>
 			<button type='button' onClick="location.href='listBasketServlet'">찜 목록</button>
 		<%
 		}
@@ -151,7 +151,6 @@
 		<%
 		}
 		%>
-	
 	</div>
 	</div>
 	
