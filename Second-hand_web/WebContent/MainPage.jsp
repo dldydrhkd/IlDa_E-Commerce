@@ -167,12 +167,23 @@
 		
 		<div class=div_mainImg align="center">
 			<img src="main_img.jpg" alt="mainImg" width=100%/>
+
 		</div>		
+
+
 		
 		<div class="div_h1">
 			<h1> 최근 등록<% %>건</h1> <hr>
 		</div>
-		
+
+
+		<%
+		int count =1;
+		int n=0;
+		int Totaltr= 0; 
+		int col =5; //열의 갯 수
+		%>
+
 		
 		<div class ="div_Table" align="center" >
 			<table>
@@ -210,7 +221,7 @@
 			<br>
 			<button onClick="location.href='글쓰기.jsp'">글 쓰기</button>	
 		</div>
-		
+
 		<div class="div_paging" align="center">
 			<a href="MainPage.jsp?pageno=1">[맨앞으로]</a>
 			<a href="MainPage.jsp?pageno=<%=prev_pageno%>">[이전]</a> 
@@ -230,6 +241,7 @@
 			<a href="MainPage.jsp?pageno=<%=next_pageno%>" >[다음]</a>
 			<a href="MainPage.jsp?pageno=<%=total_page %>">[맨뒤로]</a>
 		</div>
+
 	</div>
 
 </body>
