@@ -7,7 +7,6 @@
 
 <% 
 	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("ListNotice");
-	String id = (String)session.getAttribute("id");
 %>
 
 <%!
@@ -21,16 +20,17 @@
 %>
 
 <%
-	String pageNum="0";
-	if(null != request.getParameter("pageno")){
-		pageNum = request.getParameter("pageno");
-	}  
-	int pageno = toInt(pageNum);
-	
+	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
-	int total_record = noticeList.size();		   //총 레코드 수
+	int total_record;
+	if(noticeList==null){
+		total_record = 0;
+	}
+	else{
+		total_record = noticeList.size();	//총 레코드 수
+	}
 	int page_per_record_cnt = 10;  //페이지 당 레코드 수
 	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]// [6],[7],[8],[9],[10]											
 	int record_cnt=0;
@@ -195,14 +195,18 @@
 					else {n=col;}
 					
 					// 게시글 출력
-					for(int j=0; j<n; j++){
+					for(int j=0; j<n; j++){%>
+						<%if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
+						} 
 						
-						img = noticeList.get(record_cnt).getNoticeImgfileRealName();	
-					
-						title = noticeList.get(record_cnt).getNoticeTitle();	
-					
-						price = noticeList.get(record_cnt).getNoticeProductPrice();	
+						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							title = noticeList.get(record_cnt).getNoticeTitle();	
+						}
 						
+						if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							price = noticeList.get(record_cnt).getNoticeProductPrice();	
+						} 
 						%>
 						
 											
@@ -220,14 +224,12 @@
 				</form>
 			</table>
 		</div>
-		<%if(id != null){ %>
+		
 		<div class ="div_textIn" align="right">
 			<br>
 			<button onClick="location.href='Write.jsp'">글 쓰기</button>	
 		</div>
-		<%} %>
-		
-		
+
 		<div class="div_paging" align="center">
 			<a href="MainPage.jsp?pageno=1">[맨앞으로]</a>
 			<a href="MainPage.jsp?pageno=<%=prev_pageno%>">[이전]</a> 
@@ -239,7 +241,6 @@
 						<%=i %>
 					<%} %>
 				</a> 
-			<%--	콤마	 --%>	
 				<%if(i<page_eno){ %>
 					,
 				<%} 
