@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,9 @@ public class showNoticeServlet extends HttpServlet {
 			noticeDAO notice = noticeDAO.getInstance();
 			noticeVO n = notice.getnoticeView(noticeNumber);
 			notice.disConnect();
-			response.sendRedirect(request.getHeader("referer"));
+			RequestDispatcher rd = request.getRequestDispatcher("noticeView.jsp");
+			request.setAttribute("noticeView", n);
+			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

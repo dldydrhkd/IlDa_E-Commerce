@@ -5,8 +5,8 @@
 .div_h1{
 	width:80%;
 	float: left;
-
 }
+
 .div_mainImg{
 	margin-top:5%;
 	width:80%;
@@ -17,12 +17,12 @@
 	margin-top:5%;
 	witdth:80%;
 	float:left;
-	
 }
 
 .td_btn{
 	width:100%;
 }
+
 .td_btn img{
 	width:100%
 }
@@ -44,8 +44,6 @@
     background-color: #ff5f2e;
     color: #e1eef6;
 }
-
-
 </style>
 
 <html>
@@ -56,24 +54,15 @@
 <link rel="stylesheet" href="PageLayout.css">
 </head>
 <body>
-
-
 	<div class="div_container">
-	
 	
 		<div class="div_banner">
 			<jsp:include page="BannerPage.jsp"></jsp:include> 
 		</div>
 		
-		
 		<div class=div_mainImg align="center">
 			<img src="main_img.jpg" alt="mainImg" width=100%/>
 		</div>
-		
-		
-		<div class="div_basket"> sticky box</div>
-		
-		
 		
 		<div class="div_h1">
 			<h1> 최근 등록<% %>건</h1> <hr>
@@ -87,12 +76,9 @@
 		int Totaltr= 0; 
 		int col =5; //열의 갯 수
 		%>
-		
-		
 		<div class ="div_mainTable" al>
 			<table>
 			<% 	
-				 
 				if(img.length/col < 1) { Totaltr=1; }
 				else { Totaltr=img.length/col +1; }
 							
