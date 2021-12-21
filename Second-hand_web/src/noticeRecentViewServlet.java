@@ -15,11 +15,11 @@ import mybean.db.noticeDAO;
 import mybean.db.noticeVO;
 
 
-@WebServlet("/noticeFindView")
-public class noticeRecentView extends HttpServlet {
+@WebServlet("/noticeRecentViewServlet")
+public class noticeRecentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public noticeRecentView() {
+    public noticeRecentViewServlet() {
         super();
     }
 

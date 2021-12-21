@@ -112,7 +112,7 @@ public class noticeDAO {
 	}
 	
 	public noticeVO getRecentNotice(int userNumber) throws SQLException {
-		String sql = "select * from noticeTbl where userId = ? order by noticeRegistration DESC limit 1";
+		String sql = "select * from noticeTbl where userNumber = ? order by noticeRegistrationDate DESC limit 1";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, userNumber);
