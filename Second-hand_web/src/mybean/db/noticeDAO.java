@@ -111,6 +111,34 @@ public class noticeDAO {
 		return null;
 	}
 	
+	public noticeVO getRecentNotice(int userNumber) throws SQLException {
+		String sql = "select * from noticeTbl where userId = ? order by DESC limit 1";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, userNumber);
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			noticeVO nd = new noticeVO();
+			nd.setNoticeNumber(rs.getInt(1));
+			nd.setNoticeTitle(rs.getString(2));
+			nd.setNoticeInfo(rs.getString(3));
+			nd.setNoticeState(rs.getString(4));
+			nd.setNoticeClassification(rs.getString(5));
+			nd.setNoticeRegistrationDate(rs.getDate(6));
+			nd.setUserNumber(rs.getInt(7));
+			nd.setNoticeImgfileRealName(rs.getString(8));
+			nd.setNoticeSource(rs.getString(9));
+			nd.setNoticeProductPrice(rs.getInt(10));
+			nd.setNoticeCondition(rs.getBoolean(11));
+			
+			return nd;
+		}
+		return null;
+		
+	}
+	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
 		if(pstmt != null) pstmt.close();
