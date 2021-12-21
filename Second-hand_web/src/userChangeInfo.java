@@ -47,7 +47,7 @@ public class userChangeInfo extends HttpServlet {
 		try {
 			userDAO db = userDAO.getInstance();
 			db.updateRecord(usr);
-			db.disConnect();
+//			db.disConnect();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

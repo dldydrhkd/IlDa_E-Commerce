@@ -31,7 +31,7 @@ public class noticeRecentView extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			noticeVO n = notice.getRecentNotice(userNumber);
-			notice.disConnect();
+//			notice.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("noticeView.jsp");
 			request.setAttribute("notice", n);
 			rd.forward(request, response);

@@ -29,7 +29,7 @@ public class commentChangeServlet extends HttpServlet {
 		try {
 			commentDAO comment = commentDAO.getInstance();
 			comment.updateRecord(new commentVO(contents, commentNumber, null));
-			comment.disConnect();
+//			comment.disConnect();
 			response.sendRedirect(request.getHeader("referer"));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
