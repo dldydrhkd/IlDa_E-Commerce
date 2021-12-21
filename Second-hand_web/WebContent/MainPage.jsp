@@ -6,7 +6,21 @@
 <%@ page import="mybean.db.noticeVO" %>
 
 <% 
-	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("noticeList");
+	//출력할 값이 search인지 noticelist인지 구분
+	boolean isSearch = (boolean)request.getAttribute("isSearch");
+	String getVisit=null;
+	List<noticeVO> getList =null; 
+	
+	if(isSearch){
+		getVisit = (String)request.getAttribute("search");
+		List<noticeVO> getList = (List<noticeVO>)request.getAttribute("searchLsit");
+	}
+	else{
+		getVisit = (String)request.getAttribute("notice");
+		List<noticeVO> getList = (List<noticeVO>)request.getAttribute("noticeList");
+	}
+	
+	
 	/* if(noticeList!=null){
 		for(noticeVO i : noticeList){
 			System.out.println(i.getNoticeTitle());
@@ -24,20 +38,41 @@
 	}
 %>
 
-<%
+<%	
+	int total_record=0;
 	int pageno = toInt(request.getParameter("pageno"));
 	if(pageno<1){//현재 페이지
 		pageno = 1;
 	}
-	if(noticeList==null){
+	
+	
+	//main
+	if(isSearch){
+		
+		if((getVisit == null) && (getList == null))
 %>
 		<jsp:forward page="listNoticeServlet"/>
 <%
+		else if((getVisit != null) && (getList == null)){
+			total_record=0;
+		}
+		else{total_record=getList.size();}
 	}
-	int total_record;
-	total_record=noticeList.size();
+	//search
+	else{
+		
+		if((getVisit == null) && (getList == null))
+%>
+		<jsp:forward page="searchServlet"/>
+<%
+		else if((getVisit != null) && (getList == null)){
+			total_record=0;
+		}
+		else{total_record=getList.size();}
+	}
+	
 	int page_per_record_cnt = 10;  //페이지 당 레코드 수
-	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]// [6],[7],[8],[9],[10]											
+	int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수										
 	int record_cnt=0;
 	
 	if (pageno == 1) {
@@ -59,14 +94,14 @@
 // 	현재 페이지(정수) / 한페이지 당 보여줄 페지 번호 수(정수) + (그룹 번호는 현제 페이지(정수) % 한페이지 당 보여줄 페지 번호 수(정수)>0 ? 1 : 0)
 	int group_no = pageno/group_per_page_cnt+( pageno%group_per_page_cnt>0 ? 1:0);
 //		현재 그룹번호 = 현재페이지 / 페이지당 보여줄 번호수 (현재 페이지 % 페이지당 보여줄 번호 수 >0 ? 1:0)	
-//	ex) 	14		=	13(몫)		=	 (66 / 5)		1	(1(나머지) =66 % 5)			  
+	  
 	
 	int page_eno = group_no*group_per_page_cnt;		
 //		현재 그룹 끝 번호 = 현재 그룹번호 * 페이지당 보여줄 번호 
 //	ex) 	70		=	14	*	5
 	int page_sno = page_eno-(group_per_page_cnt-1);	
 // 		현재 그룹 시작 번호 = 현재 그룹 끝 번호 - (페이지당 보여줄 번호 수 -1)
-//	ex) 	66	=	70 - 	4 (5 -1)
+
 	
 	if(page_eno>total_page){
 //	   현재 그룹 끝 번호가 전체페이지 수 보다 클 경우		
@@ -76,10 +111,10 @@
 	
 	
 	
-	int prev_pageno = page_sno-group_per_page_cnt;  // <<  *[이전]* [21],[22],[23]... [30] [다음]  >>
+	int prev_pageno = page_sno-group_per_page_cnt;  
 //		이전 페이지 번호	= 현재 그룹 시작 번호 - 페이지당 보여줄 번호수	
 //	ex)		46		=	51 - 5				
-	int next_pageno = page_sno+group_per_page_cnt;	// <<  [이전] [21],[22],[23]... [30] *[다음]*  >>
+	int next_pageno = page_sno+group_per_page_cnt;	
 //		다음 페이지 번호 = 현재 그룹 시작 번호 + 페이지당 보여줄 번호수
 //	ex)		56		=	51 - 5
 	if(prev_pageno<1){
@@ -95,8 +130,6 @@
 //	ex)			   = 	76 / 5 * 5 + 1	???????? 		
 	}
 	
-	// [1][2][3].[10]
-	// [11][12]
 %>
 <!DOCTYPE html>
 
@@ -104,6 +137,10 @@
 .div_h1{
 	width:100%;
 	float: left;
+}
+.div_h2{
+	width:100%;
+	margin-top: 5%;
 }
 
 .div_mainImg{
@@ -118,7 +155,18 @@
 }
 
 .td_btn{
-	width:100%;
+	background-color:white;
+	width:250px;
+	height:300px;
+	text-align: left;
+	object-fit: fill;
+	font-family: "paybooc-Light", sans-serif;
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 500;
+    overflow:hidden;
+    outline-color: gray; 
+    font-size: large;
 }
 
 .td_btn img{
@@ -163,7 +211,7 @@
 		<div class="div_banner">
 			<jsp:include page="BannerPage.jsp"></jsp:include> 
 		</div>
-		
+		<%if(isSearch){%>
 		<div class=div_mainImg align="center">
 			<img src="main_img.jpg" alt="mainImg" width=100%/>
 		</div>
@@ -171,7 +219,19 @@
 		<div class="div_h1">
 			<h1> 최근 등록<% %>건</h1> <hr>
 		</div>
-
+		<%}
+		else{%>
+		<div class="div_h1">
+		<h1> 검색 결과 총 <%=total_record%>건</h1> <hr>
+		</div>
+		<%}%>
+		
+		<%if(total_record ==0){ %>
+		<div class="div_h2">
+			<h2> 검색 결과가 없습니다.</h2>
+		</div>
+		<%} %>
+		
 		<div class ="div_Table" align="center" >
 			<table>
 				<form action='showNoticeServlet' method='post'>
@@ -198,19 +258,19 @@
 					
 					// 게시글 출력
 					for(int j=0; j<n; j++){%>
-						<%if(noticeList.get(record_cnt).getNoticeImgfileRealName()!=null){
-							img = noticeList.get(record_cnt).getNoticeImgfileRealName();
+						<%if(getList.get(record_cnt).getNoticeImgfileRealName()!=null){
+							img = getList.get(record_cnt).getNoticeImgfileRealName();
 							} 
 						else{
 							img = "그림3.jpg";
 						}
 						System.out.println(img);
 						
-						if(noticeList.get(record_cnt).getNoticeTitle()!=null){
-							title = noticeList.get(record_cnt).getNoticeTitle();	
+						if(getList.get(record_cnt).getNoticeTitle()!=null){
+							title = getList.get(record_cnt).getNoticeTitle();	
 						}
 						
-						price = noticeList.get(record_cnt).getNoticeProductPrice();	
+						price = getList.get(record_cnt).getNoticeProductPrice();	
 						%>
 						
 											
@@ -218,7 +278,7 @@
 						<img src="upload/<%=img%>" alt="<%=title%>" >
 						<br><%=title%>
 						<br>가격:<%=price%>
-						<input type='hidden' name="noticeNumber" value= <%=noticeList.get(record_cnt).getNoticeNumber()%> />
+						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%> />
 						</button> </td>
 						<% record_cnt++;
 					}
@@ -229,11 +289,14 @@
 			</table>
 		</div>
 		
+		<%if(session.getAttribute("id")!=null) {%>
 		<div class ="div_textIn" align="right">
 			<br>
 			<button onClick="location.href='Write.jsp'">글 쓰기</button>	
 		</div>
-
+		<%} %>
+		
+		<%if(total_record!=0){ %>
 		<div class="div_paging" align="center">
 			<a href="MainPage.jsp?pageno=1">[맨앞으로]</a>
 			<a href="MainPage.jsp?pageno=<%=prev_pageno%>">[이전]</a> 
@@ -252,6 +315,7 @@
 			<a href="MainPage.jsp?pageno=<%=next_pageno%>">[다음]</a>
 			<a href="MainPage.jsp?pageno=<%=total_page %>">[맨뒤로]</a>
 		</div>
+		<%} %>
 
 	</div>
 
