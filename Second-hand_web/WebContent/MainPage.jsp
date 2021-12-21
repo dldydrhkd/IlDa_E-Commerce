@@ -52,10 +52,11 @@
 	//search
 	if(isSearch){
 		
-		if((getVisit == null) && (getList == null))
+		if((getVisit == null) && (getList == null)){
 %>
-		<jsp:forward page="searchServlet"/>
+			<jsp:forward page="searchServlet"/>
 <%
+		}
 		else if((getVisit != null) && (getList == null)){
 			total_record=0;
 		}
@@ -64,10 +65,11 @@
 	//main
 	else{
 		
-		if((getVisit == null) && (getList == null))
+		if((getVisit == null) && (getList == null)){
 %>
 		<jsp:forward page="listNoticeServlet"/>
-<%
+<%		
+		}
 		else if((getVisit != null) && (getList == null)){
 			total_record=0;
 		}
