@@ -201,13 +201,11 @@
 						img = searchList.get(record_cnt).getNoticeImgfileRealName();	
 					} 
 					
-					if(searchList.get(record_cnt).getNoticeImgfileRealName()!=null){
+					if(searchList.get(record_cnt).getNoticeTitle()!=null){
 						title = searchList.get(record_cnt).getNoticeTitle();	
 					}
 					
-					if(searchList.get(record_cnt).getNoticeImgfileRealName()!=null){
-						price = searchList.get(record_cnt).getNoticeProductPrice();	
-					} 
+					price = searchList.get(record_cnt).getNoticeProductPrice();	
 					%>
 					
 										
