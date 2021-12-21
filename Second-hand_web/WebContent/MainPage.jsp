@@ -138,8 +138,6 @@
 .div_paging{
 	width:100%;
 	margin-top: 25px;
-	
-
 }
   
 </style>
