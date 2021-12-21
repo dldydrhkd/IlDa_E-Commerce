@@ -117,8 +117,6 @@
 	width:100%
 }
 
-
-
 .div_textIn button{
 	padding: 8px 15px;
     border-radius: 15px;
