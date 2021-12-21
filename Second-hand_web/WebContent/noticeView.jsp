@@ -8,6 +8,19 @@
 	noticeVO current_info = (noticeVO)request.getAttribute("noticeView");
 %>
 <!DOCTYPE html>
+<style>
+.banner{
+	text-align: center;
+	padding: 10px 0px;
+	width: 100%;
+	top: 0;	
+}
+
+.div_table table{
+	border-collapse: collapse;
+	width: 800px;
+}
+</style>
 <html>
 <head>
 <meta charset="UTF-8">
