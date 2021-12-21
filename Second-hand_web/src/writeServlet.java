@@ -34,39 +34,34 @@ public class writeServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		ServletContext context = getServletContext();
-		String realFolder = context.getRealPath("upload");
+		String path = context.getRealPath("upload");
+		System.out.println(path);
 		
 		int maxsize = 1024*1024*5;
 		
-		try {
-			MultipartRequest multi = new MultipartRequest(request, realFolder, maxsize, "utf-8", new DefaultFileRenamePolicy());;
-			
-			Enumeration<?> fileNames = multi.getFileNames();
-			
-			String fileName = null;
-			while(fileNames.hasMoreElements()) {
-				String parameter = (String)fileNames.nextElement();
-				String filename = multi.getFilesystemName(parameter);
-				
-				if(filename == null) continue;
-				fileName = filename;
-			}
+		String fileName = null;
+		String originalFileName = null;
 		
+		try {
+			MultipartRequest multi = new MultipartRequest(request, path, maxsize, "utf-8", new DefaultFileRenamePolicy());;
+			
+			Enumeration<?> files = multi.getFileNames();
+			String str = (String)files.nextElement();
+			
+			fileName = multi.getFilesystemName(str);
+			originalFileName = multi.getOriginalFileName(str);
 		
 			String title = multi.getParameter("title");
 			String info = multi.getParameter("content");
 			String classification = multi.getParameter("noticeClassification");
-			String image_name = multi.getParameter("file");
 			int price = Integer.parseInt(multi.getParameter("price"));
 			HttpSession session = request.getSession();
 			int userNumber = (int) session.getAttribute("userNumber");
-			
-			noticeVO n = new noticeVO(title, info, classification, userNumber, fileName, image_name, price);
-		
+			noticeVO n = new noticeVO(title, info, classification, userNumber, originalFileName, fileName, price);
 			noticeDAO notice = noticeDAO.getInstance();
 			notice.insertRecord(n);
 			notice.disConnect();
-			response.sendRedirect("noticeList.jsp");
+			response.sendRedirect("MainPage.jsp");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
