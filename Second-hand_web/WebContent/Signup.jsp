@@ -44,8 +44,6 @@ function checkValue(){
 	var userEmail = document.getElementById("email");
 	var isDuplication = document.getElementById("idDuplication");
 	
-	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	
 	if(userId.value==''){
 		alert('아이디를 입력해주세요!')
 		userId.focus();
@@ -77,7 +75,7 @@ function checkValue(){
 		return false;
 	}
 	if(userAddr.value==''){
-		alert('주소를 입력해주세요!');
+		alert('주소를 입력해주세요!' );
 		userAddr.focus();
 		return false;
 	}
@@ -98,7 +96,7 @@ function checkValue(){
 	}
 }
 
-function goFirstForm() {
+function goMainPage() {
 	location.href="MainPage.jsp";
 }	
 

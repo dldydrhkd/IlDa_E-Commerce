@@ -45,8 +45,6 @@
 				</tr>
 				<tr>
 					<td>&nbsp; <%= current_info.getNoticeTitle() %></td>
-				
-						
 				</tr>
 				<tr>
 						<td>&nbsp; - 가격 :  <%= current_info.getNoticeProductPrice()%></td>

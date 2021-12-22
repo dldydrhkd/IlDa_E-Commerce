@@ -297,7 +297,6 @@ td{
 					out.print("</tr>");
 				}
 			%>	
-				
 			</table>
 		</div>
 		<%} %>
