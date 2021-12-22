@@ -51,11 +51,11 @@ function checkValue(){
 		userId.focus();
 		return false;
 	}
-	/* if(idDuplication.value != "idCheck"){
+	if(idDuplication.value != "idCheck"){
 		alert('아이디 중복체크를 해주세요!');
 		userId.focus();
 		return false;
-	} */
+	}
 	if(userPwd1.value==''){
 		alert('비밀번호를 입력해주세요!');
 		userPwd1.focus();
@@ -103,8 +103,7 @@ function goFirstForm() {
 }	
 
 function openIdChk(){
-	window.name = "parentForm";
-	window.open("IdCheckForm.jsp", "chkForm", "width=500, height=300, resizable=no, scrollbars=no");
+	window.open("idCheckForm.jsp", "idwin", "width=400, height=350");
 }
 
 function inputIdChk(){
@@ -119,8 +118,12 @@ function inputIdChk(){
 	<div class="div_container">
 		<form method="post" action="signUpServlet">
 		<div id="content"> 
+			<h3 style="color:red; text-align:right font-weight: bold">
+				* 필수입력
+			</h3>
+			<hr>
 			<h3>
-				<label for="id">아이디 *</label>
+				<label for="id">* 아이디</label>
 			</h3>
 			<span>
 				<input type="text" id="id" name="id" placeholder="아이디" onkeydown="inputIdChk()">
@@ -132,21 +135,21 @@ function inputIdChk(){
 				<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
 			</span>
 			<h3>
-				<label for="password1">비밀번호 *</label>
+				<label for="password1">* 비밀번호</label>
 			</h3>
 			<span>
 				<input type="password" id="pwd1" name="pwd1" placeholder="비밀번호" onChange="isSame()">
 				<span id="check_pwd1"></span>
 			</span>
 			<h3>
-				<label for="password2">비밀번호 재확인 *</label>
+				<label for="password2">* 비밀번호 재확인</label>
 			</h3>
 			<span>
 				<input type="password" id="pwd2" name="pwd2" onChange="isSame()">
 				<span id="check_pwd2"></span>
 			</span>
 			<h3>
-				<label for="name">이름 *</label>
+				<label for="name">* 이름</label>
 			</h3>
 			<span>
 				<input type="text" id="name" name="name">
@@ -165,7 +168,7 @@ function inputIdChk(){
 				<input style="width:4%" type="radio" id="gender" name="gender" value="녀" size="40">여자
 			</span>
 			<h3>
-				<label for="address">주소 *</label>
+				<label for="address">* 주소</label>
 			</h3>
 			<span>
 				<input type="text" id="address" name="address">
@@ -177,7 +180,7 @@ function inputIdChk(){
 				<input type="email" id="email" name="email">
 			</span>
 			<h3>
-				<label for="phone">핸드폰 번호 ('-'는 빼주세요.) *</label>
+				<label for="phone">* 핸드폰 번호 ('-'는 빼주세요.)</label>
 			</h3>
 			<span>
 				<input type="tel" id="phone" name="phone">

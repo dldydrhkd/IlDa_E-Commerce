@@ -35,6 +35,7 @@ public class writeServlet extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 		String path = context.getRealPath("upload");
+		System.out.println(path);
 		
 		int maxsize = 1024*1024*5;
 		
