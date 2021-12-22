@@ -34,8 +34,11 @@ public class userDAO {
 		
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
-			if(rs.getString("userId").equals(id) && rs.getString("userPwd").contentEquals(pwd)) {
-				return rs.getInt("userNumber");
+			if(rs.getString("userId").equals(id) && rs.getString("userPwd").equals(pwd)) {
+				if(rs.getString("userCondition").equals("일반")) {
+					return rs.getInt("userNumber");
+				}
+				return -1;
 			}
 		}
 		return -1;
