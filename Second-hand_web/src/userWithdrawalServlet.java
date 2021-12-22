@@ -2,7 +2,9 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,21 +30,22 @@ public class userWithdrawalServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		int userNumber = (int) session.getAttribute("userNumber");
 		String pwd = request.getParameter("pwd");
+		String CurrentDate = new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+		System.out.println(CurrentDate);
+		Date date = Date.valueOf(CurrentDate);
 		
 		try {
 			userDAO db = userDAO.getInstance();
 			boolean check = db.isPwdOk(id, pwd);
 			if(check) {
-				db.deleteRecord(id);
+				db.deleteRecord(id, date, userNumber);
 //				db.disConnect();
 				session.invalidate();
 				response.sendRedirect("MainPage.jsp");
 			}
 			else {
-				out.print("<script>");
-				out.print("alert('회원 탈퇴 되었습니다.')");
-				out.print("</script>");
 				response.sendRedirect("Edit.jsp");
 			}
 		} catch (ClassNotFoundException e) {

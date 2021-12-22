@@ -51,11 +51,11 @@ function checkValue(){
 		userId.focus();
 		return false;
 	}
-	if(idDuplication.value != "idCheck"){
+	/* if(idDuplication.value != "idCheck"){
 		alert('아이디 중복체크를 해주세요!');
 		userId.focus();
 		return false;
-	}
+	} */
 	if(userPwd1.value==''){
 		alert('비밀번호를 입력해주세요!');
 		userPwd1.focus();

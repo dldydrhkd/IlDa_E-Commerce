@@ -61,7 +61,8 @@ public class noticeDAO {
 	}
 	
 	public void deleteRecord(int noticeNumber) throws SQLException {
-		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='0', c.commentCondition='0' where noticeNumber = ? ";
+		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='0', c.commentCondition='0' where (n.noticeNumber = c.noticeNumber)\n" + 
+				"and n.noticeNumber=? ";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, noticeNumber);
