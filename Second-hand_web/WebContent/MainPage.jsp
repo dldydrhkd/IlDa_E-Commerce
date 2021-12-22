@@ -264,19 +264,21 @@ td{
 						%>
 						
 											
-						<td> <button type='submit' class='td_btn' style="background-color: white; border: 0;">
+						<td width=50 style="word-break:break-all"> 
+						<div class="div_btn">
+						<button type='submit' class='td_btn' style="background-color: white; border: 0;">
 						<img src="upload/<%=img%>" alt="<%=title%> width="230px"height="230px " >
 						
 						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
 						<br><%=title%><hr>
-						</button> </td>
-						
+						</button> 
+						</div> 
 						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
 						<%if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
 						
 							<form action="basketAddServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
-							<img src="basket2.png" alt="a" width="40px">
+							<img src="basket1.png" alt="a" width="40px">
 							</button>
 							</form>
 						
