@@ -286,15 +286,13 @@ td{
 						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
 						<%
 						
-						int basketindex = basketList.indexOf(getList.get(record_cnt).getNoticeNumber()); 
-						if (basketindex >=0){
-						%>	
+						if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
+							
 							<form action="basketDeletServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
 							<img src="basket1.png" alt="a" width="40px">
 							</button>
 							</form>
-				
 						
 						<%} else{%>
 							<form action="basketAddServlet" method="post">
