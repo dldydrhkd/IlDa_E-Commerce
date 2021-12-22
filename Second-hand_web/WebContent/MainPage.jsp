@@ -13,9 +13,9 @@
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
 	if(isSearch == null){
-		%>
-			<jsp:forward page="listNoticeServlet"/>
-		<%
+%>
+		<jsp:forward page="listNoticeServlet"/>
+<%
 	}
 	else if(isSearch.equals("0")){
 		
@@ -267,7 +267,7 @@ td{
 						<td width=50 style="word-break:break-all"> 
 						<div class="div_btn">
 						<button type='submit' class='td_btn' style="background-color: white; border: 0;">
-						<img src="upload/<%=img%>" alt="<%=title%> width="230px"height="230px " >
+						<img src="upload/<%=img%>" alt=<%=title%> width="230px"height="230px" >
 						
 						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
 						<br><%=title%><hr>

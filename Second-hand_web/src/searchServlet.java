@@ -44,8 +44,12 @@ public class searchServlet extends HttpServlet {
 			}
 			basketDAO basket = basketDAO.getInstance();
 			HttpSession session = request.getSession();
-			int userNumber = (int) session.getAttribute("userNumber");
-			List<basketListVO> bli = basket.listBasket(userNumber);
+			List<basketListVO> bli = null;
+			int userNumber=-1;
+			if(session.getAttribute("userNumber") != null) {
+				userNumber = (int) session.getAttribute("userNumber");
+				bli = basket.listBasket(userNumber);
+			}
 //			notice.disConnect();
 			request.setAttribute("basketList", bli);
 			request.setAttribute("noticeList", search);

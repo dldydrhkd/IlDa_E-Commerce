@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import mybean.db.basketDAO;
 import mybean.db.basketListVO;
-import mybean.db.basketVO;
 import mybean.db.noticeDAO;
 import mybean.db.noticeVO;
 
@@ -34,8 +33,12 @@ public class listNoticeServlet extends HttpServlet {
 			List<noticeVO> li = notice.listNotice();
 			basketDAO basket = basketDAO.getInstance();
 			HttpSession session = request.getSession();
-			int userNumber = (int) session.getAttribute("userNumber");
-			List<basketListVO> bli = basket.listBasket(userNumber);
+			List<basketListVO> bli = null;
+			int userNumber=-1;
+			if(session.getAttribute("userNumber") != null) {
+				userNumber = (int) session.getAttribute("userNumber");
+				bli = basket.listBasket(userNumber);
+			}
 //			notice.disConnect();
 			request.setAttribute("basketList", bli);
 			request.setAttribute("noticeList", li);
