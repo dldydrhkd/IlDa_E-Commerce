@@ -32,7 +32,7 @@ public class listBasketServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			List<basketListVO> li = basket.listBasket((int)session.getAttribute("userNumber"));
 //			basket.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("showBasketList.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");
 			request.setAttribute("basketList", li);
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
