@@ -10,7 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import mybean.db.basketDAO;
+import mybean.db.basketListVO;
+import mybean.db.basketVO;
 import mybean.db.noticeDAO;
 import mybean.db.noticeVO;
 
@@ -28,7 +32,12 @@ public class listNoticeServlet extends HttpServlet {
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
 			List<noticeVO> li = notice.listNotice();
+			basketDAO basket = basketDAO.getInstance();
+			HttpSession session = request.getSession();
+			int userNumber = (int) session.getAttribute("userNumber");
+			List<basketListVO> bli = basket.listBasket(userNumber);
 //			notice.disConnect();
+			request.setAttribute("basketList", bli);
 			request.setAttribute("noticeList", li);
 			request.setAttribute("isSearch", "0");
 			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");

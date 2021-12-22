@@ -11,7 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import mybean.db.basketDAO;
+import mybean.db.basketListVO;
 import mybean.db.noticeDAO;
 import mybean.db.noticeVO;
 
@@ -39,7 +42,12 @@ public class searchServlet extends HttpServlet {
 					search.add(i);
 				}
 			}
+			basketDAO basket = basketDAO.getInstance();
+			HttpSession session = request.getSession();
+			int userNumber = (int) session.getAttribute("userNumber");
+			List<basketListVO> bli = basket.listBasket(userNumber);
 //			notice.disConnect();
+			request.setAttribute("basketList", bli);
 			request.setAttribute("noticeList", search);
 			request.setAttribute("isSearch", "1");
 			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
