@@ -35,26 +35,31 @@
 		<div class="div_table" align="center">
 			<table border="2" >
 				<tr>
-				
-				
-						<td rowspan="6"  style="height:350px; width:370px"><img src="main_img.jpg"  width="100%"alt=" "<%-- <%= current_info.getNoticeSource()%> --%>/></td>
+					<% 
+						String imgName ="noImg.jpg";
+						if(current_info.getNoticeImgfileRealName()!=null){
+							imgName = (String)current_info.getNoticeImgfileRealName();
+							
+						}
+					%>
+						<td rowspan="6"  style="height:350px; width:370px"><img src=<%=imgName%>  width="100%"alt=" " current_info.getNoticeImgfileRealName()%> --%>/></td>
 				</tr>
 				<tr>
-					<td>&nbsp; 제목</td>
+					<td>&nbsp; <%= current_info.getNoticeTitle() %></td>
 				
 						
 				</tr>
 				<tr>
-						<td>&nbsp; - 가격 : <%-- <%= current_info.getNoticeProductPrice()%> --%></td>
+						<td>&nbsp; - 가격 :  <%= current_info.getNoticeProductPrice()%></td>
 				</tr>
 				<tr>
-						<td>&nbsp; - 거래상태 : <%-- <%= current_info.isNoticeCondition()%> --%></td>
+						<td>&nbsp; - 거래상태 : <%= current_info.getNoticeState()%> </td>
 				</tr>
 				<tr>
-						<td>&nbsp; - 공개여부 : <%-- <%= current_info.getNoticeState()%> --%></td>
+						<td>&nbsp; - 공개여부 : <%= current_info.isNoticeCondition()%> </td>
 				</tr>
 				<tr>
-						<td>&nbsp; - 작성일자 : <%-- <%= current_info.getNoticeRegistrationDate()%> --%></td>
+						<td>&nbsp; - 작성일자 : <%= current_info.getNoticeRegistrationDate()%> </td>
 				</tr>
 				<tr>
 					<form action="basketAddServlet" method="post">
@@ -63,19 +68,22 @@
 					</form>
 				</tr>
 				<tr>
-						<td colspan="3" maxlength="2048" style="height:550px; width:550px">내용 : <%-- <%=current_info.getNoticeInfo()%> --%></td>
+						<td colspan="3" maxlength="2048" style="height:550px; width:550px">내용 : current_info.getNoticeInfo()%></td>
 				</tr>
 			<form action="writeChangeServlet" method="post">
 				<tr>
-				<td colspan="3"><input type="submit" value="수정" style="width: 75px; height: 50px;">
-				<input type="reset" value="목록" style="width: 75px; height: 50px;"> </td>
+				
+				<%if(session.getAttribute("userNumber")==(Integer)current_info.getUserNumber()) {%>
+				<td colspan="3"><input type="submit" value="수정" style="width: 75px; height: 50px; float:right;">
+				<% }%>
+				<input type="reset" value="목록" style="width: 75px; height: 50px; float:right;"> </td>
 				</tr>
 			</form>
 			</table>
 		</div>
 		<div class="comment" align="center">
-			<!-- include commnet -->
+			<jsp:include page="Commentpage.jsp"></jsp:include>
 		</div>
-</div>
+	</div>
 </body>
 </html>
