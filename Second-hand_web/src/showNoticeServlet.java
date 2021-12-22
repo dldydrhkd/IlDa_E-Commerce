@@ -24,7 +24,16 @@ public class showNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		int noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+		int noticeNumber=0;
+		if (null != request.getParameter("noticeNumber"))
+		{
+			noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
+		}
+		else
+		{
+			noticeNumber = 0;
+		}
+//		int noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
