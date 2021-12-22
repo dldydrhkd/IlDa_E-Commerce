@@ -73,7 +73,7 @@ td{
 			</form>
 			
 			<!-- 회원가입 페이지로 이동 -->                     
-			<button type="button" onClick="location.href='Signup.jsp'"> 회원가입</button>
+			<button type="button" onClick="location.href='agreement.jsp'"> 회원가입</button>
 		</div>
 	</div>
 	
