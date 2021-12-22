@@ -22,7 +22,7 @@
 		<table border="1" bordercolor="lightgray">
 	<!-- 댓글 목록 -->	
 	<c:if test="${commentList != null}">
-		<c:forEach var="comment" items="${requestScope.commentList}">
+		<c:forEach var="comment" items="${commentList}">
 		
 			<tr>
 				<!-- 아이디, 작성날짜 -->

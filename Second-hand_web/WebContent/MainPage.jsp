@@ -204,7 +204,7 @@ td{
 		</div>
 		<%if(isSearch=="0"){%>
 		<div class=div_mainImg align="center">
-			<img src="main_img.jpg" alt="mainImg" width=100%/>
+			<img src="mainBanner.png" alt="mainImg" width=100%/>
 		</div>
 		
 		<div class="div_h1">
@@ -230,7 +230,7 @@ td{
 				int n=0;
 				int Totaltr= 0; 
 				int col =5; //열의 갯 수
-				String img="그림3.jpg";
+				String img="noImg.jpg";
 				int price =0;
 				String title ="미제";
 							
@@ -253,7 +253,7 @@ td{
 							img = getList.get(record_cnt).getNoticeImgfileRealName();
 							} 
 						else{
-							img = "그림3.jpg";
+							img = "noImg.jpg";
 						}
 						System.out.println(img);
 						
@@ -268,7 +268,7 @@ td{
 						<td width=50 style="word-break:break-all"> 
 						<div class="div_btn">
 						<button type='submit' class='td_btn' style="background-color: white; border: 0;">
-						<img src="upload/<%=img%>" alt="<%=title%> width="230px"height="230px " >
+						<img src="upload/<%=img%>" alt=<%=title%> width= "230px" height="230px " >
 						
 						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
 						<br><%=title%><hr>
@@ -277,7 +277,7 @@ td{
 						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
 						<%if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
 						
-							<form action="basketAddServlet" method="post">
+							<form action="basketDeletServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
 							<img src="basket1.png" alt="a" width="40px">
 							</button>
