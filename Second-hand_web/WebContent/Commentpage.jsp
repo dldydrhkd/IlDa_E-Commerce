@@ -59,7 +59,6 @@
 			
 		</c:forEach>
 	</c:if>
-			
 			<!-- 로그인 했을 경우만 댓글 작성가능 -->
 			<c:if test="${sessionScope.sessionID !=null}">
 			<tr bgcolor="#F5F5F5">

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class userDAO {
@@ -41,7 +42,7 @@ public class userDAO {
 	}
 	
 	public boolean isPwdOk(String id, String pwd) throws SQLException{
-		String sql = "select * from userTbl where id=?";
+		String sql = "select * from userTbl where userId=?";
 		
 		pstmt = conn.prepareStatement(sql);
 		
@@ -71,7 +72,7 @@ public class userDAO {
 		pstmt.setString(7,  user.getUserAddr());
 		pstmt.setString(8,  user.getUserEmail());
 		pstmt.setString(9,  user.getUserGender());
-		pstmt.setString(10,  null);
+		pstmt.setString(10,  "일반");
 		pstmt.setDate(11,  null);
 		
 		pstmt.executeUpdate();
@@ -91,13 +92,25 @@ public class userDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public void deleteRecord(String id) throws SQLException {
-		String sql = "update userTbl u, notice n, comment c"
-				+ " set u.userCondition='탈퇴', n.noticeCondition='0', c.commentCondition='0' where id = ?";
+	public void deleteRecord(String id, Date d, int userNumber) throws SQLException {
+		
+		String sql = "update userTbl set userCondition='탈퇴', userWithdrawalDate=? where userId=?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setDate(1, d);
+		pstmt.setString(2, id);
+		pstmt.executeUpdate();
+		
+		sql = "update noticeTbl set noticeCondition='0' where userNumber = ?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1,userNumber);
+		pstmt.executeUpdate();
+		
+		sql = "update commentTbl set commentCondition='0' where userId = ?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, id);
-		
 		pstmt.executeUpdate();
 	}
 	
