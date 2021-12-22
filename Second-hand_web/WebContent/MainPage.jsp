@@ -149,26 +149,18 @@
 	witdth:100%;
 }
 
-.td_btn{
-	background-color:white;
-	width:250px;
-	height:300px;
-	text-align: left;
-	object-fit: fill;
-	font-family: "paybooc-Light", sans-serif;
-	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: 500;
-    overflow:hidden;
-    outline-color: gray; 
-    font-size: medium;
+table{
+	border-spacing: 8px;
+	
 }
 
-.td_btn img{
-	width:100%
+td{
+	width: 200px;
+	border:1px solid #cccccc;
 }
-#a_img img{
-width:40px;
+.div_btn {
+	
+	overflow: hidden; 
 
 }
 
@@ -273,21 +265,30 @@ width:40px;
 						%>
 						
 											
-						<td> <button type='submit' class='td_btn'>
-						<img src="upload/<%=img%>" alt="<%=title%>" >
-						<br><%=title%><hr>
-						<span style="display:inline-block; height:10%; width:180px;">가격:<%=formatter.format(price) + "원"%></span>
-						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
+						<td> <button type='submit' class='td_btn' style="background-color: white; border: 0;">
+						<img src="upload/<%=img%>" alt="<%=title%> width="230px"height="230px " >
 						
+						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
+						<br><%=title%><hr>
+						</button> </td>
+						
+						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
 						<%if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
-						<a  id="a_img" href= "/basketDeleteServlet?noticeNumber=<%=getList.get(record_cnt).getNoticeNumber()%>+">"
-						<img src="basket1.png" alt="a"> </a>
+						
+							<form action="basketAddServlet" method="post">
+							<button type="submit" style="background-color: white; border: 0; float:right">
+							<img src="basket2.png" alt="a" width="40px">
+							</button>
+							</form>
 						
 						<%} else{%>
-						<a  id="a_img" href= "/basketAddServlet?noticeNumber=<%=getList.get(record_cnt).getNoticeNumber()%>+">"
-						<img src="basket2.png" alt="a"> </a>
+							<form action="basketAddServlet" method="post">
+							<button type="submit" style="background-color: white; border: 0; float:right">
+							<img src="basket2.png" alt="a" width="40px">
+							</button>
+							</form>
 						<%} %>
-						</button> </td>
+						 </td>
 						<% record_cnt++;
 					}
 					out.print("</tr>");
