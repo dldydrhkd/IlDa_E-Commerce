@@ -27,6 +27,15 @@
 - 이욱진 mbti-isfj 한마디 - 조장차이.
 <hr>
 
+### 설치 파일 및 버전
+
+- tomcat 9.0 version
+- jdk 1.8 version
+- jstl.jar
+- standard.jar
+- cos.jar
+- mysql connector 8.0.27 version
+
 ## Reference
 
 - JSP 모듈화 개념 및 웹 사이트 페이지 분할 구성 - [https://dololak.tistory.com/494]<br>
