@@ -4,13 +4,21 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mybean.db.noticeVO" %>
+<%@ page import="mybean.db.basketVO" %>
 <%@ page import="java.text.DecimalFormat" %>
 
 <% 
 	int total_record=0;
 	String isSearch = (String)request.getAttribute("isSearch");
 	List<noticeVO> getList = new ArrayList<>();
+	List<Integer> userNum =new ArrayList<>();
+	
 	DecimalFormat formatter = new DecimalFormat("###,###");
+	List<basketVO> basketList = (List<basketVO>)request.getAttribute("basketList");
+	
+		
+	
+
 	
 	if(isSearch == null){
 %>
@@ -276,13 +284,17 @@ td{
 						</button> 
 						</div> 
 						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
-						<%if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
+						<%
 						
+						int basketindex = basketList.indexOf(getList.get(record_cnt).getNoticeNumber()); 
+						if (basketindex >=0){
+						%>	
 							<form action="basketDeletServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
 							<img src="basket1.png" alt="a" width="40px">
 							</button>
 							</form>
+				
 						
 						<%} else{%>
 							<form action="basketAddServlet" method="post">
