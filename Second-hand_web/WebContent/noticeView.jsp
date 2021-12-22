@@ -51,8 +51,6 @@
 				</tr>
 				<tr>
 					<td>&nbsp; <%= current_info.getNoticeTitle() %></td>
-				
-						
 				</tr>
 				<tr>
 
