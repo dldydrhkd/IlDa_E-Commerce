@@ -4,12 +4,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="mybean.db.noticeVO" %>
+
 <%@ page import="java.text.DecimalFormat" %>
 <%
 	noticeVO current_info = (noticeVO)request.getAttribute("noticeView");
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
 %>
+
 
 <!DOCTYPE html>
 <style>
@@ -53,7 +55,9 @@
 						
 				</tr>
 				<tr>
+
 						<td>&nbsp; - 가격 : <%=formatter.format(current_info.getNoticeProductPrice())+ "원"%></td>
+
 				</tr>
 				<tr>
 						<td>&nbsp; - 거래상태 : <%= current_info.getNoticeState()%> </td>
@@ -79,7 +83,9 @@
 				<%if(session.getAttribute("userNumber")==(Integer)current_info.getUserNumber()) {%>
 				<td colspan="3"><input type="submit" value="수정" style="width: 75px; height: 50px; float:right;">
 				<% }%>
+
 				<input type="reset" value="목록" style="width: 75px; height: 50px; float:right;" onclick="location.href='MainPage.jsp'"> </td>
+
 				</tr>
 			</form>
 			</table>

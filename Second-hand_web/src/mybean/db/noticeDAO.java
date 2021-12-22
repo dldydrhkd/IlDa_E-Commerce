@@ -28,18 +28,17 @@ public class noticeDAO {
 	
 	
 	public void insertRecord(noticeVO notice) throws SQLException {
-		String sql = "insert into noticeTbl(noticeNumber, noticeTitle, noticeInfo, "
-				+ " noticeClassification, userNumber, String noticeImgfileRealName, String noticeSource, int noticeProductPrice) values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into noticeTbl(noticeTitle, noticeInfo, "
+				+ "noticeClassification, userNumber, noticeImgfileRealName, noticeSource, noticeProductPrice) values(?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,  null);
-		pstmt.setString(2,  notice.getNoticeTitle());
-		pstmt.setString(3,  notice.getNoticeInfo());
-		pstmt.setString(4,  notice.getNoticeClassification());
-		pstmt.setInt(5,  notice.getUserNumber());
-		pstmt.setString(6,  notice.getNoticeImgfileRealName());
-		pstmt.setString(7,  notice.getNoticeSource());
-		pstmt.setInt(8,  notice.getNoticeProductPrice());
+		pstmt.setString(1,  notice.getNoticeTitle());
+		pstmt.setString(2,  notice.getNoticeInfo());
+		pstmt.setString(3,  notice.getNoticeClassification());
+		pstmt.setInt(4,  notice.getUserNumber());
+		pstmt.setString(5,  notice.getNoticeImgfileRealName());
+		pstmt.setString(6,  notice.getNoticeSource());
+		pstmt.setInt(7,  notice.getNoticeProductPrice());
 		
 		pstmt.executeUpdate();
 	}
@@ -62,7 +61,8 @@ public class noticeDAO {
 	}
 	
 	public void deleteRecord(int noticeNumber) throws SQLException {
-		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='0', c.commentCondition='0' where noticeNumber = ? ";
+		String sql = "update noticeTbl n, commentTbl c set n.noticeCondition='0', c.commentCondition='0' where (n.noticeNumber = c.noticeNumber)\n" + 
+				"and n.noticeNumber=? ";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, noticeNumber);
@@ -72,7 +72,7 @@ public class noticeDAO {
 	
 	public List<noticeVO> listNotice() throws SQLException{
 		List<noticeVO> noticeList = new ArrayList<>();
-		String sql = "select * from noticeTbl";
+		String sql = "select * from noticeTbl order by noticeRegistrationDate desc";
 		
 		pstmt = conn.prepareStatement(sql);
 		
@@ -111,6 +111,35 @@ public class noticeDAO {
 		}			
 		return null;
 	}
+	
+	public noticeVO getRecentNotice(int userNumber) throws SQLException {
+		String sql = "select * from noticeTbl where userNumber = ? order by noticeRegistrationDate DESC limit 1";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, userNumber);
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			noticeVO nd = new noticeVO();
+			nd.setNoticeNumber(rs.getInt(1));
+			nd.setNoticeTitle(rs.getString(2));
+			nd.setNoticeInfo(rs.getString(3));
+			nd.setNoticeState(rs.getString(4));
+			nd.setNoticeClassification(rs.getString(5));
+			nd.setNoticeRegistrationDate(rs.getDate(6));
+			nd.setUserNumber(rs.getInt(7));
+			nd.setNoticeImgfileRealName(rs.getString(8));
+			nd.setNoticeSource(rs.getString(9));
+			nd.setNoticeProductPrice(rs.getInt(10));
+			nd.setNoticeCondition(rs.getBoolean(11));
+			
+			return nd;
+		}
+		return null;
+		
+	}
+	
 	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();

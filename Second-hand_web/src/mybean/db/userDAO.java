@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class userDAO {
@@ -33,31 +34,49 @@ public class userDAO {
 		
 		rs = pstmt.executeQuery();
 		while(rs.next()) {
-			if(rs.getString("userId").equals(id) && rs.getString("userPwd").contentEquals(pwd)) {
-				return rs.getInt("userNumber");
+			if(rs.getString("userId").equals(id) && rs.getString("userPwd").equals(pwd)) {
+				if(rs.getString("userCondition").equals("일반")) {
+					return rs.getInt("userNumber");
+				}
+				return -1;
 			}
 		}
 		return -1;
 	}
 	
+	public boolean isPwdOk(String id, String pwd) throws SQLException{
+		String sql = "select * from userTbl where userId=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			if(rs.getString("userPwd").equals(pwd)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void insertRecord(userVO user) throws SQLException {
-		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userAge,"
-				+ " userPhoneNumber, userAddr, userEmail, userGender, userRegistrationDate, userCondition, userWithdrawalDate) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into userTbl(userNumber, userId, userPwd, userName, userBirthDate,"
+				+ " userPhoneNumber, userAddr, userEmail, userGender, userCondition, userWithdrawalDate) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,  null);
 		pstmt.setString(2,  user.getUserId());
 		pstmt.setString(3,  user.getUserPwd());
 		pstmt.setString(4,  user.getUserName());
-		pstmt.setInt(5,  user.getUserAge());
+		pstmt.setDate(5,  user.getUserBirth());
 		pstmt.setString(6,  user.getUserPhoneNumber());
 		pstmt.setString(7,  user.getUserAddr());
 		pstmt.setString(8,  user.getUserEmail());
 		pstmt.setString(9,  user.getUserGender());
-		pstmt.setDate(10,  null);
-		pstmt.setString(11,  null);
-		pstmt.setDate(12,  null);
+		pstmt.setString(10,  "일반");
+		pstmt.setDate(11,  null);
 		
 		pstmt.executeUpdate();
 	}
@@ -76,14 +95,40 @@ public class userDAO {
 		pstmt.executeUpdate();
 	}
 	
-	public void deleteRecord(String id) throws SQLException {
-		String sql = "update userTbl u, notice n, comment c"
-				+ " set u.userCondition='탈퇴', n.noticeCondition='0', c.commentCondition='0' where id = ?";
+	public void deleteRecord(String id, Date d, int userNumber) throws SQLException {
+		
+		String sql = "update userTbl set userCondition='탈퇴', userWithdrawalDate=? where userId=?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setDate(1, d);
+		pstmt.setString(2, id);
+		pstmt.executeUpdate();
+		
+		sql = "update noticeTbl set noticeCondition='0' where userNumber = ?";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1,userNumber);
+		pstmt.executeUpdate();
+		
+		sql = "update commentTbl set commentCondition='0' where userId = ?";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, id);
-		
 		pstmt.executeUpdate();
+	}
+	
+	public boolean duplicateIdCheck(String id) throws SQLException {
+		String sql = "select * from userTbl";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			if(rs.getString("userId").equals(id)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public void disConnect() throws SQLException {

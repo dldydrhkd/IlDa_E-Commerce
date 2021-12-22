@@ -4,53 +4,197 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입 페이지</title>
+	<title>회원 가입 페이지</title>
+	<link rel="stylesheet" href="PageLayout.css">
+	<link rel="stylesheet" href="Signup.css">
 </head>
+<script type="text/javascript">
+function isSame(){	
+	var pwd1=document.getElementById("pwd1").value;
+	var pwd2=document.getElementById("pwd2").value;
+	if(pwd1.length<6 || pwd1.length >16){
+		document.getElementById("check_pwd1").innerHTML='비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.';
+		document.getElementById("check_pwd1").style.color='red'
+	}
+	else{
+		document.getElementById("check_pwd1").innerHTML='';
+	}
+	if(pwd1!='' && pwd2!=''){
+		if(pwd1==pwd2){
+			document.getElementById("check_pwd2").innerHTML='비밀번호가 일치합니다.';
+			document.getElementById("check_pwd2").style.color="green";
+		}
+		else{
+			document.getElementById("check_pwd2").innerHTML='비밀번호가 일치하지 않습니다.';
+			document.getElementById("check_pwd2").style.color='red';
+		}
+	}
+}
+
+function checkValue(){
+	
+	var form = document.userInfo;
+	
+	var userId = document.getElementById("id");
+	var userPwd1 = document.getElementById("pwd1");
+	var userPwd2 = document.getElementById("pwd2");
+	var userName = document.getElementById("name");
+	var userPhoneNumber = document.getElementById("phone");
+	var userAddr = document.getElementById("address");
+	var userEmail = document.getElementById("email");
+	var isDuplication = document.getElementById("idDuplication");
+	
+	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	
+	if(userId.value==''){
+		alert('아이디를 입력해주세요!')
+		userId.focus();
+		return false;
+	}
+	if(idDuplication.value != "idCheck"){
+		alert('아이디 중복체크를 해주세요!');
+		userId.focus();
+		return false;
+	}
+	if(userPwd1.value==''){
+		alert('비밀번호를 입력해주세요!');
+		userPwd1.focus();
+		return false;
+	}
+	if(userPwd2.value==''){
+		alert('비밀번호를 입력해주세요!');
+		userPwd2.focus();
+		return false;
+	}
+	if(userPwd1.value!='' && userPwd2.value!='' && userPwd1.value!=userPwd2.value){
+		alert('비밀번호를 동일하게 입력해주세요!');
+		userPwd1.focus();
+		return false;
+	}
+	if(userName.value==''){
+		alert('이름을 입력해주세요!');
+		userPhoneNumber.focus();
+		return false;
+	}
+	if(userAddr.value==''){
+		alert('주소를 입력해주세요!');
+		userAddr.focus();
+		return false;
+	}
+	if(userPhoneNumber.value==''){
+		alert('핸드폰 번호를 입력해주세요!');
+		userPhoneNumber.focus();
+		return false;
+	}
+	if(isNaN(userPhoneNumber.value)){
+		alert('핸드폰 번호를 제대로 입력해주세요!');
+		userPhoneNumber.focus();
+		return false;
+	}
+	if(userPhoneNumber.value.length!=11){
+		alert('핸드폰 번호가 올바르지 않습니다!');
+		userPhoneNumber.focus();
+		return false;
+	}
+}
+
+function goFirstForm() {
+	location.href="MainPage.jsp";
+}	
+
+function openIdChk(){
+	window.open("idCheckForm.jsp", "idwin", "width=400, height=350");
+}
+
+function inputIdChk(){
+	document.getElementById("idDuplication").value="idUncheck";
+}
+	
+</script>
 <body>
-<form method="post" action=signUpServlet>
-<div style="border:1px solid black;">
-<h1>회원 가입</h1>
-<table>
-<tr>
-<td> 아이디: </td>
-<td> <input type="text" name="id" size="40"></td>
-</tr>
-<tr>
-<td> 비밀번호: </td>
-<td> <input type="password" name="pwd" size="40"></td>
-</tr>
-<tr>
-<td> 이름: </td>
-<td> <input type="text" name="name" size="40"></td>
-</tr>
-<tr>
-<td> 생년월일: </td>
-<td> <input type="date" name="birthdate" size="40" value="yyyy-mm-dd" min="1900-01-01" max="2100-01-01"></td>
-</tr>
-<tr>
-<td> 성별: </td>
-<td><input type="radio" name="gender" value="남"
-					checked="checked" size="40">남자<input type="radio" name="gender"
-					value="녀" size="40">여자</td>
-</tr>
-<tr>
-<td> 주소: </td>
-<td> <input type="text" name="address" size="40"></td>
-</tr>
-<tr>
-<td>이메일:</td>
-<td> <input type="email" name="email" size="40"></td>
-</tr>
-<tr>
-<td> 핸드폰 번호: </td>
-<td> <input type="tel" name="phone" size="40"></td>
-</tr>
-<tr>
-<td><input type="submit" value="가입"> </td>
-<td><input type="reset" value="뒤로"> </td>
-</tr>
-</table>
-</div>
-</form>
+	<header>
+		<h1 style="text-align:center">회원가입</h1>
+	</header>
+	<div class="div_container">
+		<form method="post" action="signUpServlet">
+		<div id="content"> 
+			<h3 style="color:red; text-align:right font-weight: bold">
+				* 필수입력
+			</h3>
+			<hr>
+			<h3>
+				<label for="id">* 아이디</label>
+			</h3>
+			<span>
+				<input type="text" id="id" name="id" placeholder="아이디" onkeydown="inputIdChk()">
+			</span>
+			<span>
+				<input type="button" value="중복확인" onclick="openIdChk()">
+			</span>
+			<span>
+				<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
+			</span>
+			<h3>
+				<label for="password1">* 비밀번호</label>
+			</h3>
+			<span>
+				<input type="password" id="pwd1" name="pwd1" placeholder="비밀번호" onChange="isSame()">
+				<span id="check_pwd1"></span>
+			</span>
+			<h3>
+				<label for="password2">* 비밀번호 재확인</label>
+			</h3>
+			<span>
+				<input type="password" id="pwd2" name="pwd2" onChange="isSame()">
+				<span id="check_pwd2"></span>
+			</span>
+			<h3>
+				<label for="name">* 이름</label>
+			</h3>
+			<span>
+				<input type="text" id="name" name="name">
+			</span>
+			<h3>
+				<label for="date">생년월일</label>
+			</h3>
+			<span>
+				<input type="date" id="date" name="date">
+			</span>
+			<h3>
+				<label for="gender">성별</label>
+			</h3>
+			<span>
+				<input style="width:4%" type="radio" id="gender" name="gender" value="남" checked="checked" size="40">남자
+				<input style="width:4%" type="radio" id="gender" name="gender" value="녀" size="40">여자
+			</span>
+			<h3>
+				<label for="address">* 주소</label>
+			</h3>
+			<span>
+				<input type="text" id="address" name="address">
+			</span>
+			<h3>
+				<label for="email">이메일</label>
+			</h3>
+			<span>
+				<input type="email" id="email" name="email">
+			</span>
+			<h3>
+				<label for="phone">* 핸드폰 번호 ('-'는 빼주세요.)</label>
+			</h3>
+			<span>
+				<input type="tel" id="phone" name="phone">
+			</span>
+			<h3>
+			<br>
+			</h3>
+			<div align="center">
+				<input type="submit" value="가입하기" onclick="return checkValue()">
+				<input type="button" value="취소" onclick="goMainPage()">
+			</div>
+		</div>
+		</form>
+	</div>
 </body>
 </html>
+

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="Signup.css">
 </head>
 <script type="text/javascript">
+
 function isSame(){	
 	var pwd1=document.getElementById("pwd1").value;
 	var pwd2=document.getElementById("pwd2").value;
@@ -31,7 +32,7 @@ function isSame(){
 	}
 }
 
-function check_value(){
+function checkValue(){
 	
 	var userPwd1 = document.getElementById("pwd1");
 	var userPwd2 = document.getElementById("pwd2");
@@ -86,6 +87,14 @@ function check_value(){
 function goMainPage() {
 	location.href="MainPage.jsp";
 }	
+
+
+function signout(){
+	var inputString = prompt('탈퇴를 하시려면 비밀번호를 입력해주세요.');
+	if(inputString!=null){
+		location.href="userWithdrawalServlet?pwd="+inputString;
+	}
+}
 	
 </script>
 <body>
@@ -137,6 +146,7 @@ function goMainPage() {
 			<br>
 			</h3>
 			<div align="center">
+				<input type="button" value="탈퇴하기" onclick="signout()">
 				<input type="submit" value="수정하기">
 				<input type="button" value="취소" onclick="goMainPage()">
 			</div>

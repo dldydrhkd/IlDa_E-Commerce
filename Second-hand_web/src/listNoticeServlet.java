@@ -10,7 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import mybean.db.basketDAO;
+import mybean.db.basketListVO;
 import mybean.db.noticeDAO;
 import mybean.db.noticeVO;
 
@@ -27,10 +30,20 @@ public class listNoticeServlet extends HttpServlet {
 		
 		try {
 			noticeDAO notice = noticeDAO.getInstance();
-			List<noticeVO> li = notice.list();
-			notice.disConnect();
+			List<noticeVO> li = notice.listNotice();
+			basketDAO basket = basketDAO.getInstance();
+			HttpSession session = request.getSession();
+			List<basketListVO> bli = null;
+			int userNumber=-1;
+			if(session.getAttribute("userNumber") != null) {
+				userNumber = (int) session.getAttribute("userNumber");
+				bli = basket.listBasket(userNumber);
+			}
+//			notice.disConnect();
+			request.setAttribute("basketList", bli);
 			request.setAttribute("noticeList", li);
-			RequestDispatcher rd = request.getRequestDispatcher("/noticeList.jsp");
+			request.setAttribute("isSearch", "0");
+			RequestDispatcher rd = request.getRequestDispatcher("MainPage.jsp");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

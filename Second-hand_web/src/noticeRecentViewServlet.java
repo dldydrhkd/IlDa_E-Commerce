@@ -2,7 +2,6 @@
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,36 +11,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mybean.db.basketDAO;
-import mybean.db.basketListVO;
+import mybean.db.noticeDAO;
+import mybean.db.noticeVO;
 
-@WebServlet("/listBasketServlet")
-public class listBasketServlet extends HttpServlet {
+
+@WebServlet("/noticeRecentViewServlet")
+public class noticeRecentViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public listBasketServlet() {
+	
+    public noticeRecentViewServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		
+		HttpSession session = request.getSession();
+		int userNumber = (int) session.getAttribute("userNumber");
 		try {
-			basketDAO basket = basketDAO.getInstance();
-			HttpSession session = request.getSession();
-			List<basketListVO> li = basket.listBasket((int)session.getAttribute("userNumber"));
-//			basket.disConnect();
-			RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");
-			request.setAttribute("basketList", li);
-			rd.forward(request,response);
+			noticeDAO notice = noticeDAO.getInstance();
+			noticeVO n = notice.getRecentNotice(userNumber);
+//			notice.disConnect();
+			RequestDispatcher rd = request.getRequestDispatcher("noticeView.jsp");
+			request.setAttribute("noticeView", n);
+			rd.forward(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

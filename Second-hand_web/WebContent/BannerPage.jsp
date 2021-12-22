@@ -93,10 +93,15 @@
 	padding-left: 30px;
 }
 
-
-  
-
 </style>
+<script>
+	function logout(){
+		if(confirm("정말 로그아웃 하시겠습니까?")){
+			alert('로그아웃 되었습니다.');
+			location.href="logoutSuccess.jsp";
+		}
+	}
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Banner Page</title>
@@ -119,7 +124,7 @@
 	
 	<!-- 검색창 영역 -->
 	<div class="div_search" >
-    	<form method="get" action ="Search"> 	 
+    	<form method="get" action ="searchServlet"> 	 
       		<input type="text" name="Search" id="Search" placeholder="검색어를 입력해 주세요.">
       		<div>
       		<button class="Search_icon" id="Search" ><i class="fas fa-search fa-2x"></i></button>
@@ -133,15 +138,19 @@
 		<!-- 버튼 누르면 로그인페이지로 이동 -->
 		<%
 		if(id != null) {
-			out.print("<button type='button' >로그아웃</button>");
-			out.print("<button type='button' onClick="+"location.href='DibsPage.jsp'"+">회원정보 수정</button>");
-			out.print("<button type='button' >찜 목록</button>");
-		}
-		else { out.print("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;");
-			out.print("<button class='login_btn' type='button' id ='Sign' onClick="+
-						"location.href='LoginPage.jsp'"+"> 로그인/회원가입  </button>"); }
 		%>
-	
+			<button type='button' onClick="logout()">로그아웃</button>
+			<button type='button' onClick="location.href='userChange.jsp'">회원정보 수정</button>
+			<button type='button' onClick="location.href='listBasketServlet'">찜 목록</button>
+		<%
+		}
+		else { 
+		%>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button class='login_btn' type='button' id ='Sign' onClick="location.href='LoginPage.jsp'"> 로그인/회원가입  </button> 
+		<%
+		}
+		%>
 	</div>
 	</div>
 	

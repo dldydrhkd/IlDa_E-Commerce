@@ -29,7 +29,7 @@ public class userChangeInfo extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
-		String pwd = request.getParameter("pwd");
+		String pwd = request.getParameter("pwd1");
 		String name = request.getParameter("name");
 		String userPhoneNumber = request.getParameter("phone");
 		String userAddr = request.getParameter("address");
@@ -47,16 +47,13 @@ public class userChangeInfo extends HttpServlet {
 		try {
 			userDAO db = userDAO.getInstance();
 			db.updateRecord(usr);
-			db.disConnect();
+//			db.disConnect();
+			response.sendRedirect("MainPage.jsp");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		out.print("<script>");
-		out.print("alert('수정이 완료 되었습니다.')");
-		out.print("</script>");
-		
 		
 	}
 
