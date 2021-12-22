@@ -271,7 +271,9 @@ td{
 						<img src="upload/<%=img%>" alt=<%=title%> width= "230px" height="230px " >
 						
 						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
+						
 						<br><%=title%><hr>
+						</form>
 						</button> 
 						</div> 
 						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
@@ -296,7 +298,7 @@ td{
 					out.print("</tr>");
 				}
 			%>	
-				</form>
+				
 			</table>
 		</div>
 		<%} %>
