@@ -254,7 +254,6 @@ td{
 						else{
 							img = "noImg.jpg";
 						}
-						System.out.println(img);
 						
 						if(getList.get(record_cnt).getNoticeTitle()!=null){
 							title = getList.get(record_cnt).getNoticeTitle();	
@@ -270,7 +269,7 @@ td{
 
 						<img src="upload/<%=img%>" alt=<%=title%> width= "230px" height="230px " >
 						
-						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
+						<input type='hidden' name="noticeNumber" value=<%=getList.get(record_cnt).getNoticeNumber()%>>
 						
 						<br><%=title%><hr>
 						</form>

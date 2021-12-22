@@ -33,7 +33,7 @@ public class noticeRecentViewServlet extends HttpServlet {
 			noticeVO n = notice.getRecentNotice(userNumber);
 //			notice.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("noticeView.jsp");
-			request.setAttribute("notice", n);
+			request.setAttribute("noticeView", n);
 			rd.forward(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
