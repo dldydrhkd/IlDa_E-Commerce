@@ -66,12 +66,7 @@
 				<tr>
 						<td>&nbsp; - 작성일자 : <%= current_info.getNoticeRegistrationDate()%> </td>
 				</tr>
-				<tr>
-					<form action="basketAddServlet" method="post">
-						
-						<input type="submit" value="찜" style="width: 50px; height: 50px; float: right;"></td>
-					</form>
-				</tr>
+				
 				<tr>
 						<td colspan="3" maxlength="2048" style="height:550px; width:550px">내용 : <%=current_info.getNoticeInfo()%></td>
 				</tr>
@@ -83,7 +78,10 @@
 				<% }%>
 
 				<input type="reset" value="목록" style="width: 75px; height: 50px; float:right;" onclick="location.href='MainPage.jsp'"> </td>
-
+				<form action="basketAddServlet" method="post">
+						
+						<input type="submit" value="찜" style="width: 50px; height: 50px; float: right;"></td>
+				</form>
 				</tr>
 			</form>
 			</table>
