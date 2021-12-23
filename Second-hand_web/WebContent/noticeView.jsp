@@ -9,7 +9,6 @@
 <%
 	noticeVO current_info = (noticeVO)request.getAttribute("noticeView");
 	DecimalFormat formatter = new DecimalFormat("###,###");
-	
 %>
 
 
@@ -86,9 +85,9 @@
 			</form>
 			</table>
 		</div>
-		<%-- <div class="comment" align="center">
+		<div class="comment">
 			<jsp:include page="Commentpage.jsp"></jsp:include>
-		</div> --%>
+		</div>
 	</div>
 </body>
 </html>

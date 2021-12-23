@@ -44,7 +44,7 @@ function checkValue(){
 		content.focus();
 		return false;
 	}
-	if(file.value!=null && file.value.match(check)==null){
+	if(file.value!="" && file.value.match(check)==null){
 		alert("파일 이름은 영어,특수문자,숫자만 가능합니다.");
 		file.focus();
 		return false;
