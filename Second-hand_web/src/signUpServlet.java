@@ -28,9 +28,9 @@ public class signUpServlet extends HttpServlet {
 		String pwd = request.getParameter("pwd1");
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
-		Date birth = null;
+		Date birth;
 		if(date.equals("")) {
-			System.out.println("1");
+			birth = null;
 		}
 		else {
 			birth = Date.valueOf(date);
