@@ -95,7 +95,8 @@ function checkValue(){
 		return false;
 	}
 	if(!document.getElementById("date").value){
-		document.getElementById("date").value = -1;
+		document.getElementById("date").value = "9999-99-99";
+		console.log(document.getElementById("date").value);
 	}
 }
 

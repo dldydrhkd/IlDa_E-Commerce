@@ -29,7 +29,10 @@ public class signUpServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
 		Date birth = null;
-		if(!date.equals("-1")) {
+		if(date.equals("")) {
+			System.out.println("1");
+		}
+		else {
 			birth = Date.valueOf(date);
 		}
 		String userPhoneNumber = request.getParameter("phone");
@@ -59,10 +62,7 @@ public class signUpServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print("alert('회원가입이 성공적으로 완료 되었습니다.')");
-		out.print("</script>");
-		response.sendRedirect("MainPage.jsp");
+		response.sendRedirect("signupSuccess.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
