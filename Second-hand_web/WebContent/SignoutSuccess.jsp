@@ -4,6 +4,6 @@
 session.invalidate();
 %>
 <script>
-alert('로그아웃 되었습니다.');
+alert('회원탈퇴 되었습니다.');
 location.href="MainPage.jsp";	//해결법
 </script>
