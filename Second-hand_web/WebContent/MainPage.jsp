@@ -223,7 +223,6 @@ td{
 		if(getList!=null){	%>
 		<div class ="div_Table" align="center" >
 			<table>
-				<form action='showNoticeServlet' method='post'>
 			<% 	
 				int n=0;
 				int Totaltr= 0; 
@@ -247,6 +246,7 @@ td{
 					
 					// 게시글 출력
 					for(int j=0; j<n; j++){%>
+						<form action='showNoticeServlet' method='post'>
 						<%if(getList.get(record_cnt).getNoticeImgfileRealName()!=null){
 							img = getList.get(record_cnt).getNoticeImgfileRealName();
 							} 
