@@ -91,7 +91,7 @@ public class noticeDAO {
 		
 		pstmt.setInt(1, noticeNumber);
 		
-		rs = pstmt.executeQuery();//select
+		rs = pstmt.executeQuery(); //select
 		
 		if(rs.next()) {
 			noticeVO nd = new noticeVO();

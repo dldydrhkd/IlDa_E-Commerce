@@ -41,12 +41,6 @@
 		}else{total_record = 0 ;}
 		
 	}
-	
-	/* if(noticeList!=null){
-		for(noticeVO i : noticeList){
-			System.out.println(i.getNoticeTitle());
-		}
-	} */
 %>
 
 <%!
