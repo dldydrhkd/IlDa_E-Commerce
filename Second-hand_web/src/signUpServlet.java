@@ -29,7 +29,7 @@ public class signUpServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
 		Date birth = null;
-		if(date!=null) {
+		if(!date.equals("-1")) {
 			birth = Date.valueOf(date);
 		}
 		String userPhoneNumber = request.getParameter("phone");

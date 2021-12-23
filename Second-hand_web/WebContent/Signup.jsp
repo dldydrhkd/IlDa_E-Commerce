@@ -94,6 +94,9 @@ function checkValue(){
 		userPhoneNumber.focus();
 		return false;
 	}
+	if(!document.getElementById("date").value){
+		document.getElementById("date").value = -1;
+	}
 }
 
 function goMainPage() {

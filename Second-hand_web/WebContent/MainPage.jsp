@@ -15,9 +15,6 @@
 	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	List<basketVO> basketList = (List<basketVO>)request.getAttribute("basketList");
-	
-		
-	
 
 	
 	if(isSearch == null){
