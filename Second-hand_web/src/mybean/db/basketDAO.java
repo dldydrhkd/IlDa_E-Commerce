@@ -67,7 +67,6 @@ public class basketDAO {
 	
 	public List<noticeVO> listBasket2(int userNumber) throws SQLException{
 		List<noticeVO> basketList = new ArrayList<>();
-		System.out.println(userNumber);
 		String sql = "select *"
 				+ " from userTbl u inner join basketTbl b on (u.userNumber=b.userNumber)"
 				+ " inner join noticeTbl n on (b.noticeNumber = n.noticeNumber)"
