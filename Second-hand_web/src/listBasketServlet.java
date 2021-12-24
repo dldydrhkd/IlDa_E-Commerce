@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import mybean.db.basketDAO;
 import mybean.db.basketListVO;
+import mybean.db.noticeVO;
 
 @WebServlet("/listBasketServlet")
 public class listBasketServlet extends HttpServlet {
@@ -30,10 +31,11 @@ public class listBasketServlet extends HttpServlet {
 		try {
 			basketDAO basket = basketDAO.getInstance();
 			HttpSession session = request.getSession();
-			List<basketListVO> li = basket.listBasket((int)session.getAttribute("userNumber"));
+			List<noticeVO> li = basket.listBasket2((int)session.getAttribute("userNumber"));
 //			basket.disConnect();
 			RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");
 			request.setAttribute("basketList", li);
+			request.setAttribute("basket", "1");
 			rd.forward(request,response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

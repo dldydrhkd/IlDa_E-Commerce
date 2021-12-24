@@ -49,7 +49,7 @@
 						<td rowspan="6"  style="height:350px; width:370px"><img src="upload/<%=imgName%>"  width="100%" alt="<%=current_info.getNoticeImgfileRealName()%>"%></td>
 				</tr>
 				<tr>
-					<td>&nbsp; <%= current_info.getNoticeTitle() %></td>
+					<td>&nbsp; - 제목 : <%= current_info.getNoticeTitle() %></td>
 				</tr>
 				<tr>
 
@@ -71,23 +71,26 @@
 				</tr>
 			<form action="writeChangeServlet" method="post">
 				<tr>
-				
-				<%if(session.getAttribute("userNumber")==(Integer)current_info.getUserNumber()) {%>
-				<td colspan="3"><input type="submit" value="수정" style="width: 75px; height: 50px; float:right;">
-				<% }%>
-
-				<input type="reset" value="목록" style="width: 75px; height: 50px; float:right;" onclick="location.href='MainPage.jsp'"> </td>
+				<%if((int)session.getAttribute("userNumber")==(Integer)current_info.getUserNumber()) {%>
+				<td>
+					<input type="button" value="수정" style="width:75px; height:50px; float:right;">
+				</td>
+				<%
+				}
+				%>
+			</form>
+				<input type="reset" value="목록" style="width: 75px; height: 50px; float:right;" onclick="location.href='MainPage.jsp'">
 				<form action="basketAddServlet" method="post">
-						
-						<input type="submit" value="찜" style="width: 50px; height: 50px; float: right;"></td>
+						<input type="submit" value="찜"style="width: 50px; height: 50px; float: right;">
+						<input type="hidden" name="noticeNumber" value=<%=current_info.getNoticeNumber()%>>
 				</form>
 				</tr>
 			</form>
 			</table>
 		</div>
-		<div class="comment">
+		<%-- <div class="comment">
 			<jsp:include page="Commentpage.jsp"></jsp:include>
-		</div>
+		</div> --%>
 	</div>
 </body>
 </html>
