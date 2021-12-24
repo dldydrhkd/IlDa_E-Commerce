@@ -29,7 +29,7 @@ public class basketDeleteServlet extends HttpServlet {
 			basketDAO basket = basketDAO.getInstance();
 			basket.deleteBasket(basketNumber);
 //			basket.disConnect();
-			response.sendRedirect(request.getHeader("referer"));
+			response.sendRedirect("MainPage.jsp");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

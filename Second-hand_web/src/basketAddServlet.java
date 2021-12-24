@@ -26,23 +26,18 @@ public class basketAddServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		HttpSession session = request.getSession();
 		
-		int basketNumber = Integer.parseInt(request.getParameter("basketNumber"));
 		int userNumber = (int) session.getAttribute("userNumber");
 		int noticeNumber = Integer.parseInt(request.getParameter("noticeNumber"));
-		
 		try {
 			basketDAO basket = basketDAO.getInstance();
-			basket.insertBasket(new basketVO(basketNumber, userNumber, noticeNumber));
+			basket.insertBasket(new basketVO(userNumber, noticeNumber));
 //			basket.disConnect();
-			response.sendRedirect(request.getHeader("referer"));
+			response.sendRedirect("listBasketServlet");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

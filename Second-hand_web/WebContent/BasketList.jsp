@@ -5,18 +5,28 @@
 <%@ page import="java.util.List" %>
 <%@ page import="mybean.db.noticeVO" %>
 <%@ page import="java.text.DecimalFormat" %>
+<%@ page import="mybean.db.noticeVO" %>
 
 <% 
-	List<noticeVO> noticeList = (List<noticeVO>)request.getAttribute("basketList");
-	
 	int total_record=0;
-	
-	String isSearch = (String)request.getAttribute("isSearch");
+	String isSearch = (String)request.getAttribute("basket");
 	List<noticeVO> getList = new ArrayList<>();
+	List<Integer> userNum =new ArrayList<>();
+	
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	
-	if(noticeList!=null){
-		total_record=noticeList.size();
+	if(isSearch == null){		
+%>
+		<jsp:forward page="listBasketServlet"/>
+<%
+	}
+	else if(isSearch.equals("1")){
+		List<noticeVO> searchList = (List<noticeVO>)request.getAttribute("basketList");
+		
+		if(searchList!=null){
+			getList = searchList;
+			total_record = searchList.size();
+		}else{total_record = 0 ;}
 	}
 %>
 
@@ -124,26 +134,18 @@
 	witdth:100%;
 }
 
-.td_btn{
-	background-color:white;
-	width:250px;
-	height:300px;
-	text-align: left;
-	object-fit: fill;
-	font-family: "paybooc-Light", sans-serif;
-	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: 500;
-    overflow:hidden;
-    outline-color: gray; 
-    font-size: medium;
+table{
+	border-spacing: 8px;
+	
 }
 
-.td_btn img{
-	width:100%
+td{
+	width: 200px;
+	border:1px solid #cccccc;
 }
-#a_img img{
-width:40px;
+.div_btn {
+	
+	overflow: hidden; 
 
 }
 
@@ -175,7 +177,7 @@ width:40px;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>Main Page</title>
 
 <link rel="stylesheet" href="PageLayout.css">
 </head>
@@ -187,7 +189,7 @@ width:40px;
 		</div>
 		<%if(isSearch=="0"){%>
 		<div class=div_mainImg align="center">
-			<img src="main_img.jpg" alt="mainImg" width=100%/>
+			<img src="mainBanner.png" alt="mainImg" width=100%/>
 		</div>
 		
 		<div class="div_h1">
@@ -213,7 +215,7 @@ width:40px;
 				int n=0;
 				int Totaltr= 0; 
 				int col =5; //열의 갯 수
-				String img="그림3.jpg";
+				String img="noImg.jpg";
 				int price =0;
 				String title ="미제";
 							
@@ -236,9 +238,8 @@ width:40px;
 							img = getList.get(record_cnt).getNoticeImgfileRealName();
 							} 
 						else{
-							img = "그림3.jpg";
+							img = "noImg.jpg";
 						}
-						System.out.println(img);
 						
 						if(getList.get(record_cnt).getNoticeTitle()!=null){
 							title = getList.get(record_cnt).getNoticeTitle();	
@@ -248,19 +249,44 @@ width:40px;
 						%>
 						
 											
-						<td> <button type='submit' class='td_btn'>
-						<img src="upload/<%=img%>" alt="<%=title%>" style="width:230px; height:200px;" />
-						<hr>
-						<%=title%>
-						<br>가격:<%= " " + formatter.format(price) + "원"%>
-						<input type='hidden' name="noticeNumber" value= <%=getList.get(record_cnt).getNoticeNumber()%>/>
-						</button> </td>
+						<td width=50 style="word-break:break-all"> 
+						<div class="div_btn">
+						<button type='submit' class='td_btn' style="background-color: white; border: 0;">
+
+						<img src="upload/<%=img%>" alt=<%=title%> width= "230px" height="230px " >
+						
+						<input type='hidden' name="noticeNumber" value=<%=getList.get(record_cnt).getNoticeNumber()%>>
+						
+						<br><%=title%><hr>
+						</form>
+						</button> 
+						</div> 
+						<span style="display:inline-block; height:10%; width:180px;">&nbsp가격:<%=formatter.format(price) + "원"%></span>
+						<%
+						
+						if(session.getAttribute("userNumber") == (Integer)getList.get(record_cnt).getUserNumber()) { %>
+							
+							<form action="basketDeletServlet" method="post">
+							<button type="submit" style="background-color: white; border: 0; float:right">
+							<img src="basket1.png" alt="a" width="40px">
+							<input type="hidden" value=getList.get(record_cnt).getUserNumber()>
+							</button>
+							</form>
+						 
+						<%} else{%>
+							<form action="basketAddServlet" method="post">
+							<button type="submit" style="background-color: white; border: 0; float:right">
+							<img src="basket2.png" alt="a" width="40px">
+							<input type="hidden" value=getList.get(record_cnt).getNoticeNumber()>
+							</button>
+							</form>
+						<%} %>
+						 </td>
 						<% record_cnt++;
 					}
 					out.print("</tr>");
 				}
 			%>	
-				</form>
 			</table>
 		</div>
 		<%} %>

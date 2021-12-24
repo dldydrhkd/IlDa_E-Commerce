@@ -65,6 +65,30 @@ public class basketDAO {
 		return basketList;
 	}
 	
+	public List<noticeVO> listBasket2(int userNumber) throws SQLException{
+		List<noticeVO> basketList = new ArrayList<>();
+		System.out.println(userNumber);
+		String sql = "select *"
+				+ " from userTbl u inner join basketTbl b on (u.userNumber=b.userNumber)"
+				+ " inner join noticeTbl n on (b.noticeNumber = n.noticeNumber)"
+				+ " where b.userNumber=?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, userNumber);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			basketList.add(new noticeVO(rs.getInt("noticeNumber"),rs.getString("noticeTitle"),rs.getString("noticeInfo"), 
+					rs.getString("noticeState"), rs.getString("noticeClassification"),rs.getDate("noticeRegistrationDate"), 
+					rs.getInt("userNumber"), rs.getString("noticeImgfileRealName"), rs.getString("noticeSource"), 
+					rs.getInt("noticeProductPrice")));
+		}
+		
+		return basketList;
+	}
+	
 	public void disConnect() throws SQLException {
 		if(rs != null) rs.close();
 		if(pstmt != null) pstmt.close();

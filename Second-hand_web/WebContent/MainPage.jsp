@@ -14,8 +14,7 @@
 	List<Integer> userNum =new ArrayList<>();
 	
 	DecimalFormat formatter = new DecimalFormat("###,###");
-	List<basketVO> basketList = (List<basketVO>)request.getAttribute("basketList");
-
+ 	List<basketVO> basketList = (List<basketVO>)request.getAttribute("basketList");
 	
 	if(isSearch == null){
 %>
@@ -39,7 +38,6 @@
 			getList = searchList;
 			total_record = searchList.size();
 		}else{total_record = 0 ;}
-		
 	}
 %>
 
@@ -282,13 +280,15 @@ td{
 							<form action="basketDeletServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
 							<img src="basket1.png" alt="a" width="40px">
+							<input type="hidden" value=getList.get(record_cnt).getUserNumber()>
 							</button>
 							</form>
-						
+						 
 						<%} else{%>
 							<form action="basketAddServlet" method="post">
 							<button type="submit" style="background-color: white; border: 0; float:right">
 							<img src="basket2.png" alt="a" width="40px">
+							<input type="hidden" value=getList.get(record_cnt).getNoticeNumber()>
 							</button>
 							</form>
 						<%} %>
