@@ -20,7 +20,8 @@ Encore Playdata Bigdata Engineer - Mini Project 01
 🙋🏼‍♂️이용광 : Front-end / Back-end (full-stack)  
 🙋🏼‍♂️권건우 : DB / Back-end  
 🙋🏼‍♂️박태준 : Front-end
-
+#
+  
 ### 🛠️기술 스택
 <p>
   <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/>
@@ -30,15 +31,19 @@ Encore Playdata Bigdata Engineer - Mini Project 01
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
 </p>
 
+
+#
+
 ### 📂설치 파일 및 버전
 - tomcat 9.0 version
 - jdk 1.8 version
+- mysql connector 8.0.27 version
 - jstl.jar
 - standard.jar
 - cos.jar
-- mysql connector 8.0.27 version
+#
 
-## 📚Reference
+### 📚Reference
 - JSP 모듈화 개념 및 웹 사이트 페이지 분할 구성 - [https://dololak.tistory.com/494]<br>
 - Source Tree basic concept - [https://coding-groot.tistory.com/135]<br>
 - MVC pattern 2 - [https://velog.io/@jsj3282/MVC-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%841-%EB%AA%A8%EB%8D%B8-2-%EA%B5%AC%EC%A1%B0%EC%99%80-MVC-%ED%8C%A8%ED%84%B4]
