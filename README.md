@@ -16,10 +16,10 @@ Encore Playdata Bigdata Engineer - Mini Project 01
 #
 
 ### 👨‍👨팀 소개
-🙋🏼‍♂️이욱진 : Front-end / Project Manage  
-🙋🏼‍♂️이용광 : Front-end / Back-end (full-stack)  
-🙋🏼‍♂️권건우 : DB / Back-end  
-🙋🏼‍♂️박태준 : Front-end
+🙋🏼‍♂️[이욱진](https://github.com/ukjinlee66) : Front-end / Project Manage  
+🙋🏼‍♂️[이용광](https://github.com/dldydrhkd) : Front-end / Back-end (full-stack)  
+🙋🏼‍♂️[권건우](https://github.com/Geonw00) : DB / Back-end  
+🙋🏼‍♂️[박태준](https://github.com/ih-tjpark) : Front-end
 #
   
 ### 🛠️기술 스택
